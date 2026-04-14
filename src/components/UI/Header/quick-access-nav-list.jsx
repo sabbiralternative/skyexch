@@ -1,141 +1,163 @@
+import { Link } from "react-router-dom";
+import { useGroupQuery } from "../../../redux/features/events/events";
+import { useMemo } from "react";
+
 export const QuickAccessNavList = () => {
+  const { data } = useGroupQuery(
+    { sportsType: Number(0) },
+    {
+      pollingInterval: 1000,
+    },
+  );
+  const groupedData = useMemo(() => {
+    if (!data) return { cricket: 0, football: 0, tennis: 0 };
+
+    return Object.values(data).reduce(
+      (acc, value) => {
+        if (!value.visible) return acc;
+
+        if (value.eventTypeId === 4) acc.cricket++;
+        if (value.eventTypeId === 2) acc.tennis++;
+        if (value.eventTypeId === 1) acc.football++;
+
+        return acc;
+      },
+      {
+        cricket: 0,
+        football: 0,
+        tennis: 0,
+      },
+    );
+  }, [data]);
   return (
     <div className="relative z-10 w-screen overflow-visible hide-scrollbar bg-sub-header-gradient text-black max-md:hidden">
       <div className="flex min-w-full font-bold text-[12px] relative">
         <div className="relative w-full">
           <div className="flex overflow-x-auto hide-scrollbar pr-[100px]">
-            <a
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/home"
+              to="/"
             >
               <div className="flex items-center justify-center gap-1">Home</div>
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/inplay"
+              to="/exchange_sports/inplay/0"
             >
               <div className="flex items-center justify-center gap-1">
                 In-play
               </div>
-            </a>
-            <a
-              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize bg-color text-white bg-color"
-              href="/exchange_sports/multi-markets"
-            >
-              <div className="flex items-center justify-center gap-1">
-                Multi Markets
-              </div>
-            </a>
-            <a
+            </Link>
+
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/cricket"
+              to="/exchange_sports/cricket/4"
             >
               <div className="flex items-center justify-center gap-1">
                 Cricket
-                <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
-                  <div className="px-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
-                    >
-                      <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-                      <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-                      <circle cx={12} cy={12} r={2} />
-                      <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-                      <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-                    </svg>
-                  </div>
-                  <div className="bg-red-500 text-white font-bold rounded-r px-1">
-                    27
-                  </div>
-                </span>
+                {groupedData?.cricket > 0 && (
+                  <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
+                    <div className="px-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
+                      >
+                        <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                        <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                        <circle cx={12} cy={12} r={2} />
+                        <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                        <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
+                      </svg>
+                    </div>
+                    <div className="bg-red-500 text-white font-bold rounded-r px-1">
+                      {groupedData?.cricket}
+                    </div>
+                  </span>
+                )}
               </div>
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/football"
+              to="/exchange_sports/football/1"
             >
               <div className="flex items-center justify-center gap-1">
                 Football
-                <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
-                  <div className="px-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
-                    >
-                      <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-                      <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-                      <circle cx={12} cy={12} r={2} />
-                      <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-                      <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-                    </svg>
-                  </div>
-                  <div className="bg-red-500 text-white font-bold rounded-r px-1">
-                    10
-                  </div>
-                </span>
+                {groupedData?.football > 0 && (
+                  <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
+                    <div className="px-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
+                      >
+                        <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                        <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                        <circle cx={12} cy={12} r={2} />
+                        <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                        <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
+                      </svg>
+                    </div>
+                    <div className="bg-red-500 text-white font-bold rounded-r px-1">
+                      {groupedData?.football}
+                    </div>
+                  </span>
+                )}
               </div>
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/tennis"
+              to="/exchange_sports/tennis/2"
             >
               <div className="flex items-center justify-center gap-1">
                 Tennis
-                <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
-                  <div className="px-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
-                    >
-                      <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-                      <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-                      <circle cx={12} cy={12} r={2} />
-                      <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-                      <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-                    </svg>
-                  </div>
-                  <div className="bg-red-500 text-white font-bold rounded-r px-1">
-                    19
-                  </div>
-                </span>
+                {groupedData?.tennis > 0 && (
+                  <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
+                    <div className="px-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
+                      >
+                        <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                        <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                        <circle cx={12} cy={12} r={2} />
+                        <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                        <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
+                      </svg>
+                    </div>
+                    <div className="bg-red-500 text-white font-bold rounded-r px-1">
+                      {groupedData?.tennis}
+                    </div>
+                  </span>
+                )}
               </div>
-            </a>
-            <a
-              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/dc/gamev1.1/cockfight-NDAwMzMy-U1YtTElWRS0wMDE=-QVdD-U1YzODg=-R0FQ"
-            >
-              <div className="flex items-center justify-center gap-1">
-                Cock Fight
-              </div>
-            </a>
-            <a
+            </Link>
+
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize bg-header-gradient text-white"
-              href="/casino"
+              to="/casino"
             >
               <div className="flex items-center justify-center gap-1">
                 Casino
@@ -145,113 +167,40 @@ export const QuickAccessNavList = () => {
                   className="h-[18px] w-[18px]"
                 />
               </div>
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize bg-color text-white"
-              href="/sportsbook"
+              to="/sportsbook"
             >
               <div className="flex items-center justify-center gap-1">
                 Sportsbook
               </div>
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/horserace"
+              to="/exchange_sports/horserace"
             >
               <div className="flex items-center justify-center gap-1">
                 Horse race
               </div>
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/greyhound"
+              to="/exchange_sports/greyhound"
             >
               <div className="flex items-center justify-center gap-1">
                 GreyHound
               </div>
-            </a>
-            <a
+            </Link>
+
+            <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/binary"
-            >
-              <div className="flex items-center justify-center gap-1">
-                Binary
-                <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
-                  <div className="px-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
-                    >
-                      <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-                      <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-                      <circle cx={12} cy={12} r={2} />
-                      <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-                      <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-                    </svg>
-                  </div>
-                  <div className="bg-red-500 text-white font-bold rounded-r px-1">
-                    1
-                  </div>
-                </span>
-              </div>
-            </a>
-            <a
-              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/kabaddi"
+              to="/exchange_sports/kabaddi"
             >
               <div className="flex items-center justify-center gap-1">
                 kabaddi
               </div>
-            </a>
-            <a
-              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/politics"
-            >
-              <div className="flex items-center justify-center gap-1">
-                Politics
-                <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
-                  <div className="px-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-radio h-3 w-3 shrink-0 text-red-500"
-                    >
-                      <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-                      <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-                      <circle cx={12} cy={12} r={2} />
-                      <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-                      <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-                    </svg>
-                  </div>
-                  <div className="bg-red-500 text-white font-bold rounded-r px-1">
-                    1
-                  </div>
-                </span>
-              </div>
-            </a>
-            <a
-              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              href="/exchange_sports/basketball"
-            >
-              <div className="flex items-center justify-center gap-1">
-                Basketball
-              </div>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="absolute right-0 flex items-center gap-2 bg-sub-header-gradient h-full">

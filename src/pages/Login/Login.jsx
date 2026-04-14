@@ -8,13 +8,15 @@ import { setUser } from "../../redux/features/auth/authSlice";
 import {
   setShowBanner,
   setShowForgotPasswordModal,
-  setShowLoginModal,
   setShowRegisterModal,
 } from "../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
+import Register from "../../components/modals/Register/Register";
+import ForgotPassword from "../../components/modals/ForgotPassword/ForgotPassword";
 
 const Login = () => {
-  const { closePopupForForever } = useSelector((state) => state.global);
+  const { closePopupForForever, showRegisterModal, showForgotPasswordModal } =
+    useSelector((state) => state.global);
 
   const navigate = useNavigate();
 
@@ -50,12 +52,12 @@ const Login = () => {
         dispatch(setShowBanner(true));
       }
       if (result?.result?.changePassword) {
-        navigate(-1);
+        navigate("/");
         localStorage.setItem("changePassword", true);
         navigate("/change-password");
       }
       if (!result?.result?.changePassword && token && user) {
-        navigate(-1);
+        navigate("/");
         toast.success("Login successful");
       }
     } else {
@@ -92,26 +94,12 @@ const Login = () => {
         dispatch(setShowBanner(true));
       }
       if (token && user) {
-        navigate(-1);
+        navigate("/");
         toast.success("Login successful");
       }
     } else {
       toast.error(result?.error);
     }
-  };
-
-  const closeLoginModal = () => {
-    dispatch(setShowLoginModal(false));
-  };
-
-  const showRegister = () => {
-    closeLoginModal();
-    dispatch(setShowRegisterModal(true));
-  };
-
-  const showForgotPassword = () => {
-    closeLoginModal();
-    dispatch(setShowForgotPasswordModal(true));
   };
 
   const handleDownload = (e) => {
@@ -124,8 +112,14 @@ const Login = () => {
     link.click();
     link.parentNode.removeChild(link);
   };
+
+  const getWhatsAppId = (link) => {
+    window.open(link, "_blank");
+  };
   return (
     <div className="w-full">
+      {showRegisterModal && <Register />}
+      {showForgotPasswordModal && <ForgotPassword />}
       <div className="flex flex-col w-full bg-goldenYellow min-h-screen">
         <header
           className="relative flex flex-col items-center justify-center h-[36vh] pt-12 pb-8 px-4 shrink-0 bg-cover bg-center bg-no-repeat"
@@ -202,17 +196,7 @@ const Login = () => {
             >
               Demo login
             </button>
-            <div className="flex flex-col items-center justify-center text-[10px] font-[500] gap-1 w-full mt-2">
-              <div className="flex items-center bg-gray4 rounded-md gap-2">
-                <button className="flex bg-[#243A48] items-center justify-center h-[30px] w-fit px-2 capitalize rounded-[4px] text-white text-[15px] ">
-                  <img
-                    src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_94_2551)'%3e%3cpath%20d='M8.36055%200.789433C5.96258%201.62131%203.89457%203.20024%202.46029%205.29431C1.026%207.38838%200.301037%209.8872%200.391883%2012.4237C0.482728%2014.9603%201.38459%2017.4008%202.96501%2019.3869C4.54543%2021.373%206.72109%2022.8%209.17243%2023.4582C11.1598%2023.971%2013.2419%2023.9935%2015.2399%2023.5238C17.0499%2023.1173%2018.7233%2022.2476%2020.0962%2021.0001C21.5251%2019.662%2022.5622%2017.9597%2023.0962%2016.0763C23.6765%2014.0282%2023.7798%2011.8743%2023.3981%209.78006H12.2381V14.4094H18.7012C18.572%2015.1478%2018.2952%2015.8525%2017.8873%2016.4814C17.4795%2017.1102%2016.9489%2017.6504%2016.3274%2018.0694C15.5382%2018.5915%2014.6485%2018.9428%2013.7156%2019.1007C12.7798%2019.2747%2011.82%2019.2747%2010.8843%2019.1007C9.93591%2018.9046%209.03874%2018.5132%208.24993%2017.9513C6.98271%2017.0543%206.0312%2015.7799%205.53118%2014.3101C5.02271%2012.8127%205.02271%2011.1893%205.53118%209.69193C5.8871%208.64234%206.47549%207.68669%207.25243%206.89631C8.14154%205.97521%209.26718%205.3168%2010.5058%204.99333C11.7445%204.66985%2013.0484%204.6938%2014.2743%205.06256C15.232%205.35654%2016.1078%205.87019%2016.8318%206.56256C17.5606%205.83756%2018.2881%205.11068%2019.0143%204.38193C19.3893%203.99006%2019.7981%203.61693%2020.1674%203.21568C19.0622%202.1872%2017.765%201.38691%2016.3499%200.860683C13.7731%20-0.0749616%2010.9536%20-0.100106%208.36055%200.789433Z'%20fill='white'/%3e%3cpath%20d='M8.3607%200.789367C10.9536%20-0.100776%2013.7731%20-0.0762934%2016.3501%200.858742C17.7654%201.38855%2019.062%202.19269%2020.1657%203.22499C19.7907%203.62624%2019.3951%204.00124%2019.0126%204.39124C18.2851%205.11749%2017.5582%205.84124%2016.832%206.56249C16.1079%205.87012%2015.2321%205.35648%2014.2745%205.06249C13.0489%204.69244%2011.7451%204.66711%2010.5061%204.98926C9.26712%205.31141%208.14079%205.96861%207.2507%206.88874C6.47377%207.67912%205.88538%208.63477%205.52945%209.68437L1.64258%206.67499C3.03384%203.91604%205.44273%201.80566%208.3607%200.789367Z'%20fill='%23E33629'/%3e%3cpath%20d='M0.611157%209.65605C0.820072%208.62067%201.16691%207.61798%201.64241%206.6748L5.52928%209.69168C5.02081%2011.1891%205.02081%2012.8124%205.52928%2014.3098C4.23428%2015.3098%202.93866%2016.3148%201.64241%2017.3248C0.452064%2014.9554%200.0890305%2012.2557%200.611157%209.65605Z'%20fill='%23F8BD00'/%3e%3cpath%20d='M12.2381%209.77832H23.3981C23.7799%2011.8726%2023.6766%2014.0264%2023.0963%2016.0746C22.5623%2017.958%2021.5252%2019.6602%2020.0963%2020.9983C18.8419%2020.0196%2017.5819%2019.0483%2016.3275%2018.0696C16.9494%2017.6501%2017.4802%2017.1094%2017.8881%2016.4798C18.296%2015.8503%2018.5726%2015.1448%2018.7013%2014.4058H12.2381C12.2363%2012.8646%2012.2381%2011.3214%2012.2381%209.77832Z'%20fill='%23587DBD'/%3e%3cpath%20d='M1.64062%2017.3251C2.93687%2016.3251%204.2325%2015.3201%205.5275%2014.3101C6.02851%2015.7804%206.98138%2017.0549%208.25%2017.9513C9.04127%2018.5106%209.94037%2018.8988%2010.89%2019.0913C11.8257%2019.2653%2012.7855%2019.2653%2013.7213%2019.0913C14.6542%2018.9334%2015.5439%2018.5821%2016.3331%2018.0601C17.5875%2019.0388%2018.8475%2020.0101%2020.1019%2020.9888C18.7292%2022.237%2017.0558%2023.1073%2015.2456%2023.5144C13.2476%2023.9841%2011.1655%2023.9616%209.17813%2023.4488C7.60632%2023.0291%206.13814%2022.2893%204.86563%2021.2757C3.51874%2020.2063%202.41867%2018.8588%201.64062%2017.3251Z'%20fill='%23319F43'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_94_2551'%3e%3crect%20width='24'%20height='24'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e"
-                    alt="social-icon"
-                    className="h-[20px] w-[20px] max-md:mr-2"
-                  />
-                </button>
-              </div>
-            </div>
+
             <div className="w-full flex justify-center mt-1">
               <span className="text-black4 text-xs">
                 Don&apos;t have an account?
@@ -225,19 +209,21 @@ const Login = () => {
               </span>
             </div>
             <div className="flex gap-2 w-full h-[42px] items-end">
-              <a
-                href="https://wa.link/skyexchho"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full mt-3 flex items-center justify-center gap-2 bg-[rgba(255,255,255,.6)] text-black4 rounded-lg py-2.5 px-3 text-xs font-medium border border-gray6"
-              >
-                <img
-                  src="/assets/whatsapp-icon-CS78cpu5.svg"
-                  alt=""
-                  className="w-5 h-5"
-                />
-                <span className="text-xs">WhatsApp</span>
-              </a>
+              {Settings?.whatsapplink && Settings.registration_whatsapp && (
+                <a
+                  onClick={() => getWhatsAppId(Settings?.whatsapplink)}
+                  rel="noreferrer"
+                  className="w-full mt-3 flex items-center justify-center gap-2 bg-[rgba(255,255,255,.6)] text-black4 rounded-lg py-2.5 px-3 text-xs font-medium border border-gray6"
+                >
+                  <img
+                    src="/src/assets/img/whatsapp-icon-CS78cpu5.svg"
+                    alt=""
+                    className="w-5 h-5"
+                  />
+                  <span className="text-xs">WhatsApp</span>
+                </a>
+              )}
+
               {Settings.apk_link && (
                 <button
                   onClick={handleDownload}
@@ -261,7 +247,6 @@ const Login = () => {
             </div>
           </form>
         </main>
-        <div className="h-1.5 w-full bg-black shrink-0" />
       </div>
     </div>
   );

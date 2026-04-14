@@ -15,7 +15,7 @@ export const Authorized = () => {
     <div className="flex gap-2 md:gap-1 items-center">
       <div className="flex justify-center" />
       <div className="flex md:gap-1">
-        <div className="flex flex-row-reverse md:flex-row items-center gap-1">
+        <div className="flex flex-row items-center gap-1">
           <div className="hidden md:flex items-center gap-2 rounded-md  px-3 py-1 text-[12px] bg-[rgba(255,255,255,.1)] shadow-[inset_0_2px_0_0_rgba(255,255,255,.3)]">
             <span className="text-[#ffb600]">Main Balance</span>
             <span className="font-bold text-[#ffb600]">
@@ -29,11 +29,8 @@ export const Authorized = () => {
             >
               {data?.deductedExposure}
             </span>
-            <span
-              className="h-4 w-px bg-amber-600 shrink-0"
-              aria-hidden="true"
-            />
-            <div className="relative flex items-center">
+
+            {/* <div className="relative flex items-center">
               <button
                 type="button"
                 className="p-0.5 text-[#ffb600] hover:text-amber-300 cursor-pointer"
@@ -54,9 +51,32 @@ export const Authorized = () => {
                   <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" />
                 </svg>
               </button>
+            </div> */}
+          </div>
+          <div
+            className="md:hidden items-center gap-1.5 rounded-md px-2 py-1.5 text-[10px] bg-[rgba(255,255,255,.1)] shadow-[inset_0_2px_0_0_rgba(255,255,255,.3)]"
+            role="presentation"
+          >
+            <div className="flex gap-1">
+              <span className="text-[#ffb600]/80">Bal:</span>
+              <span className="font-bold text-[#ffb600]">
+                {" "}
+                {data?.availBalance}
+              </span>
+            </div>
+            <div className="flex gap-1">
+              <span className="text-[#ffb600]/80 cursor-pointer" role="button">
+                Exp
+              </span>
+              <span
+                className="font-bold text-[#ffb600] cursor-pointer"
+                role="button"
+              >
+                {data?.deductedExposure}
+              </span>
             </div>
           </div>
-          <div className="relative hidden md:flex gap-1">
+          <div className="relative flex gap-1">
             <div ref={ref} className="relative">
               <button
                 type="button"

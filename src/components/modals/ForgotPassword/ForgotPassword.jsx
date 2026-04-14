@@ -3,31 +3,29 @@ import { Settings } from "../../../api";
 import { useLogo } from "../../../context/ApiProvider";
 import { useNavigate } from "react-router-dom";
 import {
-  setShowBanner,
+  setShowForgotPasswordModal,
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import {
+  useForgotPasswordMutation,
   useGetOtpMutation,
-  useRegisterMutation,
 } from "../../../redux/features/auth/authApi";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { setUser } from "../../../redux/features/auth/authSlice";
 import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 
-const Register = () => {
+const ForgotPassword = () => {
   const ref = useRef();
-  const referralCode = localStorage.getItem("referralCode");
   const { logo } = useLogo();
   const navigate = useNavigate();
+  const [timer, setTimer] = useState(null);
   const dispatch = useDispatch();
   const [getOTP] = useGetOtpMutation();
-  const [handleRegister] = useRegisterMutation();
+  const [handleForgotPassword] = useForgotPasswordMutation();
   const { register, handleSubmit } = useForm();
-  const [timer, setTimer] = useState(null);
   const [order, setOrder] = useState({
     orderId: null,
     otpMethod: null,
@@ -53,48 +51,24 @@ const Register = () => {
   };
 
   const onSubmit = async (data) => {
-    const registerData = {
-      username: "",
+    const forgotPasswordData = {
+      username: mobile,
       password: data?.password,
       confirmPassword: data?.confirmPassword,
-      mobile: mobile,
       otp: data?.otp,
       isOtpAvailable: Settings.otp,
-      referralCode: referralCode || data?.referralCode,
       orderId: order.orderId,
       otpMethod: order.otpMethod,
     };
 
-    const result = await handleRegister(registerData).unwrap();
+    const result = await handleForgotPassword(forgotPasswordData).unwrap();
 
     if (result.success) {
-      if (window?.fbq) {
-        window.fbq("track", "CompleteRegistration", {
-          content_name: "User Signup",
-          status: "success",
-        });
-      }
-      localStorage.removeItem("referralCode");
-      const token = result?.result?.token;
-      const bonusToken = result?.result?.bonusToken;
-      const user = result?.result?.loginName;
-      const memberId = result?.result?.memberId;
-      const game = result?.result?.buttonValue?.game;
-      const banner = result?.result?.banner;
-      dispatch(setUser({ user, token, memberId }));
-      localStorage.setItem("buttonValue", JSON.stringify(game));
-      localStorage.setItem("bonusToken", bonusToken);
-      localStorage.setItem("token", token);
-      if (banner) {
-        localStorage.setItem("banner", banner);
-        dispatch(setShowBanner(true));
-      }
-      if (token && user) {
-        dispatch(setShowRegisterModal(false));
-        toast.success("Register successful");
-      }
+      toast.success("Password updated successfully");
+      closeForgotPasswordModal();
+      navigate("/login");
     } else {
-      toast.error(result?.error?.description);
+      toast.error(result?.error?.loginName?.[0]?.description);
     }
   };
 
@@ -102,6 +76,9 @@ const Register = () => {
     if (e.target.value.length <= 10) {
       setMobile(e.target.value);
     }
+  };
+  const closeForgotPasswordModal = () => {
+    dispatch(setShowForgotPasswordModal(false));
   };
 
   useEffect(() => {
@@ -151,7 +128,7 @@ const Register = () => {
         </div>
         <div className="flex flex-1 flex-col bg-goldenYellow min-h-[480px] max-h-[90vh] relative">
           <button
-            onClick={() => dispatch(setShowRegisterModal(false))}
+            onClick={() => dispatch(setShowForgotPasswordModal(false))}
             type="button"
             className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center bg-black text-white rounded hover:opacity-90 transition-opacity"
             aria-label="Close"
@@ -174,9 +151,11 @@ const Register = () => {
             <div className="flex justify-center">
               <div className="w-full max-w-md overflow-y-auto">
                 <header className="flex flex-col justify-center items-center text-center">
-                  <h1 className="text-2xl font-bold text-black3">Sign Up</h1>
+                  <h1 className="text-2xl font-bold text-black3">
+                    Forgot Password
+                  </h1>
                   <p className="text-xs text-black4 mt-1">
-                    Create your account by following these simple steps.
+                    Enter your phone number to reset your password.
                   </p>
                 </header>
                 <form
@@ -264,7 +243,7 @@ const Register = () => {
                     <div>
                       <div className="flex items-center px-3 py-2 w-full h-[44px] bg-white rounded border border-solid border-neutral-200 text-black placeholder:text-gray-500 focus-within:outline-none focus-within:ring-2 focus-within:border-gray-400 focus-within:ring-gray-400 mt-1">
                         <input
-                          {...register("password", { required: true })}
+                          {...register("confirmPassword", { required: true })}
                           type={showConfirmPassword ? "text" : "password"}
                           className="w-full bg-transparent border-none outline-none"
                           placeholder="Enter Confirm Password"
@@ -284,36 +263,13 @@ const Register = () => {
                         </div>
                       </div>
                     </div>
-                    <div>
-                      <input
-                        type="text"
-                        readOnly={referralCode}
-                        {...register("referralCode")}
-                        className="flex items-center px-3 py-2 w-full h-[44px] bg-white rounded border border-solid border-neutral-200 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-gray-400 focus:ring-gray-400 mt-1"
-                        defaultValue={referralCode}
-                        placeholder="Enter referral code(Optional)"
-                      />
-                    </div>
                   </div>
                   <button
                     type="submit"
                     className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4 mt-3"
                   >
-                    Register
+                    Change Password
                   </button>
-                  <div className="self-center mt-2 text-sm text-center text-black4">
-                    Already have account?{" "}
-                    <button
-                      onClick={() => {
-                        navigate("/login");
-                        dispatch(setShowRegisterModal(false));
-                      }}
-                      type="button"
-                      className="underline font-semibold text-black4 hover:opacity-80 bg-transparent border-0 p-0 cursor-pointer"
-                    >
-                      Sign in
-                    </button>
-                  </div>
                 </form>
               </div>
             </div>
@@ -324,4 +280,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ForgotPassword;

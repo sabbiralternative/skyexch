@@ -4,11 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Settings } from "../api";
 import Header from "../components/UI/Header/Header";
+import Register from "../components/modals/Register/Register";
+import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
 
 const MainLayout = () => {
   const [, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
-  const { group } = useSelector((state) => state.global);
+  const { group, showRegisterModal, showForgotPasswordModal } = useSelector(
+    (state) => state.global,
+  );
   const location = useLocation();
   const ref = useRef();
 
@@ -37,6 +41,8 @@ const MainLayout = () => {
 
   return (
     <div className="h-full">
+      {showRegisterModal && <Register />}
+      {showForgotPasswordModal && <ForgotPassword />}
       <div className="flex bg-[#dee2e6] flex-col h-full w-full overflow-auto gap-[1px] mb-64 router-ctn">
         <Header />
         <Outlet />

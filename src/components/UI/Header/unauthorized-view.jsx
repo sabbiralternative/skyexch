@@ -10,12 +10,9 @@ import {
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Register from "../../modals/Register/Register";
 
 export const UnauthorizedView = () => {
-  const { closePopupForForever, showRegisterModal } = useSelector(
-    (state) => state.global,
-  );
+  const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
   const { register, handleSubmit } = useForm();
@@ -96,11 +93,8 @@ export const UnauthorizedView = () => {
     }
   };
 
-  console.log(showRegisterModal);
-
   return (
     <div className="flex gap-1">
-      {showRegisterModal && <Register />}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex items-center gap-1"
