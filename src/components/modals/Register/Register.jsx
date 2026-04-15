@@ -19,6 +19,7 @@ import { IoEye } from "react-icons/io5";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 
 const Register = () => {
+  const affnook_token = localStorage.getItem("affnook_token");
   const ref = useRef();
   const referralCode = localStorage.getItem("referralCode");
   const { logo } = useLogo();
@@ -63,6 +64,7 @@ const Register = () => {
       referralCode: referralCode || data?.referralCode,
       orderId: order.orderId,
       otpMethod: order.otpMethod,
+      affnook_token: affnook_token || null,
     };
 
     const result = await handleRegister(registerData).unwrap();
