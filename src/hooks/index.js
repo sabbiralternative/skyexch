@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { API } from "../api";
 import { AxiosSecure } from "../lib/AxiosSecure";
 
-export const useIndex = () => {
+export const useIndexMutation = () => {
   return useMutation({
     mutationKey: ["index"],
     mutationFn: async (payload) => {
@@ -12,7 +12,7 @@ export const useIndex = () => {
   });
 };
 
-export const useGetIndex = (payload) => {
+export const useIndexQuery = (payload) => {
   return useQuery({
     queryKey: ["index", payload],
     queryFn: async () => {

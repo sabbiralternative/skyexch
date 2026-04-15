@@ -36,8 +36,12 @@ import promotionBanner from "../img/promotionBanner.webp";
 import cashBundle from "../img/cash-bundle.webp";
 import giftCard from "../img/giftCard.webp";
 import redeemCardGift from "../img/redeemCardGift.svg";
+import horseRacing from "../img/horse_racing.svg";
+import greyhoundRacing from "../img/greyhound.png";
 
 export default {
+  horseRacing,
+  greyhoundRacing,
   cashBundle,
   giftCard,
   redeemCardGift,

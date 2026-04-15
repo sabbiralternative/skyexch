@@ -1,5 +1,3 @@
-import { LeftSidebar } from "../../components/modules/ExchangeSports/LeftSidebar";
-import { RightSidebar } from "../../components/modules/ExchangeSports/RightSidebar";
 import { MatchOdds } from "../../components/modules/EventDetails/MatchOdds";
 import { Bookmaker } from "../../components/modules/EventDetails/Bookmaker";
 import { Fancy } from "../../components/modules/EventDetails/Fancy";
@@ -8,6 +6,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetEventDetailsQuery } from "../../redux/features/events/events";
 import { setPredictOdd } from "../../redux/features/events/eventSlice";
+import { LeftSidebar } from "../../components/shared/Sidebar/LeftSidebar";
+import { RightSidebar } from "../../components/shared/Sidebar/RightSidebar";
+import { HorseGreyhoundEventDetails } from "../../components/modules/EventDetails/HorseGreyhoundEventDetails";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -179,6 +180,9 @@ const EventDetails = () => {
                     {matchOdds?.length > 0 && <MatchOdds data={matchOdds} />}
                     {bookmaker?.length > 0 && <Bookmaker data={bookmaker} />}
                     {data?.result?.length > 0 && <Fancy data={data?.result} />}
+                    {eventTypeId == 7 || eventTypeId == 4339 ? (
+                      <HorseGreyhoundEventDetails data={data?.result} />
+                    ) : null}
                     {tiedMatch?.length > 0 && <MatchOdds data={tiedMatch} />}
                   </div>
                 </div>

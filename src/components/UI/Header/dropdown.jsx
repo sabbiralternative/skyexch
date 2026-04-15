@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
+import { Link } from "react-router-dom";
 
-export const Dropdown = () => {
+export const Dropdown = ({ setShowDropdown }) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   return (
@@ -12,58 +13,124 @@ export const Dropdown = () => {
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/my-profile">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/my-profile"
+            >
               My Profile
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/account-statement">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/account-statement"
+            >
               Account Statement
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/profit-loss">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/profit-loss"
+            >
               Profit Loss Report
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/my-wallet">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/my-wallet"
+            >
               My Wallet
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/promotions">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/promotions"
+            >
               Promotions
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/my-bets">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/bonus-statement"
+            >
+              Bonus Statement
+            </Link>
+          </div>
+        </li>
+        <li className="hover:underline cursor-pointer border-b border-b-gray18">
+          <div className="px-2 py-1">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/promotions"
+            >
+              Promos & Bonus
+            </Link>
+          </div>
+        </li>
+        <li className="hover:underline cursor-pointer border-b border-b-gray18">
+          <div className="px-2 py-1">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/lossback-bonus"
+            >
+              Lossback Bonus
+            </Link>
+          </div>
+        </li>
+
+        <li className="hover:underline cursor-pointer border-b border-b-gray18">
+          <div className="px-2 py-1">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/my-bets"
+            >
               Bet History
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/change-password">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/change-password"
+            >
               Change Password
-            </a>
+            </Link>
           </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
-            <a className="cursor-pointer" href="/rules">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/rules"
+            >
               Rules and Regulations
-            </a>
+            </Link>
           </div>
         </li>
         <li

@@ -5,6 +5,12 @@ import APK from "../pages/APK/APK";
 import Login from "../pages/Login/Login";
 import ExchangeSports from "../pages/ExchangeSports/ExchangeSports";
 import EventDetails from "../pages/EventDetails/EventDetails";
+import ChangePassword from "../pages/ChangePassword/ChangePassword";
+import Rules from "../pages/Rules/Rules";
+import Casino from "../pages/Casino/Casino";
+import BonusStatement from "../pages/BonusStatement/BonusStatement";
+import Promotions from "../pages/Promotions/Promotions";
+import LossbackBonus from "../pages/LossbackBonus/Promotions";
 
 export const router = createBrowserRouter(
   [
@@ -30,9 +36,34 @@ export const router = createBrowserRouter(
           path: "/exchange_sports/:eventName/:eventTypeId",
           element: <ExchangeSports />,
         },
+
         {
           path: "/event-details/:eventTypeId/:eventId",
           element: <EventDetails />,
+        },
+        {
+          path: "/change-password",
+          element: <ChangePassword />,
+        },
+        {
+          path: "/rules",
+          element: <Rules />,
+        },
+        {
+          path: "/casino",
+          element: <Casino />,
+        },
+        {
+          path: "/bonus-statement",
+          element: <BonusStatement />,
+        },
+        {
+          path: "/promotions",
+          element: <Promotions />,
+        },
+        {
+          path: "/lossback-bonus",
+          element: <LossbackBonus />,
         },
       ],
     },

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useGroupQuery } from "../../../redux/features/events/events";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import EditStake from "../../modals/EditState/EditStake";
 
 export const QuickAccessNavList = () => {
+  const [showEditStakeModal, setShowEditStakeModal] = useState(false);
   const { data } = useGroupQuery(
     { sportsType: Number(0) },
     {
@@ -31,6 +33,9 @@ export const QuickAccessNavList = () => {
   }, [data]);
   return (
     <div className="relative z-10 w-screen overflow-visible hide-scrollbar bg-sub-header-gradient text-black max-md:hidden">
+      {showEditStakeModal && (
+        <EditStake setShowEditStakeModal={setShowEditStakeModal} />
+      )}
       <div className="flex min-w-full font-bold text-[12px] relative">
         <div className="relative w-full">
           <div className="flex overflow-x-auto hide-scrollbar pr-[100px]">
@@ -157,7 +162,7 @@ export const QuickAccessNavList = () => {
 
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize bg-header-gradient text-white"
-              to="/casino"
+              to="/casino?product=All&category=All"
             >
               <div className="flex items-center justify-center gap-1">
                 Casino
@@ -178,7 +183,7 @@ export const QuickAccessNavList = () => {
             </Link>
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              to="/exchange_sports/horserace"
+              to="/exchange_sports/horserace/7"
             >
               <div className="flex items-center justify-center gap-1">
                 Horse race
@@ -186,7 +191,7 @@ export const QuickAccessNavList = () => {
             </Link>
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              to="/exchange_sports/greyhound"
+              to="/exchange_sports/greyhound/4339"
             >
               <div className="flex items-center justify-center gap-1">
                 GreyHound
@@ -203,25 +208,10 @@ export const QuickAccessNavList = () => {
             </Link>
           </div>
         </div>
-        <div className="absolute right-0 flex items-center gap-2 bg-sub-header-gradient h-full">
-          <div className="text-xs flex items-center gap-1">
-            <span className="font-normal text-gray-700">Time Zone:</span>
-            <span className="font-semibold text-black">GMT+6</span>
-          </div>
-          <div className="bg-header-gradient h-full flex items-center justify-center text-[#ffb600]">
-            <div className="relative">
-              <div className="h-1 w-full bg-[#ffb600] absolute top-[-11px]" />
-              <div className="px-4">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 rounded-md font-medium opacity-30"
-                  />
-                  <span className="text-xs">One Click Bet</span>
-                </label>
-              </div>
-            </div>
-          </div>
+        <div
+          onClick={() => setShowEditStakeModal(true)}
+          className="absolute right-0 flex items-center gap-2 bg-sub-header-gradient h-full"
+        >
           <div className="flex items-center gap-1 cursor-pointer">
             Setting
             <svg
