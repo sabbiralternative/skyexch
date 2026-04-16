@@ -47,8 +47,8 @@ const Promotions = () => {
       <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
         <div className="w-full router-ctn max-md:pb-9">
           <main className="flex w-full">
-            <div className=" w-full h-max font-lato py-3 px-2.5 flex flex-col gap-y-[15px]">
-              <div className=" flex md:flex-row flex-col ring-1 ring-lossback_1 items-center w-full rounded-lg  bg-bg_color_lossback_card_bg font-lato">
+            <div className=" w-full h-max  py-3 px-2.5 flex flex-col gap-y-[15px]">
+              <div className=" flex md:flex-row flex-col ring-1 ring-lossback_1 items-center w-full rounded-lg  bg-bg_color_lossback_card_bg ">
                 <div className="px-4 relative py-3 w-full md:w-fit overflow-hidden">
                   <div className="relative text-center z-20 text-white font-black leading-normal text-base tracking-wider uppercase">
                     Lossback bonus
@@ -87,7 +87,7 @@ const Promotions = () => {
                   </button>
                 </div>
               </div>
-              <div className=" w-full  px-[9px] font-lato flex flex-col justify-center relative overflow-hidden rounded-[10px] bg-bg_color_GiftCardBg gap-y-1.5 pb-[9px]">
+              <div className=" w-full  px-[9px]  flex flex-col justify-center relative overflow-hidden rounded-[10px] bg-bg_color_GiftCardBg gap-y-1.5 pb-[9px]">
                 <div className=" absolute top-0 right-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -117,17 +117,17 @@ const Promotions = () => {
                     />
                   </div>
                   <div className="flex flex-col items-start text-white gap-[0.5px]">
-                    <div className="text-sm md:text-base font-bold  font-lato">
+                    <div className="text-sm md:text-base font-bold  ">
                       Coupon Code
                     </div>
-                    <div className="leading-4 text-x sm:text-xs md:text-sm tracking-wide font-normal opacity-80 font-lato text-white">
+                    <div className="leading-4 text-x sm:text-xs md:text-sm tracking-wide font-normal opacity-80  text-white">
                       Type or Paste your coupon code and get rewards in your
                       wallet.
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col w-full">
-                  <div className="flex items-center w-full text-sm text-white font-normal font-lato bg-bg_color_giftCardInputBg py-1 pl-[10px] pr-[6px] rounded-md border  focus-within:outline-none placeholder:text-white focus-within:shadow-sm cursor-text border-transparent focus-within:border-transparent ">
+                  <div className="flex items-center w-full text-sm text-white font-normal  bg-bg_color_giftCardInputBg py-1 pl-[10px] pr-[6px] rounded-md border  focus-within:outline-none placeholder:text-white focus-within:shadow-sm cursor-text border-transparent focus-within:border-transparent ">
                     <input
                       value={coupon || ""}
                       onChange={(e) => setCoupon(e.target.value)}
@@ -137,7 +137,7 @@ const Promotions = () => {
                     <div className="flex-shrink-0 w-max">
                       <button
                         onClick={claimCoupon}
-                        className="relative overflow-hidden w-max px-2 py-1 font-lato text-white bg-header-gradient  text-xs md:text-sm font-bold leading-4 rounded-md flex items-center justify-center relative cursor-pointer disabled:opacity-70 flex items-center gap-x-1 shadow-sm"
+                        className="relative overflow-hidden w-max px-2 py-1  text-white bg-header-gradient  text-xs md:text-sm font-bold leading-4 rounded-md flex items-center justify-center relative cursor-pointer disabled:opacity-70 flex items-center gap-x-1 shadow-sm"
                         type="button"
                       >
                         <div className="flex items-center gap-x-1">

@@ -38,8 +38,13 @@ import giftCard from "../img/giftCard.webp";
 import redeemCardGift from "../img/redeemCardGift.svg";
 import horseRacing from "../img/horse_racing.svg";
 import greyhoundRacing from "../img/greyhound.png";
-
+import bep from "../img/bep20.svg";
+import trc from "../img/trc20.svg";
+import upi from "../img/upi.b1dbf1b2.svg";
 export default {
+  trc,
+  upi,
+  bep,
   horseRacing,
   greyhoundRacing,
   cashBundle,

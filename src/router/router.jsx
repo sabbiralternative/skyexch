@@ -11,6 +11,11 @@ import Casino from "../pages/Casino/Casino";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import Promotions from "../pages/Promotions/Promotions";
 import LossbackBonus from "../pages/LossbackBonus/Promotions";
+import Deposit from "../pages/Deposit/Deposit";
+import Withdraw from "../pages/Withdraw/Withdraw";
+import Affiliate from "../pages/Affiliate/Affiliate";
+import AffiliateUserStatement from "../pages/AffiliateUserStatement/AffiliateUserStatement";
+import AffiliateUserProfitLoss from "../pages/AffiliateUserProfitLoss/AffiliateUserProfitLoss";
 
 export const router = createBrowserRouter(
   [
@@ -64,6 +69,26 @@ export const router = createBrowserRouter(
         {
           path: "/lossback-bonus",
           element: <LossbackBonus />,
+        },
+        {
+          path: "/deposit",
+          element: <Deposit />,
+        },
+        {
+          path: "/withdraw",
+          element: <Withdraw />,
+        },
+        {
+          path: "/affiliate",
+          element: <Affiliate />,
+        },
+        {
+          path: "/affiliate/user-profit-loss",
+          element: <AffiliateUserProfitLoss />,
+        },
+        {
+          path: "/affiliate/user-statement",
+          element: <AffiliateUserStatement />,
         },
       ],
     },

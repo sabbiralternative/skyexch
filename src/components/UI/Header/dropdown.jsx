@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
+import { Settings } from "../../../api";
 
 export const Dropdown = ({ setShowDropdown }) => {
   const { user } = useSelector((state) => state.auth);
@@ -10,6 +11,28 @@ export const Dropdown = ({ setShowDropdown }) => {
       <ul className="flex flex-col font-helvetica text-[11px]">
         <li className="p-2 text-black text-xs font-bold bg-goldenYellow">
           {user}
+        </li>
+        <li className="hover:underline cursor-pointer border-b border-b-gray18">
+          <div className="px-2 py-1">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/deposit"
+            >
+              Deposit
+            </Link>
+          </div>
+        </li>
+        <li className="hover:underline cursor-pointer border-b border-b-gray18">
+          <div className="px-2 py-1">
+            <Link
+              onClick={() => setShowDropdown(false)}
+              className="cursor-pointer"
+              to="/withdraw"
+            >
+              Withdraw
+            </Link>
+          </div>
         </li>
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
@@ -55,6 +78,20 @@ export const Dropdown = ({ setShowDropdown }) => {
             </Link>
           </div>
         </li>
+        {!Settings?.referral && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/affiliate"
+              >
+                Affiliate
+              </Link>
+            </div>
+          </li>
+        )}
+
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
             <Link
