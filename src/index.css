@@ -183,7 +183,7 @@ html * {
   }
   .sc_cw-overs-info-mobile {
     display: flex !important;
-    border-top: 0.5px solid var(--bg-active-primary) !important;
+    border-top: 0.5px solid var(--color-bg-primary) !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
     color: #fff !important;
@@ -533,7 +533,7 @@ html * {
   display: flex;
   align-items: center;
   padding: 5px 20px;
-  background: var(--bg-color-headerBg);
+  background: var(--color-bg-primary);
 }
 
 .header-content img {
@@ -542,7 +542,7 @@ html * {
 
 .main-title {
   font-size: 18px;
-  color: var(--bg-active-primary);
+  color: #000;
   line-height: 1.2;
 }
 
@@ -555,13 +555,13 @@ html * {
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 5px;
-  color: #fff;
+  color: #000;
 }
 
 .benefits-title {
   font-size: 14px;
   margin-bottom: 10px;
-  color: #fff;
+  color: #000;
 }
 
 .benefits-list {
@@ -574,7 +574,7 @@ html * {
   padding-left: 30px;
   position: relative;
   font-size: 14px;
-  color: #fff;
+  color: #000;
 }
 
 /* Custom Checkmark */
@@ -582,7 +582,7 @@ html * {
   content: "✓";
   position: absolute;
   left: 0;
-  background: var(--bg-active-primary);
+  background: var(--color-bg-primary);
   color: #000;
   width: 18px;
   height: 18px;
@@ -595,8 +595,8 @@ html * {
 }
 
 .benefits-list strong {
-  color: #fff;
-  font-weight: 700;
+  color: #000;
+  font-weight: 600;
 }
 
 .download-button {
@@ -604,7 +604,7 @@ html * {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-active-primary);
+  background: var(--color-bg-primary);
   text-decoration: none;
   padding: 10px;
   font-size: 12px;
@@ -702,4 +702,29 @@ html * {
 }
 .bg-bg_Success {
   background-color: #16a34a;
+}
+.popUpOpenAnimation {
+  animation: popUpOpenAnimation 0.3s ease-in-out;
+}
+
+@keyframes popUpOpenAnimation {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.bg-bg_transactionSuccessBg {
+  background-image: linear-gradient(89deg, #40af52, #2e924b 89.28%);
+}
+.bg-bg_transactionPendingBg {
+  background-image: linear-gradient(89deg, #fbc439, #fd9b07 89.28%);
+}
+
+.bg-bg_transactionFailedBg {
+  background-image: linear-gradient(89deg, #eb244f, #a90f31 89.28%);
 }

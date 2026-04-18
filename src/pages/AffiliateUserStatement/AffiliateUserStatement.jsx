@@ -49,7 +49,7 @@ const AffiliateUserStatement = () => {
                       </svg>
                     </button>
                   </div>
-                  <span className="w-full h-full capitalize ml-[4px] flex items-center text-text_Ternary font-lato font-bold  leading-5">
+                  <span className="w-full h-full capitalize ml-[4px] flex items-center text-text_Ternary  font-bold  leading-5">
                     <span>Back</span>
                   </span>
                 </div>

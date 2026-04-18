@@ -75,14 +75,14 @@ const RemoveAccount = ({ setRemoveBank, removeBank }) => {
           <div className="w-full flex items-center justify-center gap-x-2">
             <button
               onClick={() => setRemoveBank("")}
-              className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out bg-transparent text-base font-semibold  text-text_Primary border border-primary h-10 w-32 rounded-md cursor-pointer"
+              className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out bg-transparent text-base font-medium  text-text_Primary border border-primary h-10 w-32 rounded-md cursor-pointer"
               type="button"
             >
               Cancel
             </button>
             <button
               onClick={handleDeleteBank}
-              className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out bg-primary text-base font-semibold  text-primary h-10 w-32 rounded-md flex items-center justify-center gap-x-1 cursor-pointer"
+              className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out bg-primary text-base font-medium  text-primary h-10 w-32 rounded-md flex items-center justify-center gap-x-1 cursor-pointer"
               type="button"
             >
               <span className=" font-normal text-[16px]">Yes, Remove</span>

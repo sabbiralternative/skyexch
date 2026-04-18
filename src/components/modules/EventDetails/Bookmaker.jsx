@@ -8,6 +8,10 @@ import {
 } from "../../../redux/features/events/eventSlice";
 import BetSlip from "./BetSlip";
 import toast from "react-hot-toast";
+import { isGameSuspended } from "../../../utils/isOddSuspended";
+import { Settings } from "../../../api";
+import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
+import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 
 export const Bookmaker = ({ data }) => {
   const [speedCashOut, setSpeedCashOut] = useState(null);
@@ -218,6 +222,12 @@ export const Bookmaker = ({ data }) => {
   }
   return (
     <Fragment>
+      {speedCashOut && (
+        <SpeedCashOut
+          speedCashOut={speedCashOut}
+          setSpeedCashOut={setSpeedCashOut}
+        />
+      )}
       {data?.length > 0 &&
         data?.map((game) => {
           const teamProfitForGame = teamProfit?.find(
@@ -267,24 +277,65 @@ export const Bookmaker = ({ data }) => {
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <button
-                      disabled
-                      className=" active:opacity-70 px-2 tracking-wide text-white font-bold leading-none relative overflow-hidden text-[11px] transition-all duration-150 ease-in-out rounded-md text-center flex items-center justify-center flex-row h-[26px] cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.35)] border border-white/20 profit"
-                      style={{ background: "rgb(112, 25, 32)" }}
-                    >
-                      <span className="text-white whitespace-nowrap">
-                        CASHOUT : ₹0
-                      </span>
-                    </button>
-                    <button
-                      disabled
-                      className=" active:opacity-70 loss-cut-btn px-2 tracking-wide text-white font-bold leading-none relative overflow-hidden text-[11px] transition-all duration-150 ease-in-out rounded-md text-center flex items-center justify-center flex-row h-[26px] cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.35)] border border-white/20"
-                      style={{ background: "rgb(91, 180, 80)" }}
-                    >
-                      <span className="text-white whitespace-nowrap">
-                        LOSS CUT
-                      </span>
-                    </button>
+                    {Settings.cashout &&
+                      game?.runners?.length !== 3 &&
+                      game?.status === "OPEN" &&
+                      !speedCashOut && (
+                        <button
+                          onClick={() =>
+                            handleCashOutPlaceBet(
+                              game,
+                              "lay",
+                              dispatch,
+                              pnlBySelection,
+                              token,
+                              teamProfitForGame,
+                            )
+                          }
+                          style={{
+                            cursor: `${
+                              !teamProfitForGame ? "not-allowed" : "pointer"
+                            }`,
+                            opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
+                          }}
+                          className={`active:opacity-70 px-2 tracking-wide text-white font-bold leading-none relative overflow-hidden text-[11px] transition-all duration-150 ease-in-out rounded-md text-center flex items-center justify-center flex-row h-[26px]  shadow-[0_2px_6px_rgba(0,0,0,0.35)] border border-white/20 loss ${
+                            teamProfitForGame?.profit > 0
+                              ? "bg-bg_cashOutBtnGrd"
+                              : "bg-bg_color_clearBtn"
+                          }`}
+                        >
+                          <span className="text-white whitespace-nowrap">
+                            CASHOUT
+                            {teamProfitForGame?.profit?.toString()?.length >
+                              2 && <br className="lg:hidden" />}
+                            {teamProfitForGame?.profit &&
+                              `(${teamProfitForGame.profit.toFixed(0)})`}
+                          </span>
+                        </button>
+                      )}
+
+                    {Settings.cashout &&
+                      game?.runners?.length !== 3 &&
+                      game?.status === "OPEN" &&
+                      game?.name !== "toss" &&
+                      speedCashOut && (
+                        <button
+                          onClick={() =>
+                            setSpeedCashOut({
+                              ...speedCashOut,
+                              market_name: game?.name,
+                              event_name: game?.eventName,
+                            })
+                          }
+                          disabled={isGameSuspended(game)}
+                          className=" active:opacity-70 loss-cut-btn px-2 tracking-wide text-white font-bold leading-none relative overflow-hidden text-[11px] transition-all duration-150 ease-in-out rounded-md text-center flex items-center justify-center flex-row h-[26px] cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.35)] border border-white/20"
+                          style={{ background: "#82371b" }}
+                        >
+                          <span className="text-white whitespace-nowrap">
+                            Speed Cashout
+                          </span>
+                        </button>
+                      )}
                   </div>
                 </div>
                 <div className="flex items-center justify-between w-full bg-blue15 px-4 py-1 text-xs font-bold text-black border-b border-gray6">
@@ -293,13 +344,13 @@ export const Bookmaker = ({ data }) => {
                     <span className="rounded-sm px-4 text-[10px] font-normal text-white bg-[#374151]">
                       Min
                     </span>
-                    <span className="text-[11px] font-semibold">
+                    <span className="text-[11px] font-medium">
                       {game?.minLiabilityPerBet}
                     </span>
                     <span className="rounded-sm px-4 text-[10px] font-normal text-white bg-[#374151]">
                       Max
                     </span>
-                    <span className="text-[11px] font-semibold">
+                    <span className="text-[11px] font-medium">
                       {game?.maxLiabilityPerBet}
                     </span>
                   </div>

@@ -10,12 +10,19 @@ import Rules from "../pages/Rules/Rules";
 import Casino from "../pages/Casino/Casino";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import Promotions from "../pages/Promotions/Promotions";
-import LossbackBonus from "../pages/LossbackBonus/Promotions";
+import LossbackBonus from "../pages/LossbackBonus/LossbackBonus";
 import Deposit from "../pages/Deposit/Deposit";
 import Withdraw from "../pages/Withdraw/Withdraw";
 import Affiliate from "../pages/Affiliate/Affiliate";
 import AffiliateUserStatement from "../pages/AffiliateUserStatement/AffiliateUserStatement";
 import AffiliateUserProfitLoss from "../pages/AffiliateUserProfitLoss/AffiliateUserProfitLoss";
+import AppOnlyBonus from "../pages/AppOnlyBonus/AppOnlyBonus";
+import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
+import DepositReport from "../pages/DepositReport/DepositReport";
+import WithdrawReport from "../pages/WithdrawReport/WithdrawReport";
+import OpenBets from "../pages/OpenBets/OpenBets";
+import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
+import IFrame from "../pages/IFrame/IFrame";
 
 export const router = createBrowserRouter(
   [
@@ -28,10 +35,6 @@ export const router = createBrowserRouter(
           index: true,
           element: <Home />,
         },
-        // {
-        //   path: "/event-details/:eventTypeId/:eventId",
-        //   element: <EventDetails />,
-        // },
 
         {
           path: "/apk",
@@ -71,6 +74,10 @@ export const router = createBrowserRouter(
           element: <LossbackBonus />,
         },
         {
+          path: "/app-only-bonus",
+          element: <AppOnlyBonus />,
+        },
+        {
           path: "/deposit",
           element: <Deposit />,
         },
@@ -89,6 +96,31 @@ export const router = createBrowserRouter(
         {
           path: "/affiliate/user-statement",
           element: <AffiliateUserStatement />,
+        },
+
+        {
+          path: "/my-bank-details",
+          element: <MyBankDetails />,
+        },
+        {
+          path: "/deposit-report",
+          element: <DepositReport />,
+        },
+        {
+          path: "/withdraw-report",
+          element: <WithdrawReport />,
+        },
+        {
+          path: "/open-bets",
+          element: <OpenBets />,
+        },
+        {
+          path: "/betting-profit-loss",
+          element: <BettingProfitLoss />,
+        },
+        {
+          path: "/:route/:name/:gameId",
+          element: <IFrame />,
         },
       ],
     },

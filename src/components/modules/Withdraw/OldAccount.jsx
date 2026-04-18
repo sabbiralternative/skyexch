@@ -54,7 +54,7 @@ const OldAccount = ({ amount, bankAccounts }) => {
                   </div>
                   <div className="flex justify-between items-center w-full gap-x-2">
                     <span className="col-span-8 w-full flex flex-col items-start justify-center">
-                      <span className="text-sm font-semibold w-full truncate">
+                      <span className="text-sm font-medium w-full truncate">
                         {account?.bankAccountName}
                       </span>
                       <span className="text-xs font-normal w-full truncate">

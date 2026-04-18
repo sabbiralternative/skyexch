@@ -56,7 +56,7 @@ const AffiliateUserProfitLoss = () => {
                       </svg>
                     </button>
                   </div>
-                  <span className="w-full h-full capitalize ml-[4px] flex items-center text-text_Ternary font-lato font-bold  leading-5">
+                  <span className="w-full h-full capitalize ml-[4px] flex items-center text-text_Ternary  font-bold  leading-5">
                     <span>Back</span>
                   </span>
                 </div>
@@ -117,7 +117,7 @@ const AffiliateUserProfitLoss = () => {
                                 <span className="text-text_Ternary w-1/2 border-r border-r-oddInputColor flex items-center justify-start gap-x-1">
                                   <span>PL:</span>
                                   <span
-                                    className={`font-semibold ${
+                                    className={`font-medium ${
                                       item?.memberWin > 0
                                         ? "text-green-500"
                                         : item?.memberWin < 0
@@ -130,7 +130,7 @@ const AffiliateUserProfitLoss = () => {
                                 </span>
                                 <span className="text-text_Ternary w-1/2 flex items-center justify-end gap-x-1">
                                   <span>Balance:</span>
-                                  <span className={`font-semibold `}>
+                                  <span className={`font-medium `}>
                                     ₹ {item?.balance}
                                   </span>
                                 </span>

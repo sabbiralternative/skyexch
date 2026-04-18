@@ -6,6 +6,7 @@ import { Settings } from "../api";
 import Header from "../components/UI/Header/Header";
 import Register from "../components/modals/Register/Register";
 import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
+import MobileFooter from "../components/UI/MobileFooter/MobileFooter";
 
 const MainLayout = () => {
   const [, setShowBuildVersion] = useState(false);
@@ -46,6 +47,7 @@ const MainLayout = () => {
       <div className="flex bg-[#dee2e6] flex-col h-full w-full overflow-auto gap-[1px] mb-64 router-ctn">
         <Header />
         <Outlet />
+        <MobileFooter />
       </div>
     </div>
   );

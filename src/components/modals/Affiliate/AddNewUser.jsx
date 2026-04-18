@@ -138,9 +138,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
         ref={ref}
         className="z-2 popUpBoxShadow popUpOpenAnimation fixed w-[90%] sm:w-[85%] md:w-[70%] lg:w-[450px] rounded-[5px] bg-bg_Quaternary p-2 xs:p-5 rounded-md"
       >
-        <h2 className="mb-5 text-base md:text-xl font-semibold">
-          Add New User
-        </h2>
+        <h2 className="mb-5 text-base md:text-xl font-medium">Add New User</h2>
         <div
           onClick={() => setShowAddNewUserModal(false)}
           className="transition-all mb-2 ease-in-out duration-200 hover:scale-105 absolute -top-3 -right-3"
@@ -180,10 +178,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
               className="w-full gap-y-4 flex flex-col"
             >
               <div className="flex flex-col gap-1">
-                <div
-                  title="passwordInput"
-                  className="w-full font-lato uppercase"
-                >
+                <div title="passwordInput" className="w-full  uppercase">
                   <div className="text-[10px] ml-1 md:text-xs lg:text-sm">
                     Mobile
                   </div>
@@ -201,7 +196,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                         }
                       }}
                       id="mobile-no-input"
-                      className="px-2 block w-full focus:outline-none w-full font-lato bg-auth rounded-none text-text_Ternary pr-2 text-sm xs:text-md"
+                      className="px-2 block w-full focus:outline-none w-full  bg-auth rounded-none text-text_Ternary pr-2 text-sm xs:text-md"
                       placeholder="Phone Number"
                       type="text"
                       value={mobile}
@@ -210,7 +205,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                     <div className="w-max">
                       {timer ? (
                         <button
-                          className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out font-lato-bold h-fit bg-bg_Primary text-primary transition-all ease-in-out text-xs whitespace-nowrap mr-1 py-1 px-3 rounded active:scale-[0.98] active:opacity-95 disabled:bg-bg_Slate500 disabled:opacity-50 font-medium relative flex items-center justify-center !cursor-text"
+                          className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out -bold h-fit bg-bg_Primary text-primary transition-all ease-in-out text-xs whitespace-nowrap mr-1 py-1 px-3 rounded active:scale-[0.98] active:opacity-95 disabled:bg-bg_Slate500 disabled:opacity-50 font-medium relative flex items-center justify-center !cursor-text"
                           type="button"
                         >
                           <span className=" ">Retry in {timer}</span>
@@ -220,7 +215,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                         <div className="flex items-center">
                           <button
                             onClick={getOtpOnWhatsapp}
-                            className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out font-lato-bold h-fit bg-bg_Primary text-primary transition-all ease-in-out text-xs whitespace-nowrap mr-1 py-1 px-3 rounded active:scale-[0.98] active:opacity-95 disabled:bg-bg_Slate500 disabled:opacity-50 font-medium relative flex items-center justify-center cursor-pointer"
+                            className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out -bold h-fit bg-bg_Primary text-primary transition-all ease-in-out text-xs whitespace-nowrap mr-1 py-1 px-3 rounded active:scale-[0.98] active:opacity-95 disabled:bg-bg_Slate500 disabled:opacity-50 font-medium relative flex items-center justify-center cursor-pointer"
                             type="button"
                           >
                             <span className=" ">Get OTP Whatsapp</span>
@@ -228,7 +223,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                           </button>
                           <button
                             onClick={getOtp}
-                            className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out font-lato-bold h-fit bg-bg_Primary text-primary transition-all ease-in-out text-xs whitespace-nowrap mr-1 py-1 px-3 rounded active:scale-[0.98] active:opacity-95 disabled:bg-bg_Slate500 disabled:opacity-50 font-medium relative flex items-center justify-center cursor-pointer"
+                            className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out -bold h-fit bg-bg_Primary text-primary transition-all ease-in-out text-xs whitespace-nowrap mr-1 py-1 px-3 rounded active:scale-[0.98] active:opacity-95 disabled:bg-bg_Slate500 disabled:opacity-50 font-medium relative flex items-center justify-center cursor-pointer"
                             type="button"
                           >
                             <span className=" ">Get OTP Message</span>
@@ -242,10 +237,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <div
-                  title="passwordInput"
-                  className="w-full font-lato uppercase"
-                >
+                <div title="passwordInput" className="w-full  uppercase">
                   <div className="text-[10px] ml-1 md:text-xs lg:text-sm">
                     OTP
                   </div>
@@ -258,7 +250,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                         });
                       }}
                       id="otpSignUp"
-                      className="block w-full focus:outline-none w-full font-lato rounded-none py-1 text-text_Ternary px-2 text-sm xs:text-md bg-auth"
+                      className="block w-full focus:outline-none w-full  rounded-none py-1 text-text_Ternary px-2 text-sm xs:text-md bg-auth"
                       placeholder="Enter OTP"
                       type="text"
                       maxLength={6}
@@ -274,10 +266,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <div
-                  title="passwordInput"
-                  className="w-full font-lato uppercase"
-                >
+                <div title="passwordInput" className="w-full  uppercase">
                   <div className="text-[10px] ml-1 md:text-xs lg:text-sm">
                     User Id
                   </div>
@@ -298,10 +287,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <div
-                  title="passwordInput"
-                  className="w-full font-lato uppercase"
-                >
+                <div title="passwordInput" className="w-full  uppercase">
                   <div className="text-[10px] ml-1 md:text-xs lg:text-sm">
                     Password
                   </div>
@@ -323,10 +309,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <div
-                  title="passwordInput"
-                  className="w-full font-lato uppercase"
-                >
+                <div title="passwordInput" className="w-full  uppercase">
                   <div className="text-[10px] ml-1 md:text-xs lg:text-sm">
                     Confirm Password
                   </div>
@@ -349,10 +332,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <div
-                  title="passwordInput"
-                  className="w-full font-lato uppercase"
-                >
+                <div title="passwordInput" className="w-full  uppercase">
                   <div className="text-[10px] ml-1 md:text-xs lg:text-sm">
                     Self Password
                   </div>
@@ -379,7 +359,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                 <button
                   disabled={!isFormValid}
                   type="submit"
-                  className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out w-full text-primary bg-bg_LoginButtonColor shadow-lg rounded-md xs:text-[15px] px-5 py-2 flex items-center justify-center gap-x-2 font-lato-bold font-semibold text-base cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-block leading-normal relative overflow-hidden transition duration-150 ease-in-out w-full text-primary bg-bg_LoginButtonColor shadow-lg rounded-md xs:text-[15px] px-5 py-2 flex items-center justify-center gap-x-2 -bold font-medium text-base cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <span>Add New User</span>
                 </button>

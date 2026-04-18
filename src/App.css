@@ -6,12 +6,12 @@
 }
 .primary-icon-color svg,
 .back-from-iframe svg {
-  stroke: var(--bg-active-primary);
+  stroke: var(--color-bg-primary);
 }
 
 .change-password svg,
 .primary-icons svg {
-  fill: var(--bg-active-primary);
+  fill: var(--color-bg-primary);
 }
 
 .text-secondary {
@@ -540,7 +540,7 @@ input:-moz-autofill {
 }
 
 .dropdownBG {
-  background-color: var(--bg-active-primary) !important;
+  background-color: var(--color-bg-primary) !important;
 }
 
 .swal2-container:has(.alert-dialog) {
@@ -693,11 +693,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 /* App pop up */
 .android-popup {
   width: 100%;
-  font-family:
-    Helvetica Neue,
-    sans-serif,
-    BBAlpha Sans;
-  background: var(--menu-bg);
+  background: var(--color-bg-primary);
   padding: 5px;
   display: flex;
   align-items: center;
@@ -742,10 +738,6 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 }
 
 .android-card {
-  font-family:
-    Helvetica Neue,
-    sans-serif,
-    BBAlpha Sans;
   display: flex;
   width: 282px;
   align-items: center;
@@ -782,11 +774,8 @@ div:where(.swal2-container) div:where(.swal2-actions) {
   gap: 2px;
 }
 .app-text h2 {
-  color: #fff;
-  font-family:
-    Helvetica Neue,
-    sans-serif,
-    BBAlpha Sans;
+  color: #000;
+
   font-size: 11px;
   font-style: normal;
   font-weight: 700;
@@ -821,15 +810,12 @@ div:where(.swal2-container) div:where(.swal2-actions) {
   gap: 12px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: var(--bg-active-primary);
+  background: var(--color-bg-primary);
 }
 
 .install-btn button {
   color: #fff;
-  font-family:
-    Helvetica Neue,
-    sans-serif,
-    BBAlpha Sans;
+
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -984,7 +970,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
   width: 30px;
   height: 45px;
   top: 0;
-  background-color: var(--bg-active-primary);
+  background-color: var(--color-bg-primary);
 }
 
 button.btn {
@@ -1300,7 +1286,7 @@ html * {
   }
   .sc_cw-overs-info-mobile {
     display: flex !important;
-    border-top: 0.5px solid var(--bg-active-primary) !important;
+    border-top: 0.5px solid var(--color-bg-primary) !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
     color: #fff !important;

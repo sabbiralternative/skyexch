@@ -138,7 +138,7 @@ const EventDetails = () => {
 
                     <div className="flex items-center justify-between gap-2 px-2 py-1.5 text-white bg-section-gradient">
                       <div className="flex items-center gap-2">
-                        <span className="md:text-[15px] text-[12px] font-semibold">
+                        <span className="md:text-[15px] text-[12px] font-medium">
                           {data?.result?.[0]?.eventName}
                         </span>
                       </div>

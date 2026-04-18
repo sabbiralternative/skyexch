@@ -311,7 +311,7 @@ const Register = () => {
                         dispatch(setShowRegisterModal(false));
                       }}
                       type="button"
-                      className="underline font-semibold text-black4 hover:opacity-80 bg-transparent border-0 p-0 cursor-pointer"
+                      className="underline font-medium text-black4 hover:opacity-80 bg-transparent border-0 p-0 cursor-pointer"
                     >
                       Sign in
                     </button>

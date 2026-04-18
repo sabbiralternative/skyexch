@@ -132,7 +132,7 @@ const ProfitLoss = () => {
                           <span className="text-text_Ternary w-1/2 flex items-center justify-end gap-x-1">
                             <span>Amount:</span>
                             <span
-                              className={`font-semibold ${
+                              className={`font-medium ${
                                 item?.amount > 0
                                   ? "text-green-500"
                                   : item?.amount < 0

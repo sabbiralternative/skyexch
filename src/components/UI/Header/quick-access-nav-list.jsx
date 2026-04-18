@@ -1,9 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGroupQuery } from "../../../redux/features/events/events";
 import { useMemo, useState } from "react";
 import EditStake from "../../modals/EditState/EditStake";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { Settings } from "../../../api";
+import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 
 export const QuickAccessNavList = () => {
+  const navigate = useNavigate();
+  const [showWarning, setShowWarning] = useState(false);
+  const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
+  const { token, bonusToken } = useSelector((state) => state.auth);
   const [showEditStakeModal, setShowEditStakeModal] = useState(false);
   const { data } = useGroupQuery(
     { sportsType: Number(0) },
@@ -31,8 +39,28 @@ export const QuickAccessNavList = () => {
       },
     );
   }, [data]);
+
+  const handleNavigateToIFrame = (name, id) => {
+    if (token) {
+      if (bonusToken) {
+        return toast.error("Bonus wallet is available only on sports.");
+      }
+      if (Settings.casino_currency !== "AED") {
+        navigate(`/casino/${name}/${id}`);
+      } else {
+        setGameInfo({ gameName: "", gameId: "" });
+        setGameInfo({ gameName: name, gameId: id });
+        setShowWarning(true);
+      }
+    } else {
+      toast.error("Please login to access the game");
+    }
+  };
   return (
     <div className="relative z-10 w-screen overflow-visible hide-scrollbar bg-sub-header-gradient text-black max-md:hidden">
+      {showWarning && (
+        <WarningCondition gameInfo={gameInfo} setShowWarning={setShowWarning} />
+      )}
       {showEditStakeModal && (
         <EditStake setShowEditStakeModal={setShowEditStakeModal} />
       )}
@@ -173,14 +201,14 @@ export const QuickAccessNavList = () => {
                 />
               </div>
             </Link>
-            <Link
+            <a
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize bg-color text-white"
-              to="/sportsbook"
+              onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
             >
               <div className="flex items-center justify-center gap-1">
                 Sportsbook
               </div>
-            </Link>
+            </a>
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
               to="/exchange_sports/horserace/7"

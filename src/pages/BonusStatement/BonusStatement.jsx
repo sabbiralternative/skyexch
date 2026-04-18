@@ -78,14 +78,14 @@ const BonusStatement = () => {
                             <div className="w-full bg-bg_Quaternary1 px-2.5 py-2 flex items-center justify-between  text-xs sm:text-sm">
                               <span className=" w-1/2 border-r  flex items-center justify-start gap-x-1">
                                 <span>Bonus Amount:</span>
-                                <span className="font-semibold text-green-500">
+                                <span className="font-medium text-green-500">
                                   ₹ {item?.amount}
                                 </span>
                               </span>
                               <span className=" w-1/2 flex items-center justify-end gap-x-1">
                                 <span>Wagering Required:</span>
                                 <span
-                                  className={`font-semibold ${
+                                  className={`font-medium ${
                                     item?.wagering_amount > 0
                                       ? "text-green-500"
                                       : "text-red-500"
@@ -99,7 +99,7 @@ const BonusStatement = () => {
                               <span className=" w-1/2 border-r  flex items-center justify-start gap-x-1">
                                 <span>Wagering Complete Amount:</span>
                                 <span
-                                  className={`font-semibold ${
+                                  className={`font-medium ${
                                     item?.is_wagering_complete == 0
                                       ? "text-orange-500"
                                       : ""
@@ -114,7 +114,7 @@ const BonusStatement = () => {
                               </span>
                               <span className=" w-1/2 flex items-center justify-end gap-x-1">
                                 <span>Date Added:</span>
-                                <span className={`font-semibold `}>
+                                <span className={`font-medium `}>
                                   {formateDate(item?.date_added)}
                                 </span>
                               </span>
@@ -122,13 +122,13 @@ const BonusStatement = () => {
                             <div className="w-full bg-bg_Quaternary1 px-2.5 py-2 flex items-center justify-between  text-xs sm:text-sm">
                               <span className=" w-1/2 border-r   flex items-center justify-start gap-x-1">
                                 <span>Expiry Date:</span>
-                                <span className="font-semibold">
+                                <span className="font-medium">
                                   {formateDate(item?.expiry_date)}
                                 </span>
                               </span>
                               <span className=" w-1/2 flex items-center justify-end gap-x-1">
                                 <span></span>
-                                <span className={`font-semibold `}>
+                                <span className={`font-medium `}>
                                   {handleShowMessage(item)}
                                 </span>
                               </span>
@@ -142,13 +142,13 @@ const BonusStatement = () => {
                             <div className="w-full bg-bg_Quaternary1 px-2.5 py-2 flex items-center justify-between  text-xs sm:text-sm">
                               <span className=" w-1/2 border-r border-r-oddInputColor flex items-center justify-start gap-x-1">
                                 <span>Bonus Amount:</span>
-                                <span className="font-semibold text-green-500">
+                                <span className="font-medium text-green-500">
                                   ₹ {item?.amount}
                                 </span>
                               </span>
                               <span className=" w-1/2 flex items-center justify-end gap-x-1">
                                 <span>Date Added:</span>
-                                <span className={`font-semibold `}>
+                                <span className={`font-medium `}>
                                   {formateDate(item?.date_added)}
                                 </span>
                               </span>
@@ -157,7 +157,7 @@ const BonusStatement = () => {
                             <div className="w-full bg-bg_Quaternary1 px-2.5 py-2 flex items-center justify-end  text-xs sm:text-sm">
                               <span className=" w-1/2 flex items-center justify-end gap-x-1">
                                 <span></span>
-                                <span className={`font-semibold `}>
+                                <span className={`font-medium `}>
                                   {handleShowMessage(item)}
                                 </span>
                               </span>

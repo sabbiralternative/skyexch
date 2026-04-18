@@ -83,7 +83,7 @@ export const GroupSports = () => {
           <div className="w-full">
             <div className=" ">
               {eventTypeId !== "0" && (
-                <div className="hidden sm:flex items-center text-sm font-semibold my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
+                <div className="hidden sm:flex items-center text-sm font-medium my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
                   <div
                     onClick={() => setIsInPlay(true)}
                     className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm

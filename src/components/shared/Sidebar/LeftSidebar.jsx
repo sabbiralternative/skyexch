@@ -53,89 +53,27 @@ export const LeftSidebar = () => {
             >
               Tennis
             </button>
+
             <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Binary
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Politics
-            </button>
-            <button
+              onClick={() => navigate("/exchange_sports/horserace/7")}
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
               Horse Racing
             </button>
             <button
+              onClick={() => navigate("/exchange_sports/greyhound/4339")}
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
               GreyHound
             </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              basketball
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              baseball
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Futsal
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Darts
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Volleyball
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Table Tennis
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Ice Hockey
-            </button>
+
             <button
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
               Kabaddi
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              MMA
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
-            >
-              Rugby
             </button>
           </div>
         </div>

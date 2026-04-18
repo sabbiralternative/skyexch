@@ -41,7 +41,9 @@ import greyhoundRacing from "../img/greyhound.png";
 import bep from "../img/bep20.svg";
 import trc from "../img/trc20.svg";
 import upi from "../img/upi.b1dbf1b2.svg";
+import telegram from "../img/telegram.png";
 export default {
+  telegram,
   trc,
   upi,
   bep,

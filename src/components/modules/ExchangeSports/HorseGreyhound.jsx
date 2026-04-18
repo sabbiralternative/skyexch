@@ -87,10 +87,10 @@ const HorseGreyhound = () => {
                     </div>
                     <div className="flex flex-col justify-center items-center md:hidden">
                       <div className="bg-gray-300 rounded-md flex w-[75%]">
-                        <div className="text-nowrap text-center w-full text-[13px] rounded-md py-2 font-semibold bg-white text-blue-500 m-0.5">
+                        <div className="text-nowrap text-center w-full text-[13px] rounded-md py-2 font-medium bg-white text-blue-500 m-0.5">
                           By Time
                         </div>
-                        <div className="bg-gray-300 text-nowrap text-center w-full text-[13px] rounded-md py-2 font-semibold bg-gray-300">
+                        <div className="bg-gray-300 text-nowrap text-center w-full text-[13px] rounded-md py-2 font-medium bg-gray-300">
                           By Competition
                         </div>
                       </div>

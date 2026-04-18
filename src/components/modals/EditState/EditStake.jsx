@@ -42,7 +42,7 @@ const EditStake = ({ setShowEditStakeModal }) => {
         className="bg-white rounded-lg z-[101] shadow-lg  max-w-[90%] mx-auto px-4 py-3 relative max-h-[90vh] overflow-y-auto scroll"
       >
         <div className="flex justify-between items-center pb-3">
-          <h2 className="text-black text-xl font-semibold">Edit Stake</h2>
+          <h2 className="text-black text-xl font-medium">Edit Stake</h2>
           <button
             onClick={() => setShowEditStakeModal(false)}
             className=" active:opacity-70 text-lg text-black"
@@ -76,7 +76,7 @@ const EditStake = ({ setShowEditStakeModal }) => {
             >
               <div className="flex justify-between max-w-[700px]">
                 <div className="flex flex-col w-1/2 pr-2">
-                  <span className="mb-2 font-semibold">Price Label</span>
+                  <span className="mb-2 font-medium">Price Label</span>
                   {stakes?.map((stake, i) => {
                     return (
                       <input
@@ -91,7 +91,7 @@ const EditStake = ({ setShowEditStakeModal }) => {
                   })}
                 </div>
                 <div className="flex flex-col w-1/2 pl-2">
-                  <span className="mb-2 font-semibold">Price Value</span>
+                  <span className="mb-2 font-medium">Price Value</span>
                   {stakes?.map((stake, i) => {
                     return (
                       <input
