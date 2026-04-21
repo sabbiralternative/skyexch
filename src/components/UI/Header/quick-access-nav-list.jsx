@@ -238,7 +238,7 @@ export const QuickAccessNavList = () => {
         </div>
         <div
           onClick={() => setShowEditStakeModal(true)}
-          className="absolute right-0 flex items-center gap-2 bg-sub-header-gradient h-full"
+          className="absolute right-2 flex items-center gap-2 bg-sub-header-gradient h-full"
         >
           <div className="flex items-center gap-1 cursor-pointer">
             Setting

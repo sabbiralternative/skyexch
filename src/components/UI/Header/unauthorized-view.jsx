@@ -192,7 +192,7 @@ export const UnauthorizedView = () => {
           </button>
         </div>
       </form>
-      <div className="relative flex items-center">
+      {/* <div className="relative flex items-center">
         <div className="flex items-center justify-between w-full rounded-md text-white px-1.5 text-sm bg-[#243A48]">
           <span className="text-md font-medium p-1">en</span>
           <button className="flex items-center gap-2">
@@ -203,7 +203,7 @@ export const UnauthorizedView = () => {
             />
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import {
 
 import BetSlip from "./BetSlip";
 import toast from "react-hot-toast";
+import Ladder from "../../modals/Ladder/Ladder";
 
 export const Fancy = ({ data }) => {
   const fancyData = data?.filter(
@@ -129,6 +130,13 @@ export const Fancy = ({ data }) => {
   };
   return (
     <Fragment>
+      {ladderData?.length > 0 && (
+        <Ladder
+          ladderData={ladderData}
+          setLadderData={setLadderData}
+          marketName={marketName}
+        />
+      )}
       {fancyData?.length > 0 && (
         <div className="relative flex flex-col w-full">
           <div className="flex flex-col gap-5">
@@ -160,6 +168,10 @@ export const Fancy = ({ data }) => {
                 </thead>
                 <tbody className="w-full">
                   {fancyData?.map((game) => {
+                    const pnl = pnlBySelection?.find(
+                      (pnl) => pnl?.MarketId === game?.id,
+                    );
+
                     return (
                       <Fragment key={game?.id}>
                         <tr className="border-b border-b-gray13 text-xs h-[43px] relative">
@@ -167,6 +179,103 @@ export const Fancy = ({ data }) => {
                             <span className=" text-[12px] font-[900]">
                               {game?.name}
                             </span>
+                            {pnl && (
+                              <div
+                                className={`  ${
+                                  pnl?.pnl > 0
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                }`}
+                              >
+                                {pnl?.pnl}
+                              </div>
+                            )}
+                            {pnl ? (
+                              <span
+                                onClick={() =>
+                                  handleGetLadder(pnl?.MarketId, game)
+                                }
+                                className="col-span-2 md:col-span-2 flex flex-row items-center justify-end"
+                              >
+                                <div className="opacity-100 cursor-pointer">
+                                  <svg
+                                    height="18"
+                                    width="18"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <g id="63d691358b4e4026f6539708_stairs 1">
+                                      <path
+                                        id="Vector"
+                                        d="M5.21875 3.13672V13.1367"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_2"
+                                        d="M5.21875 5.48047H10.5312"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_3"
+                                        d="M5.21875 8.13672H10.5312"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_4"
+                                        d="M5.21875 11.1055H10.5312"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_5"
+                                        d="M10.5312 3.13672V13.1367"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                    </g>
+                                  </svg>
+                                </div>
+                              </span>
+                            ) : (
+                              <span className="col-span-2 md:col-span-2 flex flex-row items-center justify-end">
+                                <div className="opacity-50 cursor-not-allowed">
+                                  <svg
+                                    height="18"
+                                    width="18"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <g id="63d691358b4e4026f6539708_stairs 1">
+                                      <path
+                                        id="Vector"
+                                        d="M5.21875 3.13672V13.1367"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_2"
+                                        d="M5.21875 5.48047H10.5312"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_3"
+                                        d="M5.21875 8.13672H10.5312"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_4"
+                                        d="M5.21875 11.1055H10.5312"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                      <path
+                                        id="Vector_5"
+                                        d="M10.5312 3.13672V13.1367"
+                                        stroke="var(--color-text-primary)"
+                                      ></path>
+                                    </g>
+                                  </svg>
+                                </div>
+                              </span>
+                            )}
                             <div className="text-left text-[10px] md:hidden">
                               <span className="font-extrabold text-blue-700">
                                 Min Max{" "}

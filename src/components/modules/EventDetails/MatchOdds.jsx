@@ -400,6 +400,28 @@ export const MatchOdds = ({ data }) => {
                                 <div className="flex text-[11px] font-[700] items-center h-full">
                                   {runner?.name}
                                 </div>
+                                {pnl && (
+                                  <div
+                                    className={`  ${
+                                      pnl?.pnl > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                    }`}
+                                  >
+                                    {pnl?.pnl}
+                                  </div>
+                                )}
+                                {stake && runnerId && predictOddValues && (
+                                  <div
+                                    className={`  ${
+                                      predictOddValues?.exposure > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                    }`}
+                                  >
+                                    » {predictOddValues?.exposure}
+                                  </div>
+                                )}
                               </div>
                             </td>
                             <td

@@ -373,6 +373,12 @@ export const Bookmaker = ({ data }) => {
                   </thead>
                   <tbody>
                     {game?.runners?.map((runner) => {
+                      const pnl = pnlBySelection?.find(
+                        (pnl) => pnl?.RunnerId === runner?.id,
+                      );
+                      const predictOddValues = predictOdd?.find(
+                        (val) => val?.id === runner?.id,
+                      );
                       return (
                         <Fragment key={runner?.id}>
                           <tr className=" border-b  border-b-gray13 h-[43px] w-full">
@@ -383,7 +389,28 @@ export const Bookmaker = ({ data }) => {
                                     {runner?.name}
                                   </span>
                                 </div>
-                                <div />
+                                {pnl && (
+                                  <div
+                                    className={`  ${
+                                      pnl?.pnl > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                    }`}
+                                  >
+                                    {pnl?.pnl}
+                                  </div>
+                                )}
+                                {stake && runnerId && predictOddValues && (
+                                  <div
+                                    className={`  ${
+                                      predictOddValues?.exposure > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                    }`}
+                                  >
+                                    » {predictOddValues?.exposure}
+                                  </div>
+                                )}
                               </div>
                             </td>
                             <td
