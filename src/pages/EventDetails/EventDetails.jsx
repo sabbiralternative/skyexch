@@ -4,13 +4,24 @@ import { Fancy } from "../../components/modules/EventDetails/Fancy";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetEventDetailsQuery } from "../../redux/features/events/events";
+import {
+  useGetEventDetailsQuery,
+  useVideoMutation,
+} from "../../redux/features/events/events";
 import { setPredictOdd } from "../../redux/features/events/eventSlice";
 import { LeftSidebar } from "../../components/shared/Sidebar/LeftSidebar";
 import { RightSidebar } from "../../components/shared/Sidebar/RightSidebar";
 import { HorseGreyhoundEventDetails } from "../../components/modules/EventDetails/HorseGreyhoundEventDetails";
+import Score from "../../components/modules/EventDetails/Score";
+import { FaTv } from "react-icons/fa6";
+import { Settings } from "../../api";
+import OpenBets from "../../components/modals/OpenBets/OpenBets";
 
 const EventDetails = () => {
+  const [showOpenBetsModal, setShowOpenBetsModal] = useState(false);
+  const [sportsVideo, { data: iframe }] = useVideoMutation();
+  const [showScore, setShowScore] = useState(true);
+  const [showVideo, setShowVideo] = useState(true);
   const { eventTypeId, eventId } = useParams();
   const [profit, setProfit] = useState(0);
   const dispatch = useDispatch();
@@ -124,8 +135,24 @@ const EventDetails = () => {
       game?.name === "tied match",
   );
 
+  useEffect(() => {
+    const handleGetVideo = async () => {
+      const payload = {
+        eventTypeId: eventTypeId,
+        eventId: eventId,
+        type: "video",
+        casinoCurrency: Settings.casino_currency,
+      };
+      await sportsVideo(payload).unwrap();
+    };
+    handleGetVideo();
+  }, []);
+
   return (
     <div className="flex-1 flex white bg-gray1">
+      {showOpenBetsModal && (
+        <OpenBets setShowOpenBetsModal={setShowOpenBetsModal} />
+      )}
       <LeftSidebar />
       <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
         <div className="w-full router-ctn max-md:pb-9">
@@ -143,15 +170,31 @@ const EventDetails = () => {
                         </span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <div className="cursor-pointer">
-                          <img
-                            src="/src/assets/img/Score-DC8zPSAW.svg"
-                            alt="Live Score"
-                            className="h-5 w-5 invert"
-                            title="Toggle scorecard"
-                          />
-                        </div>
+                        {data?.score?.tracker && (
+                          <div
+                            onClick={() => setShowScore((prev) => !prev)}
+                            className="cursor-pointer"
+                          >
+                            <img
+                              src="/src/assets/img/Score-DC8zPSAW.svg"
+                              alt="Live Score"
+                              className="h-5 w-5 invert"
+                              title="Toggle score"
+                            />
+                          </div>
+                        )}
+
+                        {data?.score?.hasVideo && (
+                          <div
+                            onClick={() => setShowVideo((prev) => !prev)}
+                            className="cursor-pointer"
+                          >
+                            <FaTv className="h-5 w-5" title="Toggle video" />
+                          </div>
+                        )}
+
                         <div
+                          onClick={() => setShowOpenBetsModal(true)}
                           className="md:hidden font-[400] active:bg-blue5 rounded-[3px] cursor-pointer flex items-center justify-center"
                           title="Bets"
                         >
@@ -174,6 +217,34 @@ const EventDetails = () => {
                         </div>
                       </div>
                     </div>
+
+                    {eventTypeId == 4 && data?.iscore && (
+                      <Score iscore={data?.iscore} />
+                    )}
+                    {data?.score &&
+                      data?.score?.tracker !== null &&
+                      showScore && (
+                        <div className="w-full overflow-hidden h-[125px]">
+                          <iframe
+                            id="videoComponent"
+                            className="w-full h-auto relative overflow-hidden   bg-transparent"
+                            src={data?.score?.tracker}
+                            width="100%"
+                            allowfullscreen=""
+                          ></iframe>
+                        </div>
+                      )}
+                    {iframe?.result?.url &&
+                      data?.score?.hasVideo &&
+                      showVideo && (
+                        <iframe
+                          id="videoComponent"
+                          className="w-full max-h-[309px] sm:max-h-[144px] lg:max-h-[309px] relative overflow-hidden h-[55vw] md:h-[58vw] bg-transparent"
+                          src={iframe?.result?.url}
+                          width="100%"
+                          allowfullscreen=""
+                        ></iframe>
+                      )}
                     <div />
                   </div>
                   <div className>

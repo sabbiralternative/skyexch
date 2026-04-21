@@ -92,7 +92,10 @@ const MobileFooter = () => {
           </svg>
           <div className="text-white text-xs text-center">Home</div>
         </Link>
-        <a className="flex flex-col items-center justify-center h-full">
+        <Link
+          to="/multi-markets"
+          className="flex flex-col items-center justify-center h-full"
+        >
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -106,8 +109,11 @@ const MobileFooter = () => {
             <path d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A6 6 0 0 1 5 6.708V2.277a3 3 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354" />
           </svg>
           <div className="text-white text-xs text-center">Multi Market</div>
-        </a>
-        <a className="flex flex-col items-center justify-center h-full">
+        </Link>
+        <Link
+          className="flex flex-col items-center justify-center h-full"
+          to={token ? "/account" : "/login"}
+        >
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -121,7 +127,7 @@ const MobileFooter = () => {
             <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
           </svg>
           <div className="text-white text-xs text-center">Account</div>
-        </a>
+        </Link>
       </div>
     </div>
   );

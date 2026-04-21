@@ -228,7 +228,7 @@ export const QuickAccessNavList = () => {
 
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              to="/exchange_sports/kabaddi"
+              to="/exchange_sports/kabaddi/6"
             >
               <div className="flex items-center justify-center gap-1">
                 kabaddi

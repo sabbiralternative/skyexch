@@ -127,7 +127,7 @@ export const Dropdown = ({ setShowDropdown }) => {
           </div>
         </li>
 
-        {!Settings?.referral && (
+        {Settings?.referral && (
           <li className="hover:underline cursor-pointer border-b border-b-gray18">
             <div className="px-2 py-1">
               <Link

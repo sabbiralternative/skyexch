@@ -173,7 +173,7 @@ export const GroupSports = () => {
                     </div>
 
                     <div className="flex flex-1 overflow-auto">
-                      <div className="w-full h-full overflow-auto hide-scrollbar pb-[65px] md:pb-1 bg-white">
+                      <div className="w-full h-full overflow-auto hide-scrollbar  md:pb-1 bg-white">
                         <table className="w-full border-collapse border-b-2 border-gray-800">
                           <thead>
                             <tr className="text-xs text-center border-y bg-gray10 hidden md:table-row">

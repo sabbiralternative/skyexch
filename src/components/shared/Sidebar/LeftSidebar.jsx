@@ -70,6 +70,7 @@ export const LeftSidebar = () => {
             </button>
 
             <button
+              onClick={() => navigate("/exchange_sports/kabaddi/6")}
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >

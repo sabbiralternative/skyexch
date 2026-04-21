@@ -23,6 +23,8 @@ import WithdrawReport from "../pages/WithdrawReport/WithdrawReport";
 import OpenBets from "../pages/OpenBets/OpenBets";
 import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
 import IFrame from "../pages/IFrame/IFrame";
+import Account from "../pages/Account/Account";
+import MultiMarkets from "../pages/MultiMarkets/MultiMarkets";
 
 export const router = createBrowserRouter(
   [
@@ -121,6 +123,14 @@ export const router = createBrowserRouter(
         {
           path: "/:route/:name/:gameId",
           element: <IFrame />,
+        },
+        {
+          path: "/account",
+          element: <Account />,
+        },
+        {
+          path: "/multi-markets",
+          element: <MultiMarkets />,
         },
       ],
     },
