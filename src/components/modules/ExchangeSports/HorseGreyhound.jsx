@@ -3,6 +3,7 @@ import { useGroupQuery } from "../../../redux/features/events/events";
 import { useEffect, useState } from "react";
 import moment from "moment-timezone";
 import images from "../../../assets/images";
+import Notification from "../../UI/Header/Notification";
 
 const HorseGreyhound = () => {
   const { eventTypeId } = useParams();
@@ -40,6 +41,7 @@ const HorseGreyhound = () => {
           <div className="w-full">
             <div className=" ">
               <div className="flex flex-col min-h-screen">
+                <Notification />
                 <div className="flex flex-col flex-1 gap-[1px]">
                   <div className="flex flex-col md:gap-[1px] overflow-hidden" />
                   <div className="flex flex-col">

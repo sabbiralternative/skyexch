@@ -5,6 +5,7 @@ import { useIndexQuery } from "../../hooks";
 import Banner from "../../components/modules/Home/Banner";
 import HighlightCasino from "../../components/modules/Home/HighlightCasino";
 import OurProvider from "../../components/modules/Home/OurProvider";
+import Notification from "../../components/UI/Header/Notification";
 
 const Home = () => {
   const { data: casino } = useIndexQuery({
@@ -15,6 +16,8 @@ const Home = () => {
     <Fragment>
       <div className="w-full md:max-w-[76%] flex flex-col flex-1 m-auto overflow-auto hide-scrollbar bg-white pb-32 pb-[65px] md:pb-1">
         <div className="flex flex-col gap-[2px]">
+          <Notification />
+
           <Banner />
           <div className="relative -top-1.5 flex flex-col space-y-0.5">
             <HighlightCasino highlight_casino={casino?.highlight_casino} />

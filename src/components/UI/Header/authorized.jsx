@@ -3,8 +3,10 @@ import useBalance from "../../../hooks/balance";
 import { Dropdown } from "./dropdown";
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import { useNavigate } from "react-router-dom";
 
 export const Authorized = () => {
+  const navigate = useNavigate();
   const ref = useRef(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const { data } = useBalance();
@@ -13,7 +15,34 @@ export const Authorized = () => {
   useCloseModalClickOutside(ref, () => setShowDropdown(false));
   return (
     <div className="flex gap-2 md:gap-1 items-center">
-      <div className="flex justify-center" />
+      <div className="md:flex justify-center hidden ">
+        <button
+          onClick={() => navigate("/deposit")}
+          className=" active:opacity-70 flex gap-2 text-[10px] md:text-xs rounded items-center bg-[#008000] w-fit px-1 md:px-2 md:py-[5px] justify-center mx-1 border border-white"
+        >
+          <span className=" my-auto text-white">Deposit </span>
+        </button>
+        <button
+          onClick={() => navigate("/withdraw")}
+          className=" active:opacity-70 flex gap-2 text-[10px] md:text-xs rounded items-center bg-[#FF0000] py-[2px] w-fit px-1 md:px-2 md:py-[5px] justify-center mx-1 border border-white"
+        >
+          <span className=" my-auto text-white">Withdraw</span>
+        </button>
+      </div>
+      <div className="flex justify-center md:hidden ">
+        <button
+          onClick={() => navigate("/deposit")}
+          className=" active:opacity-70 flex gap-2 text-[10px] md:text-xs rounded items-center bg-[#008000] w-fit px-1 md:px-2 md:py-[5px] justify-center mx-1 border border-white"
+        >
+          <span className=" my-auto text-white">D </span>
+        </button>
+        <button
+          onClick={() => navigate("/withdraw")}
+          className=" active:opacity-70 flex gap-2 text-[10px] md:text-xs rounded items-center bg-[#FF0000] py-[2px] w-fit px-1 md:px-2 md:py-[5px] justify-center mx-1 border border-white"
+        >
+          <span className=" my-auto text-white">W </span>
+        </button>
+      </div>
       <div className="flex md:gap-1">
         <div className="flex flex-row items-center gap-1">
           <div className="hidden md:flex items-center gap-2 rounded-md  px-3 py-1 text-[12px] bg-[rgba(255,255,255,.1)] shadow-[inset_0_2px_0_0_rgba(255,255,255,.3)]">

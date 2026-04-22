@@ -306,8 +306,8 @@ export const Bookmaker = ({ data }) => {
                         >
                           <span className="text-white whitespace-nowrap">
                             CASHOUT
-                            {teamProfitForGame?.profit?.toString()?.length >
-                              2 && <br className="lg:hidden" />}
+                            {/* {teamProfitForGame?.profit?.toString()?.length >
+                              2 && <br className="lg:hidden" />} */}
                             {teamProfitForGame?.profit &&
                               `(${teamProfitForGame.profit.toFixed(0)})`}
                           </span>
@@ -391,7 +391,7 @@ export const Bookmaker = ({ data }) => {
                                 </div>
                                 {pnl && (
                                   <div
-                                    className={`  ${
+                                    className={`text-[11px]  ${
                                       pnl?.pnl > 0
                                         ? "text-green-500"
                                         : "text-red-500"
@@ -402,7 +402,7 @@ export const Bookmaker = ({ data }) => {
                                 )}
                                 {stake && runnerId && predictOddValues && (
                                   <div
-                                    className={`  ${
+                                    className={`text-[11px]  ${
                                       predictOddValues?.exposure > 0
                                         ? "text-green-500"
                                         : "text-red-500"

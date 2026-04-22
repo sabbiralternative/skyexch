@@ -32,16 +32,13 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
   const { refetch: refetchCurrentBets } = useCurrentBets(eventId);
   const { refetch: refetchBalance } = useBalance();
   const { refetch: refetchExposure } = useExposure(eventId);
-  const { placeBetValues, price, stake, predictOdd } = useSelector(
-    (state) => state?.event,
-  );
-  const { token } = useSelector((state) => state?.auth);
+  const { placeBetValues, price, stake } = useSelector((state) => state?.event);
+
   const buttonValues = localStorage.getItem("buttonValue");
   let parseButtonValues = [];
   if (buttonValues) {
     parseButtonValues = JSON.parse(buttonValues);
   }
-  const [betDelay, setBetDelay] = useState("");
 
   useEffect(() => {
     dispatch(setPrice(parseFloat(placeBetValues?.price)));
@@ -129,7 +126,6 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
       ) {
         delay = 9000;
       } else {
-        setBetDelay(currentPlaceBetEvent?.betDelay);
         delay = Settings?.bet_delay ? currentPlaceBetEvent?.betDelay * 1000 : 0;
       }
     }
@@ -147,7 +143,7 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
           dispatch(setRunnerId(null));
           dispatch(setPlaceBetValues(null));
           refetchCurrentBets();
-          setBetDelay("");
+
           dispatch(setStake(null));
           toast.success(data?.result?.result?.placed?.[0]?.message);
         } else {
@@ -155,13 +151,10 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
           toast.error(
             data?.error?.status?.[0]?.description || data?.error?.errorMessage,
           );
-          setBetDelay("");
-          setBetDelay(false);
         }
       } catch (err) {
         console.log(err);
         toast.error("Something went wrong. Please try again.");
-        setBetDelay("");
       }
     }, delay);
   };
@@ -219,16 +212,13 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
       dispatch(setStake(buttonValue + prevStake));
     }
   };
-  const selectedEvent = predictOdd?.find(
-    (odd) => odd?.id === placeBetValues?.selectionId,
-  );
 
   return (
     <tr>
       <td colSpan="7">
         <div className>
           <div
-            className={`   ${placeBetValues?.back ? "bg-[#72BBEF]" : "bg-[#FAA9BA]"}`}
+            className={` relative  ${placeBetValues?.back ? "bg-[#72BBEF]" : "bg-[#FAA9BA]"}`}
           >
             <div className="flex flex-col px-2">
               <span>{placeBetValues?.selectedBetName}</span>
@@ -371,6 +361,20 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
                 Place Bet
               </button>
             </div>
+            {loading && (
+              <div className="absolute top-0 left-0 flex flex-col gap-1 items-center justify-center w-full h-full z-20 bg-black/30 backdrop-blur-[2px]">
+                <div className="relative h-[70px] w-[70px] flex items-center justify-center">
+                  <div className="absolute text-lg text-white"></div>
+                  <div className="h-[80%] w-[80%] border-4 border-white rounded-full border-dotted border-t-white border-b-oneClickLoadingSpinner border-x-oneClickLoadingSpinner animate-oneClickLoadingSpinnerAnimation" />
+                </div>
+                <div className="flex flex-col items-center justify-center text-white">
+                  <div className="text-sm font-semibold">
+                    Your bet is being processed...
+                  </div>
+                  <div className="text-xs text-suspendedBg">Please wait</div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </td>

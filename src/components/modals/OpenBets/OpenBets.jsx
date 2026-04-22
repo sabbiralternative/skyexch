@@ -1,10 +1,15 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import { useParams } from "react-router-dom";
+import { useCurrentBets } from "../../../hooks/currentBets";
 
 const OpenBets = ({ setShowOpenBetsModal }) => {
   const ref = useRef();
 
   useCloseModalClickOutside(ref, () => setShowOpenBetsModal(false));
+  const { eventId } = useParams();
+  const { data } = useCurrentBets(eventId);
+
   return (
     <div className="m-auto fixed overflow-y-scroll z-[100] inset-0 bg-gray-200 bg-opacity-50 flex items-center justify-center pt-2">
       <div
@@ -44,9 +49,33 @@ const OpenBets = ({ setShowOpenBetsModal }) => {
                   />
                 </div>
               </div>
-              <div className="flex items-center justify-center text-[14px] text-[#757575] bg-neutral-200 h-full pt-7 pb-6">
-                Place bet to see it here.
-              </div>
+              <table className="text-black w-full text-[14px]">
+                <thead>
+                  <tr className="text-[#000] bg-neutral-200 text-[14px] font-medium h-[30px]">
+                    <th className="border-r text-[11px] border-[#e0e0e0] text-left pl-2">
+                      Market
+                    </th>
+                    <th className="border-r text-[11px] border-[#e0e0e0] text-left pl-2">
+                      Odds
+                    </th>
+                    <th className="border-r text-[11px] border-[#e0e0e0] text-left pl-2">
+                      Stake
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.map((bet) => (
+                    <tr
+                      key={bet?.betId}
+                      className={`h-[30px] border-b-[1px] text-[11px] ${bet?.betType === "Back" ? "bg-blue-400" : "bg-pink1"} bg-opacity-60`}
+                    >
+                      <td className="pl-2">{bet?.title}</td>
+                      <td className="pl-2">{bet?.userRate}</td>
+                      <td className="pl-2">{bet?.amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

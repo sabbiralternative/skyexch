@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useGroupQuery } from "../../../redux/features/events/events";
 import { useMemo, useState } from "react";
 import EditStake from "../../modals/EditState/EditStake";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { Settings } from "../../../api";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
+import { useGroupQuery } from "../../../hooks/group";
 
 export const QuickAccessNavList = () => {
   const navigate = useNavigate();
@@ -13,18 +13,14 @@ export const QuickAccessNavList = () => {
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
   const { token, bonusToken } = useSelector((state) => state.auth);
   const [showEditStakeModal, setShowEditStakeModal] = useState(false);
-  const { data } = useGroupQuery(
-    { sportsType: Number(0) },
-    {
-      pollingInterval: 1000,
-    },
-  );
+  const { data } = useGroupQuery({ sportsType: Number(0) });
   const groupedData = useMemo(() => {
     if (!data) return { cricket: 0, football: 0, tennis: 0 };
 
     return Object.values(data).reduce(
       (acc, value) => {
         if (!value.visible) return acc;
+        if (value.inPlay === 0) return acc;
 
         if (value.eventTypeId === 4) acc.cricket++;
         if (value.eventTypeId === 2) acc.tennis++;

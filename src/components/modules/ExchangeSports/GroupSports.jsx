@@ -1,20 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useGroupQuery } from "../../../redux/features/events/events";
 import { useEffect, useState } from "react";
 import { Status } from "../../../const";
+import Notification from "../../UI/Header/Notification";
+import { useGroupQuery } from "../../../hooks/group";
 
 export const GroupSports = () => {
   const navigate = useNavigate();
   const [isInPlay, setIsInPlay] = useState(true);
   const [categories, setCategories] = useState([]);
   const { eventTypeId } = useParams();
+
   const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football" };
-  const { data } = useGroupQuery(
-    { sportsType: Number(eventTypeId) },
-    {
-      pollingInterval: 1000,
-    },
-  );
+  const { data } = useGroupQuery({ sportsType: Number(eventTypeId) });
 
   useEffect(() => {
     if (data) {
@@ -82,24 +79,57 @@ export const GroupSports = () => {
         <main className="flex w-full">
           <div className="w-full">
             <div className=" ">
-              {eventTypeId !== "0" && (
-                <div className="hidden sm:flex items-center text-sm font-medium my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
+              <Notification />
+
+              <div className="sm:hidden flex items-center w-full bg-blue4 px-2 py-2">
+                <div className="flex flex-1 items-center text-sm font-semibold justify-center border border-white rounded-md">
                   <div
                     onClick={() => setIsInPlay(true)}
-                    className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm
-           ${isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                    className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
+             ${isInPlay ? "bg-white text-black" : "bg-blue4 text-white"}`}
                   >
                     In-play
                   </div>
                   <div
                     onClick={() => setIsInPlay(false)}
-                    className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm
-           ${!isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                    className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
+             ${!isInPlay ? "bg-white text-black" : "bg-blue4 text-white"}`}
                   >
-                    UPCOMING{" "}
+                    upcoming{" "}
                   </div>
                 </div>
-              )}
+                {/* <div className="ml-4">
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth={0}
+                    viewBox="0 0 512 512"
+                    className="w-5 h-5 text-white "
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M456.69 421.39 362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8 124.95 124.95 0 0 1-124.8-124.8z" />
+                  </svg>
+                </div> */}
+              </div>
+
+              <div className="hidden sm:flex items-center text-sm font-medium my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
+                <div
+                  onClick={() => setIsInPlay(true)}
+                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm
+           ${isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                >
+                  In-play
+                </div>
+                <div
+                  onClick={() => setIsInPlay(false)}
+                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm
+           ${!isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                >
+                  UPCOMING{" "}
+                </div>
+              </div>
 
               {categories?.map((category) => {
                 const groupedData = Object.entries(data)
@@ -124,6 +154,23 @@ export const GroupSports = () => {
                 const finalData = isInPlay
                   ? groupedData.inPlay
                   : groupedData.upcoming;
+
+                if (Object.keys(finalData).length === 0 && eventTypeId != 0) {
+                  return (
+                    <div
+                      key={category}
+                      className="flex flex-col h-full md:gap-[1px]"
+                    >
+                      <p className="text-center text-gray-500 py-10">
+                        No {isInPlay ? "In-Play" : "Upcoming"} events available
+                        for {eventName[category]}
+                      </p>
+                    </div>
+                  );
+                }
+                if (Object.keys(finalData).length === 0 && eventTypeId == 0)
+                  return null;
+
                 return (
                   <div
                     key={category}

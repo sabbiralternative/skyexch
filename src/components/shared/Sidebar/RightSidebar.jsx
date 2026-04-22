@@ -1,4 +1,11 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { useCurrentBets } from "../../../hooks/currentBets";
+
 export const RightSidebar = () => {
+  const navigate = useNavigate();
+  const { eventId } = useParams();
+  const { data } = useCurrentBets(eventId);
+
   return (
     <div className="bg-white border border-gray6 w-[20%] min-w-[330px] hidden md:block h-full">
       <div className="top-0 z-50 ">
@@ -11,9 +18,44 @@ export const RightSidebar = () => {
             />
           </div>
         </div>
-        <div className="flex items-center justify-center text-[14px] text-[#757575] bg-neutral-200 h-full pt-7 pb-6">
-          Place bet to see it here.
-        </div>
+        {data?.length > 0 ? (
+          <table className="text-black w-full text-[14px]">
+            <thead>
+              <tr className="text-[#000] bg-neutral-200 text-[14px] font-medium h-[30px]">
+                <th className="border-r text-[11px] border-[#e0e0e0] text-left pl-2">
+                  Market
+                </th>
+                <th className="border-r text-[11px] border-[#e0e0e0] text-left pl-2">
+                  Odds
+                </th>
+                <th className="border-r text-[11px] border-[#e0e0e0] text-left pl-2">
+                  Stake
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map((bet) => (
+                <tr
+                  onClick={() =>
+                    navigate(
+                      `/event-details/${bet?.eventTypeId}/${bet?.eventId}`,
+                    )
+                  }
+                  key={bet?.betId}
+                  className={`h-[30px] border-b-[1px] text-[11px] cursor-pointer ${bet?.betType === "Back" ? "bg-blue-400" : "bg-pink1"} bg-opacity-60`}
+                >
+                  <td className="pl-2">{bet?.title}</td>
+                  <td className="pl-2">{bet?.userRate}</td>
+                  <td className="pl-2">{bet?.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="flex items-center justify-center text-[14px] text-[#757575] bg-neutral-200 h-full pt-7 pb-6">
+            Place bet to see it here.
+          </div>
+        )}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { Authorized } from "./authorized";
 import { useLocation, useNavigate } from "react-router-dom";
 import AppPopup from "./AppPopUp";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
-import Notification from "./Notification";
+// import Notification from "./Notification";
 import { useEffect } from "react";
 import {
   setClosePopUpForForever,
@@ -63,7 +63,7 @@ const Header = () => {
 
   return (
     <div>
-      <Notification />
+      {/* <Notification /> */}
       {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />}
       {Settings.apk_link && showAPKModal && <DownloadAPK />}
       <div className="flex flex-col flex-0 w-full">
@@ -77,7 +77,7 @@ const Header = () => {
                 width: Settings.logo_width,
               }}
               alt="logo"
-              className="md:my-2 lg:my-0 cursor-pointer h-[28px] md:h-[40px] lg:h-[53px]"
+              className="md:my-2 lg:my-0 cursor-pointer"
             />
           </div>
           {token ? <Authorized /> : <UnauthorizedView />}
