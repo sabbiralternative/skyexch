@@ -86,6 +86,10 @@ const Casino = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    setSearch("");
+  }, [location.search]);
+
   return (
     <div className="flex-1 flex white bg-gray1">
       <LeftSidebar />
@@ -110,7 +114,8 @@ const Casino = () => {
                           type="text"
                           placeholder="Search Games..."
                           className="border border-[red] px-2 text-sm outline-none rounded-none h-full w-full"
-                          defaultValue
+                          onChange={(e) => setSearch(e.target.value)}
+                          value={search}
                         />
                         <div className="bg-[red] flex items-center justify-center px-3 text-white h-full">
                           <img
