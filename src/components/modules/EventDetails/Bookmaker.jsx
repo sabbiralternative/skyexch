@@ -436,9 +436,9 @@ export const Bookmaker = ({ data }) => {
                                 <div className="w-full h-full flex justify-center items-center disabled opacity-60 transparent exch-odd-button" />
                                 <div
                                   className={`w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
-              text-white bg-blue13 ${game?.status !== "OPEN" ? "disable opacity-60" : ""}`}
+              text-white bg-blue13 ${runner?.status !== "OPEN" ? "disable opacity-60" : ""}`}
                                 >
-                                  {game?.status === "OPEN" && (
+                                  {runner?.status === "OPEN" && (
                                     <div className="flex flex-col justify-center items-center gap-1  border border-white rounded h-[90%] w-[90%] ">
                                       <div className="text-[11px] text-black font-[700]">
                                         {runner?.back?.[0]?.price}
@@ -460,9 +460,9 @@ export const Bookmaker = ({ data }) => {
                               >
                                 <div
                                   className={`w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
-              text-white bg-blue13 ${game?.status !== "OPEN" ? "disable opacity-60" : ""}`}
+              text-white bg-blue13 ${runner?.status !== "OPEN" ? "disable opacity-60" : ""}`}
                                 >
-                                  {game?.status === "OPEN" && (
+                                  {runner?.status === "OPEN" && (
                                     <div className="flex flex-col justify-center items-center gap-1  border border-white rounded h-[90%] w-[90%] ">
                                       <div className="text-[11px] text-black font-[700]">
                                         {runner?.back?.[0]?.price}
@@ -493,9 +493,9 @@ export const Bookmaker = ({ data }) => {
                               >
                                 <div
                                   className={`w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
-              text-white bg-pink1 ${game?.status !== "OPEN" ? "disable opacity-60" : ""}`}
+              text-white bg-pink1 ${runner?.status !== "OPEN" ? "disable opacity-60" : ""}`}
                                 >
-                                  {game?.status === "OPEN" && (
+                                  {runner?.status === "OPEN" && (
                                     <div className="flex flex-col justify-center items-center gap-1  border border-white rounded h-[90%] w-[90%] ">
                                       <div className="text-[11px] text-black font-[700]">
                                         {runner?.lay?.[0]?.price}
@@ -519,9 +519,9 @@ export const Bookmaker = ({ data }) => {
                               >
                                 <div
                                   className={`w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
-              text-white bg-pink1 ${game?.status !== "OPEN" ? "disable opacity-60" : ""}`}
+              text-white bg-pink1 ${runner?.status !== "OPEN" ? "disable opacity-60" : ""}`}
                                 >
-                                  {game?.status === "OPEN" && (
+                                  {runner?.status === "OPEN" && (
                                     <div className="flex flex-col justify-center items-center gap-1  border border-white rounded h-[90%] w-[90%] ">
                                       <div className="text-[11px] text-black font-[700]">
                                         {runner?.lay?.[0]?.price}
@@ -530,10 +530,10 @@ export const Bookmaker = ({ data }) => {
                                   )}
                                 </div>
                               </div>
-                              {game?.status !== "OPEN" && (
+                              {runner?.status !== "OPEN" && (
                                 <div className="absolute top-0 bottom-0 left-[-100%] w-[200%] bg-black bg-opacity-25 z-10 flex items-center justify-center pointer-events-none">
                                   <span className="text-white text-[11px]">
-                                    {game?.status}
+                                    {runner?.status}
                                   </span>
                                 </div>
                               )}

@@ -228,26 +228,6 @@ export const HorseGreyhoundEventDetails = ({ data }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <button
-                    disabled
-                    className=" active:opacity-70 px-2 tracking-wide text-white font-bold leading-none relative overflow-hidden text-[11px] transition-all duration-150 ease-in-out rounded-md text-center flex items-center justify-center flex-row h-[26px] cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.35)] border border-white/20 loss"
-                    style={{ background: "rgb(112, 25, 32)" }}
-                  >
-                    <span className="text-white whitespace-nowrap">
-                      CASHOUT
-                    </span>
-                  </button>
-                  <button
-                    disabled
-                    className=" active:opacity-70 loss-cut-btn px-2 tracking-wide text-white font-bold leading-none relative overflow-hidden text-[11px] transition-all duration-150 ease-in-out rounded-md text-center flex items-center justify-center flex-row h-[26px] cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.35)] border border-white/20"
-                    style={{ background: "rgb(91, 180, 80)" }}
-                  >
-                    <span className="text-white whitespace-nowrap">
-                      LOSS CUT
-                    </span>
-                  </button>
-                </div>
               </div>
               <div className="flex flex-col bg-white border border-solid border-neutral-200 max-md:max-w-full">
                 <table className="w-full text-[14px] font-medium [&_td]:p-[0.2px] [&_th]:p-0">

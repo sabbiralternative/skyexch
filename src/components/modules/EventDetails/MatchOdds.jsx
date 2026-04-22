@@ -626,10 +626,10 @@ export const MatchOdds = ({ data }) => {
                                   </div>
                                 </div>
                               </div>
-                              {game?.status !== "OPEN" && (
+                              {runner?.status !== "OPEN" && (
                                 <div className="absolute top-0 bottom-0 left-[-100%] w-[200%] bg-black bg-opacity-25 z-10 flex items-center justify-center pointer-events-none">
                                   <span className="text-white text-[11px]">
-                                    {game?.status}
+                                    {runner?.status}
                                   </span>
                                 </div>
                               )}
