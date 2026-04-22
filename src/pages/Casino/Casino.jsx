@@ -48,8 +48,6 @@ const Casino = () => {
 
   // const a =
   //   allGames && allGames?.find((game) => game.product === "BIKINI GAMES");
-  // console.log(a);
-  // console.log(categories);
 
   const subCategories = useMemo(() => {
     if (allGames && categories && product === "All") {

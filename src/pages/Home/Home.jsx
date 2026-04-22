@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import WhatsApp from "../../components/modules/Home/WhatsApp";
 import CasinoSlider from "../../components/modules/Home/CasinoSlider";
 import { useIndexQuery } from "../../hooks";
@@ -6,8 +6,10 @@ import Banner from "../../components/modules/Home/Banner";
 import HighlightCasino from "../../components/modules/Home/HighlightCasino";
 import OurProvider from "../../components/modules/Home/OurProvider";
 import Notification from "../../components/UI/Header/Notification";
+import MiniGames from "../../components/modules/Home/MiniGames";
 
 const Home = () => {
+  const [showMiniGamesModal, setShowMiniGamesModal] = useState(false);
   const { data: casino } = useIndexQuery({
     type: "99_casino_dashboard",
   });
@@ -78,7 +80,18 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      <div
+        onClick={() => setShowMiniGamesModal(true)}
+        className="fixed top-[calc(100dvh-130px)] left-0 h-fit"
+      >
+        <img
+          className=" h-[70px]"
+          src="/src/assets/img/uv_games-CkYT1PYz.gif"
+        />
+      </div>
+      {showMiniGamesModal && (
+        <MiniGames setShowMiniGamesModal={setShowMiniGamesModal} />
+      )}
       <WhatsApp />
     </Fragment>
   );

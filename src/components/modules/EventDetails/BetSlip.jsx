@@ -135,7 +135,7 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
       try {
         // const res = await createOrder(payloadData).unwrap();
         const { data } = await AxiosJSEncrypt.post(API.order, payloadData);
-        console.log(data);
+
         if (data?.success) {
           setLoading(false);
           refetchExposure();
@@ -152,8 +152,7 @@ const BetSlip = ({ currentPlaceBetEvent }) => {
             data?.error?.status?.[0]?.description || data?.error?.errorMessage,
           );
         }
-      } catch (err) {
-        console.log(err);
+      } catch {
         toast.error("Something went wrong. Please try again.");
       }
     }, delay);
