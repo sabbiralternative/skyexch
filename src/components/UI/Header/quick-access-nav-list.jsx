@@ -15,16 +15,28 @@ export const QuickAccessNavList = () => {
   const [showEditStakeModal, setShowEditStakeModal] = useState(false);
   const { data } = useGroupQuery({ sportsType: Number(0) });
   const groupedData = useMemo(() => {
-    if (!data) return { cricket: 0, football: 0, tennis: 0 };
+    if (!data)
+      return {
+        cricket: 0,
+        football: 0,
+        tennis: 0,
+        horseRace: 0,
+        greyhound: 0,
+        kabaddi: 0,
+        politics: 0,
+      };
 
     return Object.values(data).reduce(
       (acc, value) => {
         if (!value.visible) return acc;
         if (value.inPlay === 0) return acc;
-
         if (value.eventTypeId === 4) acc.cricket++;
         if (value.eventTypeId === 2) acc.tennis++;
         if (value.eventTypeId === 1) acc.football++;
+        if (value.eventTypeId === 7) acc.horseRace++;
+        if (value.eventTypeId === 4339) acc.greyhound++;
+        if (value.eventTypeId === 5) acc.kabaddi++;
+        if (value.eventTypeId === 6) acc.politics++;
 
         return acc;
       },
@@ -32,6 +44,10 @@ export const QuickAccessNavList = () => {
         cricket: 0,
         football: 0,
         tennis: 0,
+        horseRace: 0,
+        greyhound: 0,
+        kabaddi: 0,
+        politics: 0,
       },
     );
   }, [data]);

@@ -44,4 +44,16 @@ export const LanguageKey = {
   WITHDRAW: "WITHDRAW",
   WITHDRAW_STATMENT: "WITHDRAW_STATMENT",
 };
+export const EVENT_NAMES = {
+  4: "Cricket",
+  2: "Tennis",
+  1: "Football",
+};
+
+export const EVENT_SORT_ORDER = {
+  4: 0,
+  1: 1,
+  2: 2,
+};
+
 export const settingsAPI = "https://api7.live/api/exchange/diamond/settings";

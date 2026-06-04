@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Status } from "../../../const";
+import { Status, EVENT_NAMES, EVENT_SORT_ORDER } from "../../../const";
 import Notification from "../../UI/Header/Notification";
 import { useGroupQuery } from "../../../hooks/group";
 
@@ -8,25 +8,45 @@ export const GroupSports = () => {
   const navigate = useNavigate();
   const [isInPlay, setIsInPlay] = useState(true);
   const [categories, setCategories] = useState([]);
+  const [groupedData, setGroupedData] = useState({});
   const { eventTypeId } = useParams();
 
-  const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football" };
   const { data } = useGroupQuery({ sportsType: Number(eventTypeId) });
 
   useEffect(() => {
     if (data) {
-      const categories = Array.from(
+      const eventCategories = Array.from(
         new Set(
           Object.values(data)
             .filter((item) => item.visible)
             .map((item) => item.eventTypeId),
         ),
       );
-      const sortedCategories = categories.sort((a, b) => {
-        const order = { 4: 0, 1: 1, 2: 2 };
-        return order[a] - order[b];
-      });
+      const sortedCategories = eventCategories.sort(
+        (a, b) => EVENT_SORT_ORDER[a] - EVENT_SORT_ORDER[b],
+      );
       setCategories(sortedCategories);
+
+      const grouped = {};
+      sortedCategories.forEach((category) => {
+        grouped[category] = Object.entries(data)
+          .filter(
+            ([, value]) =>
+              value.eventTypeId === category && value.visible === true,
+          )
+          .reduce(
+            (acc, [key, value]) => {
+              if (value.inPlay === 1) {
+                acc.inPlay[key] = value;
+              } else {
+                acc.upcoming[key] = value;
+              }
+              return acc;
+            },
+            { inPlay: {}, upcoming: {} },
+          );
+      });
+      setGroupedData(grouped);
     }
   }, [data]);
 
@@ -34,15 +54,16 @@ export const GroupSports = () => {
     navigate(`/event-details/${eventTypeId}/${keys}`);
   };
 
-  const OddBox = (status, price, type) => {
+  const OddBox = ({ status, price, type }) => {
     if (status === Status.OPEN) {
       return (
         <div className="h-[34px]">
           <div
-            className={`w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
-              text-white  ${type === "back" ? "bg-blue13" : "bg-pink1"}`}
+            className={`w-full h-full exch-odd-button cursor-pointer flex justify-center items-center text-white ${
+              type === "back" ? "bg-blue13" : "bg-pink1"
+            }`}
           >
-            <div className="flex flex-col justify-center items-center gap-1  undefined ">
+            <div className="flex flex-col justify-center items-center gap-1">
               <div className="text-[11px] text-black font-[700]">{price}</div>
             </div>
           </div>
@@ -53,7 +74,9 @@ export const GroupSports = () => {
     return (
       <div className="flex items-center justify-center h-[34px]">
         <div
-          className={`w-full h-full flex justify-center items-center disabled opacity-60  exch-odd-button ${type === "back" ? "bg-blue13" : "bg-pink1"}`}
+          className={`w-full h-full flex justify-center items-center disabled opacity-60 exch-odd-button ${
+            type === "back" ? "bg-blue13" : "bg-pink1"
+          }`}
         >
           <svg
             stroke="currentColor"
@@ -78,84 +101,38 @@ export const GroupSports = () => {
       <div className="w-full router-ctn max-md:pb-9">
         <main className="flex w-full">
           <div className="w-full">
-            <div className=" ">
+            <div>
               <Notification />
 
-              <div className="sm:hidden flex items-center w-full bg-blue4 px-2 py-2">
-                <div className="flex flex-1 items-center text-sm font-semibold justify-center border border-white rounded-md">
-                  <div
-                    onClick={() => setIsInPlay(true)}
-                    className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
-             ${isInPlay ? "bg-white text-black" : "bg-blue4 text-white"}`}
-                  >
-                    In-play
-                  </div>
-                  <div
-                    onClick={() => setIsInPlay(false)}
-                    className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
-             ${!isInPlay ? "bg-white text-black" : "bg-blue4 text-white"}`}
-                  >
-                    upcoming{" "}
-                  </div>
-                </div>
-                {/* <div className="ml-4">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth={0}
-                    viewBox="0 0 512 512"
-                    className="w-5 h-5 text-white "
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M456.69 421.39 362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8 124.95 124.95 0 0 1-124.8-124.8z" />
-                  </svg>
-                </div> */}
-              </div>
-
-              <div className="hidden sm:flex items-center text-sm font-medium my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
+              <div className="flex items-center text-sm font-medium my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
                 <div
                   onClick={() => setIsInPlay(true)}
-                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm
-           ${isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm ${
+                    isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"
+                  }`}
                 >
                   In-play
                 </div>
                 <div
                   onClick={() => setIsInPlay(false)}
-                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm
-           ${!isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm ${
+                    !isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"
+                  }`}
                 >
-                  UPCOMING{" "}
+                  UPCOMING
                 </div>
               </div>
 
               {categories?.map((category) => {
-                const groupedData = Object.entries(data)
-                  .filter(
-                    ([, value]) =>
-                      value.eventTypeId === category && value.visible === true,
-                  )
-                  .reduce(
-                    (acc, [key, value]) => {
-                      if (!value.visible) return acc;
-
-                      if (value.inPlay === 1) {
-                        acc.inPlay[key] = value;
-                      } else {
-                        acc.upcoming[key] = value;
-                      }
-
-                      return acc;
-                    },
-                    { inPlay: {}, upcoming: {} },
-                  );
+                const categoryData = groupedData[category];
                 const finalData = isInPlay
-                  ? groupedData.inPlay
-                  : groupedData.upcoming;
+                  ? categoryData.inPlay
+                  : categoryData.upcoming;
 
-                if (Object.keys(finalData).length === 0 && eventTypeId != 0) {
+                if (
+                  Object.keys(finalData).length === 0 &&
+                  eventTypeId !== "0"
+                ) {
                   return (
                     <div
                       key={category}
@@ -163,12 +140,12 @@ export const GroupSports = () => {
                     >
                       <p className="text-center text-gray-500 py-10">
                         No {isInPlay ? "In-Play" : "Upcoming"} events available
-                        for {eventName[category]}
+                        for {EVENT_NAMES[category]}
                       </p>
                     </div>
                   );
                 }
-                if (Object.keys(finalData).length === 0 && eventTypeId == 0)
+                if (Object.keys(finalData).length === 0 && eventTypeId === "0")
                   return null;
 
                 return (
@@ -183,10 +160,10 @@ export const GroupSports = () => {
                         <div className="font-bold flex gap-1 items-center">
                           <img
                             src={`/src/assets/img/${category}.svg`}
-                            alt={eventName[category]}
+                            alt={EVENT_NAMES[category]}
                             className="w-5 h-5 object-contain max-md:invert"
-                          />{" "}
-                          {eventName[category]}
+                          />
+                          {EVENT_NAMES[category]}
                         </div>
                         <div className="flex flex-row items-end gap-2">
                           <div className="flex items-center gap-2">
@@ -205,7 +182,7 @@ export const GroupSports = () => {
                           </div>
                           <div className="relative max-md:hidden">
                             <div className="relative">
-                              <button className=" active:opacity-70 flex justify-center hover:underline items-center gap-1 w-full px-1 py-1 rounded-[2px] text-xs capitalize md:border md:rounded-2xl md:border-black">
+                              <button className="active:opacity-70 flex justify-center hover:underline items-center gap-1 w-full px-1 py-1 rounded-[2px] text-xs capitalize md:border md:rounded-2xl md:border-black">
                                 <img
                                   src="data:image/svg+xml,%3csvg%20width='9'%20height='10'%20viewBox='0%200%209%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5.98799%205.28125V9.21875C6.00361%209.39062%205.95674%209.52734%205.84736%209.62891C5.73799%209.73047%205.61689%209.78125%205.48408%209.78125C5.35127%209.78125%205.23018%209.73438%205.1208%209.64062L4.13643%208.63281C4.01143%208.50781%203.95674%208.36719%203.97236%208.21094V5.28125L1.08955%201.60156C0.995801%201.49219%200.960645%201.36719%200.984082%201.22656C1.00752%201.08594%201.07002%200.976562%201.17158%200.898438C1.27314%200.820312%201.37861%200.78125%201.48799%200.78125H8.47236C8.58174%200.78125%208.68721%200.820312%208.78877%200.898438C8.89033%200.976562%208.95283%201.08594%208.97627%201.22656C8.99971%201.36719%208.96455%201.49219%208.8708%201.60156L5.98799%205.28125Z'%20fill='white'/%3e%3c/svg%3e"
                                   alt="chevron-down"
@@ -220,7 +197,7 @@ export const GroupSports = () => {
                     </div>
 
                     <div className="flex flex-1 overflow-auto">
-                      <div className="w-full h-full overflow-auto hide-scrollbar  md:pb-1 bg-white">
+                      <div className="w-full h-full overflow-auto hide-scrollbar md:pb-1 bg-white">
                         <table className="w-full border-collapse border-b-2 border-gray-800">
                           <thead>
                             <tr className="text-xs text-center border-y bg-gray10 hidden md:table-row">
@@ -264,7 +241,7 @@ export const GroupSports = () => {
                                             <div className="flex flex-0 h-2 w-2 bg-green1 border border-green2 rounded-full" />
                                           )}
 
-                                          <span className="flex flex-1  text-[12.6px] font-[700]  text-[#2789ce]  cursor-pointer hover:underline">
+                                          <span className="flex flex-1 text-[12.6px] font-[700] text-[#2789ce] cursor-pointer hover:underline">
                                             {value?.eventName}
                                           </span>
                                         </div>
@@ -304,7 +281,7 @@ export const GroupSports = () => {
                                             </div>
                                           )}
 
-                                          <span className="text-[11px]  text-[#ff0000] md:text-gray5">
+                                          <span className="text-[11px] text-[#ff0000] md:text-gray5">
                                             {value?.date}
                                           </span>
                                         </div>
@@ -334,61 +311,73 @@ export const GroupSports = () => {
                                     colSpan={1}
                                     className="md:w-[5%] hidden md:table-cell"
                                   >
-                                    {OddBox(
-                                      value?.status,
-                                      value?.[0]?.ex?.availableToBack?.[0]
-                                        ?.price,
-                                      "back",
-                                    )}
+                                    <OddBox
+                                      status={value?.status}
+                                      price={
+                                        value?.[0]?.ex?.availableToBack?.[0]
+                                          ?.price
+                                      }
+                                      type="back"
+                                    />
                                   </td>
                                   <td
                                     colSpan={1}
                                     className="md:w-[5%] hidden md:table-cell"
                                   >
-                                    {OddBox(
-                                      value?.status,
-                                      value?.[0]?.ex?.availableToLay?.[0]
-                                        ?.price,
-                                      "lay",
-                                    )}
+                                    <OddBox
+                                      status={value?.status}
+                                      price={
+                                        value?.[0]?.ex?.availableToLay?.[0]
+                                          ?.price
+                                      }
+                                      type="lay"
+                                    />
                                   </td>
                                   <td className="md:w-[5%] hidden md:table-cell">
-                                    {OddBox(
-                                      value?.status,
-                                      value?.[2]?.ex?.availableToBack?.[0]
-                                        ?.price,
-                                      "back",
-                                    )}
+                                    <OddBox
+                                      status={value?.status}
+                                      price={
+                                        value?.[2]?.ex?.availableToBack?.[0]
+                                          ?.price
+                                      }
+                                      type="back"
+                                    />
                                   </td>
                                   <td className="md:w-[5%] hidden md:table-cell">
-                                    {OddBox(
-                                      value?.status,
-                                      value?.[2]?.ex?.availableToLay?.[0]
-                                        ?.price,
-                                      "lay",
-                                    )}
+                                    <OddBox
+                                      status={value?.status}
+                                      price={
+                                        value?.[2]?.ex?.availableToLay?.[0]
+                                          ?.price
+                                      }
+                                      type="lay"
+                                    />
                                   </td>
                                   <td
                                     colSpan={1}
                                     className="md:w-[5%] hidden md:table-cell"
                                   >
-                                    {OddBox(
-                                      value?.status,
-                                      value?.[1]?.ex?.availableToBack?.[0]
-                                        ?.price,
-                                      "back",
-                                    )}
+                                    <OddBox
+                                      status={value?.status}
+                                      price={
+                                        value?.[1]?.ex?.availableToBack?.[0]
+                                          ?.price
+                                      }
+                                      type="back"
+                                    />
                                   </td>
                                   <td
                                     colSpan={1}
                                     className="md:w-[5%] hidden md:table-cell"
                                   >
-                                    {OddBox(
-                                      value?.status,
-                                      value?.[1]?.ex?.availableToLay?.[0]
-                                        ?.price,
-                                      "lay",
-                                    )}
+                                    <OddBox
+                                      status={value?.status}
+                                      price={
+                                        value?.[1]?.ex?.availableToLay?.[0]
+                                          ?.price
+                                      }
+                                      type="lay"
+                                    />
                                   </td>
                                   <td className="flex justify-end items-center py-2">
                                     <div className="multi-market-container pr-1 max-md:hidden">
