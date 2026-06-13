@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Settings } from "../../../api";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { useGroupQuery } from "../../../hooks/group";
+import { latestEvent } from "../../../static/latest-event";
 
 export const QuickAccessNavList = () => {
   const navigate = useNavigate();
@@ -93,6 +94,21 @@ export const QuickAccessNavList = () => {
                 In-play
               </div>
             </Link>
+            {latestEvent
+              ?.filter((item) => item?.show)
+              ?.map((item) => {
+                return (
+                  <Link
+                    key={item?.eventName}
+                    className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
+                    to={item?.pathname}
+                  >
+                    <div className="flex items-center justify-center gap-1">
+                      {item?.eventName}
+                    </div>
+                  </Link>
+                );
+              })}
 
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
