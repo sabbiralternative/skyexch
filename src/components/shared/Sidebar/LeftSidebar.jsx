@@ -1,6 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 export const LeftSidebar = () => {
+  const { valueByLanguage } = useLanguage();
   const { eventName } = useParams();
   const navigate = useNavigate();
 
@@ -37,21 +41,21 @@ export const LeftSidebar = () => {
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
-              Cricket
+              {languageValue(valueByLanguage, LanguageKey.CRICKET)}
             </button>
             <button
               onClick={() => navigate("/exchange_sports/football/1")}
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
-              Football
+              {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
             </button>
             <button
               onClick={() => navigate("/exchange_sports/tennis/2")}
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
-              Tennis
+              {languageValue(valueByLanguage, LanguageKey.TENNIS)}
             </button>
 
             <button
@@ -59,14 +63,14 @@ export const LeftSidebar = () => {
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
-              Horse Racing
+              {languageValue(valueByLanguage, LanguageKey.HORSE)}
             </button>
             <button
               onClick={() => navigate("/exchange_sports/greyhound/4339")}
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
-              GreyHound
+              {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
             </button>
 
             <button
@@ -74,7 +78,7 @@ export const LeftSidebar = () => {
               type="button"
               className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
             >
-              Kabaddi
+              {languageValue(valueByLanguage, LanguageKey.KABADDI)}
             </button>
           </div>
         </div>

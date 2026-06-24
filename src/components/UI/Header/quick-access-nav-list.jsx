@@ -7,8 +7,12 @@ import { Settings } from "../../../api";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { useGroupQuery } from "../../../hooks/group";
 import { latestEvent } from "../../../static/latest-event";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 export const QuickAccessNavList = () => {
+  const { valueByLanguage } = useLanguage();
   const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState(false);
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
@@ -115,7 +119,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/cricket/4"
             >
               <div className="flex items-center justify-center gap-1">
-                Cricket
+                {languageValue(valueByLanguage, LanguageKey.CRICKET)}
                 {groupedData?.cricket > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
                     <div className="px-1">
@@ -150,7 +154,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/football/1"
             >
               <div className="flex items-center justify-center gap-1">
-                Football
+                {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
                 {groupedData?.football > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
                     <div className="px-1">
@@ -185,7 +189,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/tennis/2"
             >
               <div className="flex items-center justify-center gap-1">
-                Tennis
+                {languageValue(valueByLanguage, LanguageKey.TENNIS)}
                 {groupedData?.tennis > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
                     <div className="px-1">
@@ -242,7 +246,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/horserace/7"
             >
               <div className="flex items-center justify-center gap-1">
-                Horse race
+                {languageValue(valueByLanguage, LanguageKey.HORSE)}
               </div>
             </Link>
             <Link
@@ -250,7 +254,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/greyhound/4339"
             >
               <div className="flex items-center justify-center gap-1">
-                GreyHound
+                {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
               </div>
             </Link>
 
@@ -259,7 +263,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/kabaddi/5"
             >
               <div className="flex items-center justify-center gap-1">
-                kabaddi
+                {languageValue(valueByLanguage, LanguageKey.KABADDI)}
               </div>
             </Link>
             <Link

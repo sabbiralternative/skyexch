@@ -45,9 +45,9 @@ export const LanguageKey = {
   WITHDRAW_STATMENT: "WITHDRAW_STATMENT",
 };
 export const EVENT_NAMES = {
-  4: "Cricket",
-  2: "Tennis",
-  1: "Football",
+  4: "CRICKET",
+  2: "TENNIS",
+  1: "FOOTBALL",
 };
 
 export const EVENT_SORT_ORDER = {

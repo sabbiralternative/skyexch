@@ -15,15 +15,23 @@ import {
   setShowAppPopUp,
 } from "../../../redux/features/global/globalSlice";
 import Error from "../../modals/Error/Error";
+import Language from "../../modals/Language/Language";
+import { useLanguage } from "../../../context/LanguageProvider";
 
 const Header = () => {
+  const { setLanguage } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
   const { logo } = useLogo();
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { showAppPopUp, windowWidth, showAPKModal, closePopupForForever } =
-    useSelector((state) => state?.global);
+  const {
+    showAppPopUp,
+    windowWidth,
+    showAPKModal,
+    closePopupForForever,
+    showLanguageModal,
+  } = useSelector((state) => state?.global);
 
   useEffect(() => {
     const apk_modal_shown = sessionStorage.getItem("apk_modal_shown");
@@ -56,7 +64,9 @@ const Header = () => {
     location?.state?.pathname,
     location.pathname,
   ]);
-
+  useEffect(() => {
+    setLanguage(localStorage.getItem("language") || "english");
+  }, [setLanguage]);
   if (Settings.app_only && !closePopupForForever) {
     return <Error />;
   }
@@ -64,6 +74,7 @@ const Header = () => {
   return (
     <div>
       {/* <Notification /> */}
+      {showLanguageModal && <Language />}
       {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />}
       {Settings.apk_link && showAPKModal && <DownloadAPK />}
       <div className="flex flex-col flex-0 w-full">

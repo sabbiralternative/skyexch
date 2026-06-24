@@ -13,8 +13,15 @@ import {
 import toast from "react-hot-toast";
 import Register from "../../components/modals/Register/Register";
 import ForgotPassword from "../../components/modals/ForgotPassword/ForgotPassword";
+import { useLanguage } from "../../context/LanguageProvider";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../const";
 
 const Login = () => {
+  const { valueByLanguage } = useLanguage();
+  {
+    (" ");
+  }
   const { closePopupForForever, showRegisterModal, showForgotPasswordModal } =
     useSelector((state) => state.global);
 
@@ -172,7 +179,7 @@ const Login = () => {
                   onClick={() => dispatch(setShowRegisterModal(true))}
                   className="cursor-pointer mr-1 text-black4"
                 >
-                  Sign Up
+                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}
                 </div>
                 <div
                   onClick={() => dispatch(setShowForgotPasswordModal(true))}
@@ -189,7 +196,7 @@ const Login = () => {
               type="submit"
               className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4"
             >
-              Login
+              {languageValue(valueByLanguage, LanguageKey.LOGIN)}
             </button>
             <button
               onClick={loginWithDemo}
@@ -207,7 +214,7 @@ const Login = () => {
                 onClick={() => dispatch(setShowRegisterModal(true))}
                 className="cursor-pointer text-black4 font-bold text-xs underline"
               >
-                Sign Up
+                {languageValue(valueByLanguage, LanguageKey.REGISTER)}
               </span>
             </div>
             <div className="flex gap-2 w-full h-[42px] items-end">

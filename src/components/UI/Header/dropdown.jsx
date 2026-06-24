@@ -2,8 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
 import { Settings } from "../../../api";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 export const Dropdown = ({ setShowDropdown }) => {
+  const { valueByLanguage } = useLanguage();
   const closePopupForForever = localStorage.getItem("closePopupForForever");
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -55,7 +59,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/deposit"
             >
-              Deposit
+              {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
             </Link>
           </div>
         </li>
@@ -66,7 +70,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/withdraw"
             >
-              Withdraw
+              {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
             </Link>
           </div>
         </li>
@@ -122,7 +126,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/my-bank-details"
             >
-              My Bank Details
+              {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
             </Link>
           </div>
         </li>
@@ -159,7 +163,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/bonus-statement"
             >
-              Bonus Statement
+              {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
             </Link>
           </div>
         </li>
@@ -206,7 +210,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/change-password"
             >
-              Change Password
+              {languageValue(valueByLanguage, LanguageKey.CHANGE_PASSWORD)}
             </Link>
           </div>
         </li>
@@ -242,7 +246,7 @@ export const Dropdown = ({ setShowDropdown }) => {
           className="hover:underline cursor-pointer "
         >
           <div className="text-center bg-blue4 text-white py-2 font-bold text-xs">
-            Logout
+            {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
           </div>
         </li>
       </ul>

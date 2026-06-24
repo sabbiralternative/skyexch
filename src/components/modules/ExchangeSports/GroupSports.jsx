@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { Status, EVENT_NAMES, EVENT_SORT_ORDER } from "../../../const";
 import Notification from "../../UI/Header/Notification";
 import { useGroupQuery } from "../../../hooks/group";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
 
 export const GroupSports = () => {
+  const { valueByLanguage } = useLanguage();
   const navigate = useNavigate();
   const [isInPlay, setIsInPlay] = useState(true);
   const [categories, setCategories] = useState([]);
@@ -163,7 +166,10 @@ export const GroupSports = () => {
                             alt={EVENT_NAMES[category]}
                             className="w-5 h-5 object-contain max-md:invert"
                           />
-                          {EVENT_NAMES[category]}
+                          {languageValue(
+                            valueByLanguage,
+                            EVENT_NAMES[category],
+                          )}
                         </div>
                         <div className="flex flex-row items-end gap-2">
                           <div className="flex items-center gap-2">

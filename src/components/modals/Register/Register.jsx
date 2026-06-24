@@ -17,8 +17,12 @@ import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { LanguageKey } from "../../../const";
+import { languageValue } from "../../../utils/language";
 
 const Register = () => {
+  const { valueByLanguage } = useLanguage();
   const affnook_token = localStorage.getItem("affnook_token");
   const ref = useRef();
   const referralCode = localStorage.getItem("referralCode");
@@ -301,7 +305,7 @@ const Register = () => {
                     type="submit"
                     className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4 mt-3"
                   >
-                    Register
+                    {languageValue(valueByLanguage, LanguageKey.REGISTER)}
                   </button>
                   <div className="self-center mt-2 text-sm text-center text-black4">
                     Already have account?{" "}
@@ -313,7 +317,7 @@ const Register = () => {
                       type="button"
                       className="underline font-medium text-black4 hover:opacity-80 bg-transparent border-0 p-0 cursor-pointer"
                     >
-                      Sign in
+                      {languageValue(valueByLanguage, LanguageKey.LOGIN)}
                     </button>
                   </div>
                 </form>

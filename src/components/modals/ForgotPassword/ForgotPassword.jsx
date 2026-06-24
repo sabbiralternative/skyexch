@@ -16,8 +16,12 @@ import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
+import { useLanguage } from "../../../context/LanguageProvider";
 
 const ForgotPassword = () => {
+  const { valueByLanguage } = useLanguage();
   const ref = useRef();
   const { logo } = useLogo();
   const navigate = useNavigate();
@@ -268,7 +272,10 @@ const ForgotPassword = () => {
                     type="submit"
                     className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4 mt-3"
                   >
-                    Change Password
+                    {languageValue(
+                      valueByLanguage,
+                      LanguageKey.CHANGE_PASSWORD,
+                    )}
                   </button>
                 </form>
               </div>

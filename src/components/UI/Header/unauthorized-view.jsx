@@ -5,13 +5,18 @@ import { Settings } from "../../../api";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import {
   setShowBanner,
+  setShowLanguageModal,
   setShowLoginModal,
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { LanguageKey } from "../../../const";
+import { languageValue } from "../../../utils/language";
 
 export const UnauthorizedView = () => {
+  const { language, valueByLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
@@ -94,7 +99,7 @@ export const UnauthorizedView = () => {
   };
 
   return (
-    <div className="flex gap-1">
+    <div className="flex items-center gap-1">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex items-center gap-1"
@@ -124,7 +129,7 @@ export const UnauthorizedView = () => {
                 onClick={() => dispatch(setShowRegisterModal(true))}
                 className="cursor-pointer text-white"
               >
-                Sign Up
+                {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
               </div>
               <div className="cursor-pointer w-fit text-white">
                 Forgot password?
@@ -141,7 +146,7 @@ export const UnauthorizedView = () => {
                 className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-custom-red-gradient px-2 undefined rounded-[5px]"
               >
                 <span className="text-sm md:text-xs text-white font-bold">
-                  Login
+                  {languageValue(valueByLanguage, LanguageKey.LOGIN)}{" "}
                 </span>
                 <img
                   src="data:image/svg+xml,%3csvg%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.49707%204.4668V5.5332H6.99707L4.02637%208.5293L4.78809%209.29102L9.0791%205L4.78809%200.708984L4.02637%201.4707L6.99707%204.4668H0.49707Z'%20fill='white'/%3e%3c/svg%3e"
@@ -173,13 +178,13 @@ export const UnauthorizedView = () => {
             className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-blue4 active:bg-blue5 rounded text-sm bg-button-gradient undefined rounded-[5px]"
           >
             <span className="text-sm md:text-xs text-white font-bold">
-              Sign Up
+              {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
             </span>
           </button>
           <button
             onClick={() => navigate("/login")}
             type="button"
-            className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-blue4 active:bg-blue5 bg-custom-red-gradient text-white rounded undefined rounded-[5px]"
+            className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-blue4 active:bg-blue5 bg-custom-red-gradient text-white rounded undefined rounded-[5px] truncate"
           >
             <img
               src="data:image/svg+xml,%3csvg%20width='13'%20height='12'%20viewBox='0%200%2013%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M6.53027%200.322266C7.30501%200.322266%207.96908%200.598958%208.52246%201.15234C9.07585%201.70573%209.35254%202.37533%209.35254%203.16113C9.35254%203.94694%209.07585%204.61654%208.52246%205.16992C7.96908%205.72331%207.30501%206%206.53027%206C5.75553%206%205.09147%205.72331%204.53809%205.16992C3.9847%204.61654%203.70801%203.94694%203.70801%203.16113C3.70801%202.37533%203.9847%201.70573%204.53809%201.15234C5.09147%200.598958%205.75553%200.322266%206.53027%200.322266ZM6.53027%207.42773C7.5485%207.42773%208.49479%207.55501%209.36914%207.80957C10.2435%208.06413%2010.9352%208.40723%2011.4443%208.83887C11.9535%209.27051%2012.208%209.74089%2012.208%2010.25V11.6777H0.852539V10.25C0.852539%209.74089%201.1071%209.27051%201.61621%208.83887C2.12533%208.40723%202.81706%208.06413%203.69141%207.80957C4.56576%207.55501%205.51204%207.42773%206.53027%207.42773Z'%20fill='%23ECEFF1'/%3e%3c/svg%3e"
@@ -187,11 +192,62 @@ export const UnauthorizedView = () => {
               className="h-3.5 w-3.5"
             />
             <span className="text-sm md:text-xs text-white font-bold">
-              Login
+              {languageValue(valueByLanguage, LanguageKey.LOGIN)}{" "}
             </span>
           </button>
         </div>
       </form>
+      {Settings.language && (
+        <button
+          onClick={() => dispatch(setShowLanguageModal(true))}
+          className="relative overflow-hidden flex items-center  text-white justify-center text-xs  px-2 rounded-full bg-bg_color_secondary border border-border_color_primary capitalize h-[30px]"
+          type="button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-4 h-4 mr-0.5"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+            <path d="M3.6 9h16.8" />
+            <path d="M3.6 15h16.8" />
+            <path d="M11.5 3a17 17 0 0 0 0 18" />
+            <path d="M12.5 3a17 17 0 0 1 0 18" />
+          </svg>
+          {language}
+          <svg
+            fill="currentColor"
+            width={16}
+            height={16}
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 330 330"
+            className="w-3 h-3 ml-2"
+          >
+            <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+            <g
+              id="SVGRepo_tracerCarrier"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <g id="SVGRepo_iconCarrier">
+              <path
+                id="XMLID_225_"
+                d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+              />
+            </g>
+          </svg>
+        </button>
+      )}
       {/* <div className="relative flex items-center">
         <div className="flex items-center justify-between w-full rounded-md text-white px-1.5 text-sm bg-[#243A48]">
           <span className="text-md font-medium p-1">en</span>
