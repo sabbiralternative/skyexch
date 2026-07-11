@@ -16,6 +16,7 @@ import Score from "../../components/modules/EventDetails/Score";
 import { FaTv } from "react-icons/fa6";
 import { Settings } from "../../api";
 import OpenBets from "../../components/modals/OpenBets/OpenBets";
+import Premium from "../../components/modules/EventDetails/Premium";
 
 const EventDetails = () => {
   const [showOpenBetsModal, setShowOpenBetsModal] = useState(false);
@@ -221,19 +222,17 @@ const EventDetails = () => {
                     {eventTypeId == 4 && data?.iscore && (
                       <Score iscore={data?.iscore} />
                     )}
-                    {data?.score &&
-                      data?.score?.tracker !== null &&
-                      showScore && (
-                        <div className="w-full overflow-hidden h-[125px]">
-                          <iframe
-                            id="videoComponent"
-                            className="w-full h-auto relative overflow-hidden   bg-transparent"
-                            src={data?.score?.tracker}
-                            width="100%"
-                            allowfullscreen=""
-                          ></iframe>
-                        </div>
-                      )}
+                    {data?.score && data?.score?.tracker && showScore && (
+                      <div className="w-full overflow-hidden h-[125px]">
+                        <iframe
+                          id="videoComponent"
+                          className="w-full h-auto relative overflow-hidden   bg-transparent"
+                          src={data?.score?.tracker}
+                          width="100%"
+                          allowfullscreen=""
+                        ></iframe>
+                      </div>
+                    )}
                     {iframe?.result?.url &&
                       data?.score?.hasVideo &&
                       showVideo && (
@@ -249,6 +248,9 @@ const EventDetails = () => {
                   </div>
                   <div className>
                     {matchOdds?.length > 0 && <MatchOdds data={matchOdds} />}
+                    {data?.premium && data?.premium?.eventId && (
+                      <Premium premium={data?.premium} />
+                    )}
                     {bookmaker?.length > 0 && <Bookmaker data={bookmaker} />}
                     {data?.result?.length > 0 && <Fancy data={data?.result} />}
                     {eventTypeId == 7 || eventTypeId == 4339 ? (
