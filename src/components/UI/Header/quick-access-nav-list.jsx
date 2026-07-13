@@ -10,6 +10,7 @@ import { latestEvent } from "../../../static/latest-event";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { eventNameList } from "../../../static/event-name-list";
 
 export const QuickAccessNavList = () => {
   const { valueByLanguage } = useLanguage();
@@ -266,14 +267,20 @@ export const QuickAccessNavList = () => {
                 {languageValue(valueByLanguage, LanguageKey.KABADDI)}
               </div>
             </Link>
-            <Link
-              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
-              to="/exchange_sports/politics/6"
-            >
-              <div className="flex items-center justify-center gap-1">
-                Politics
-              </div>
-            </Link>
+
+            {eventNameList.map((item) => {
+              return (
+                <Link
+                  key={item.id}
+                  className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
+                  to={`/exchange_sports/${item.name}/${item.id}`}
+                >
+                  <div className="flex items-center justify-center gap-1">
+                    {item.name}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
         <div

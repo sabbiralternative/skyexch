@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { eventNameList } from "../../../static/event-name-list";
 
 export const LeftSidebar = () => {
   const { valueByLanguage } = useLanguage();
@@ -80,6 +81,20 @@ export const LeftSidebar = () => {
             >
               {languageValue(valueByLanguage, LanguageKey.KABADDI)}
             </button>
+            {eventNameList.map((item) => {
+              return (
+                <button
+                  key={item.id}
+                  onClick={() =>
+                    navigate(`/exchange_sports/${item.name}/${item.id}`)
+                  }
+                  type="button"
+                  className="w-full text-left px-3 py-1 text-black border-b border-goldenYellow last:border-b-0 hover:bg-gray1 cursor-pointer capitalize text-[13px]"
+                >
+                  {item.name}
+                </button>
+              );
+            })}
           </div>
         </div>
         <div className="text-[13px]">
