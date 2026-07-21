@@ -415,7 +415,7 @@ export const Bookmaker = ({ data }) => {
                             </td>
                             <td
                               className="w-[20%] md:w-[30%] h-[43px]"
-                              colSpan={windowWidth > 500 ? 3 : 1}
+                              colSpan={windowWidth > 800 ? 3 : 1}
                             >
                               <div
                                 onClick={() =>
@@ -474,7 +474,7 @@ export const Bookmaker = ({ data }) => {
                             </td>
                             <td
                               className="w-[20%] md:w-[30%] h-[43px] relative"
-                              colSpan={windowWidth > 500 ? 3 : 1}
+                              colSpan={windowWidth > 800 ? 3 : 1}
                             >
                               <div
                                 onClick={() =>

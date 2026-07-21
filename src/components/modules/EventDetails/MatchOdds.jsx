@@ -426,7 +426,7 @@ export const MatchOdds = ({ data }) => {
                             </td>
                             <td
                               className="w-[20%] md:w-[30%] h-[43px]"
-                              colSpan={windowWidth > 500 ? 3 : 1}
+                              colSpan={windowWidth > 800 ? 3 : 1}
                             >
                               <div
                                 className="hidden md:flex md:flex-row-reverse h-full"
@@ -528,7 +528,7 @@ export const MatchOdds = ({ data }) => {
                             </td>
                             <td
                               className="w-[20%] md:w-[30%] h-[43px] relative"
-                              colSpan={windowWidth > 500 ? 3 : 1}
+                              colSpan={windowWidth > 800 ? 3 : 1}
                             >
                               <div
                                 className="hidden md:flex h-full"
