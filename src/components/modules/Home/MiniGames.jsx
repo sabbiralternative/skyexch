@@ -33,7 +33,7 @@ const MiniGames = ({ setShowMiniGamesModal }) => {
   }, [token]);
 
   return (
-    <div className="bg-[#132225] w-full fixed bottom-[50px] h-fit z-[9999] yuvi-lobby-ctn left-0 right-0 mx-auto">
+    <div className="bg-[#132225] w-full fixed bottom-[0px] h-fit z-[9999] yuvi-lobby-ctn left-0 right-0 mx-auto">
       <div className="mx-auto h-[245px] w-[98%]">
         <div
           onClick={() => setShowMiniGamesModal(false)}
