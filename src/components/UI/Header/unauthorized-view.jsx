@@ -5,6 +5,7 @@ import { Settings } from "../../../api";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import {
   setShowBanner,
+  setShowForgotPasswordModal,
   setShowLanguageModal,
   setShowLoginModal,
   setShowRegisterModal,
@@ -131,11 +132,11 @@ export const UnauthorizedView = () => {
               >
                 {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
               </div>
-              <div className="cursor-pointer w-fit text-white">
+              <div
+                onClick={() => dispatch(setShowForgotPasswordModal(true))}
+                className="cursor-pointer w-fit text-white"
+              >
                 Forgot password?
-              </div>
-              <div className="text-[10px] cursor-pointer w-fit text-white">
-                Resend Verification email?
               </div>
             </div>
           </div>

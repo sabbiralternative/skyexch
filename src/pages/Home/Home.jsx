@@ -43,7 +43,7 @@ const Home = () => {
               </div>
               <div className="flex flex-col md:flex-row justify-center md:justify-start items-center gap-1 sm:gap-3 md:p-3 p-1 md:px-4 w-full">
                 <img
-                  src="/src/assets/img/LIC-CzdZQF4t.svg"
+                  src="/icon/LIC-CzdZQF4t.svg"
                   alt="lic-image"
                   className="max-w-[100px] w-full h-auto object-contain"
                 />

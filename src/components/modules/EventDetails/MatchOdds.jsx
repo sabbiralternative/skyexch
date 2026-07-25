@@ -441,7 +441,7 @@ export const MatchOdds = ({ data }) => {
                                       "back",
                                       game,
                                       runner,
-                                      runner?.back?.[2]?.price,
+                                      runner?.back?.[0]?.price,
                                     )
                                   }
                                   className="w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
@@ -449,10 +449,10 @@ export const MatchOdds = ({ data }) => {
                                 >
                                   <div className="flex flex-col justify-center items-center gap-1  undefined ">
                                     <div className="text-[11px] text-black font-[700]">
-                                      {runner?.back?.[2]?.price}
+                                      {runner?.back?.[0]?.price}
                                     </div>
                                     <div className="text-[10px] text-[#292929] leading-none ">
-                                      {runner?.back?.[2]?.size}
+                                      {runner?.back?.[0]?.size}
                                     </div>
                                   </div>
                                 </div>
@@ -484,7 +484,7 @@ export const MatchOdds = ({ data }) => {
                                       "back",
                                       game,
                                       runner,
-                                      runner?.back?.[0]?.price,
+                                      runner?.back?.[2]?.price,
                                     )
                                   }
                                   className="w-full h-full  exch-odd-button cursor-pointer flex justify-center items-center  
@@ -492,10 +492,10 @@ export const MatchOdds = ({ data }) => {
                                 >
                                   <div className="flex flex-col justify-center items-center gap-1  undefined ">
                                     <div className="text-[11px] text-black font-[700]">
-                                      {runner?.back?.[0]?.price}
+                                      {runner?.back?.[2]?.price}
                                     </div>
                                     <div className="text-[10px] text-[#292929] leading-none ">
-                                      {runner?.back?.[0]?.size}
+                                      {runner?.back?.[2]?.size}
                                     </div>
                                   </div>
                                 </div>
