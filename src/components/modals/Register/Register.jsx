@@ -138,8 +138,7 @@ const Register = () => {
         <div
           className="hidden md:flex flex-[0_0_45%] relative items-center justify-center min-h-[480px] bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage:
-              'url("/src/assets/img/login_page_banner-CbcBaCVU.webp")',
+            backgroundImage: 'url("/icon/login_page_banner-CbcBaCVU.webp")',
           }}
         >
           <div className="absolute inset-0 bg-black/60" />

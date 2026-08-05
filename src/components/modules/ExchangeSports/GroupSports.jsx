@@ -167,7 +167,7 @@ export const GroupSports = () => {
                       <div className="flex items-center gap-3 md:mt-0 mt-[2px] py-1 text-xs text-white px-2 justify-between max-md:bg-section-gradient md:bg-goldenYellow md:text-black">
                         <div className="font-bold flex gap-1 items-center">
                           <img
-                            src={`/src/assets/img/${category}.svg`}
+                            src={`/icon/${category}.svg`}
                             alt={EVENT_NAMES[category]}
                             className="w-5 h-5 object-contain max-md:invert"
                           />

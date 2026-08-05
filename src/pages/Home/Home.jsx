@@ -84,10 +84,7 @@ const Home = () => {
         onClick={() => setShowMiniGamesModal(true)}
         className="fixed top-[calc(100dvh-130px)] left-0 h-fit"
       >
-        <img
-          className=" h-[70px]"
-          src="/src/assets/img/uv_games-CkYT1PYz.gif"
-        />
+        <img className=" h-[70px]" src="/icon/uv_games-CkYT1PYz.gif" />
       </div>
       {showMiniGamesModal && (
         <MiniGames setShowMiniGamesModal={setShowMiniGamesModal} />

@@ -133,8 +133,7 @@ const Login = () => {
         <header
           className="relative flex flex-col items-center justify-center h-[36vh] pt-12 pb-8 px-4 shrink-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage:
-              'url("/src/assets/img/login_page_banner-CbcBaCVU.webp")',
+            backgroundImage: 'url("/icon/login_page_banner-CbcBaCVU.webp")',
           }}
         >
           <button
