@@ -5,13 +5,16 @@ import Notification from "../../UI/Header/Notification";
 import { useGroupQuery } from "../../../hooks/group";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
+import LiveVirtual from "./LiveVirtual";
+import { filterLiveVirtual } from "../../../utils/filter-live-virtual";
 
 export const GroupSports = () => {
+  const [liveVirtual, setLiveVirtual] = useState([]);
   const { valueByLanguage } = useLanguage();
   const navigate = useNavigate();
   const [isInPlay, setIsInPlay] = useState(true);
   const [categories, setCategories] = useState([]);
-  const [groupedData, setGroupedData] = useState({});
+  // const [groupedData, setGroupedData] = useState({});
   const { eventTypeId } = useParams();
 
   const { data } = useGroupQuery({ sportsType: Number(eventTypeId) });
@@ -30,26 +33,26 @@ export const GroupSports = () => {
       );
       setCategories(sortedCategories);
 
-      const grouped = {};
-      sortedCategories.forEach((category) => {
-        grouped[category] = Object.entries(data)
-          .filter(
-            ([, value]) =>
-              value.eventTypeId === category && value.visible === true,
-          )
-          .reduce(
-            (acc, [key, value]) => {
-              if (value.inPlay === 1) {
-                acc.inPlay[key] = value;
-              } else {
-                acc.upcoming[key] = value;
-              }
-              return acc;
-            },
-            { inPlay: {}, upcoming: {} },
-          );
-      });
-      setGroupedData(grouped);
+      // const grouped = {};
+      // sortedCategories.forEach((category) => {
+      //   grouped[category] = Object.entries(data)
+      //     .filter(
+      //       ([, value]) =>
+      //         value.eventTypeId === category && value.visible === true,
+      //     )
+      //     .reduce(
+      //       (acc, [key, value]) => {
+      //         if (value.inPlay === 1) {
+      //           acc.inPlay[key] = value;
+      //         } else {
+      //           acc.upcoming[key] = value;
+      //         }
+      //         return acc;
+      //       },
+      //       { inPlay: {}, upcoming: {} },
+      //     );
+      // });
+      // setGroupedData(grouped);
     }
   }, [data]);
 
@@ -127,15 +130,17 @@ export const GroupSports = () => {
               </div>
 
               {categories?.map((category) => {
-                const categoryData = groupedData[category];
-                const finalData = isInPlay
-                  ? categoryData.inPlay
-                  : categoryData.upcoming;
-
-                if (
-                  Object.keys(finalData).length === 0 &&
-                  eventTypeId !== "0"
-                ) {
+                // const categoryData = groupedData[category];
+                // const finalData = isInPlay
+                //   ? categoryData.inPlay
+                //   : categoryData.upcoming;
+                const groupedData = filterLiveVirtual(
+                  liveVirtual,
+                  category,
+                  data,
+                  isInPlay ? 1 : 0,
+                );
+                if (groupedData?.length === 0 && eventTypeId !== "0") {
                   return (
                     <div
                       key={category}
@@ -148,8 +153,8 @@ export const GroupSports = () => {
                     </div>
                   );
                 }
-                if (Object.keys(finalData).length === 0 && eventTypeId === "0")
-                  return null;
+                // if (groupedData?.length === 0 && eventTypeId === "0")
+                //   return null;
 
                 return (
                   <div
@@ -172,21 +177,11 @@ export const GroupSports = () => {
                           )}
                         </div>
                         <div className="flex flex-row items-end gap-2">
-                          <div className="flex items-center gap-2">
-                            <p className="flex gap-1 items-center justify-center md:border-black border rounded-full px-2 py-[3px] cursor-pointer border-white">
-                              <span>-</span>
-                              <span>Live</span>
-                            </p>
-                            <p className="flex gap-1 items-center justify-center md:border-black border rounded-full px-2 py-[2px] min-w-20 cursor-pointer border-white">
-                              <span>-</span>
-                              <span>Virtual</span>
-                            </p>
-                            <p className="flex gap-1 items-center justify-center md:border-black border rounded-full px-2 py-[2px] min-w-20 cursor-pointer border-white">
-                              <span>-</span>
-                              <span>Premium</span>
-                            </p>
-                          </div>
-                          <div className="relative max-md:hidden">
+                          <LiveVirtual
+                            setLiveVirtual={setLiveVirtual}
+                            category={category}
+                          />
+                          {/* <div className="relative max-md:hidden">
                             <div className="relative">
                               <button className="active:opacity-70 flex justify-center hover:underline items-center gap-1 w-full px-1 py-1 rounded-[2px] text-xs capitalize md:border md:rounded-2xl md:border-black">
                                 <img
@@ -197,7 +192,7 @@ export const GroupSports = () => {
                                 View by
                               </button>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -230,7 +225,7 @@ export const GroupSports = () => {
                             </tr>
                           </thead>
                           <tbody className="bg-white">
-                            {Object.entries(finalData).map(([key, value]) => {
+                            {groupedData.map(([key, value]) => {
                               return (
                                 <tr
                                   onClick={() =>
