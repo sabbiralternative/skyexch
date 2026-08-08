@@ -7,8 +7,10 @@ import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import LiveVirtual from "./LiveVirtual";
 import { filterLiveVirtual } from "../../../utils/filter-live-virtual";
+import Search from "../../modals/Search/Search";
 
 export const GroupSports = () => {
+  const [showSearch, setShowSearch] = useState(false);
   const [liveVirtual, setLiveVirtual] = useState([]);
   const { valueByLanguage } = useLanguage();
   const navigate = useNavigate();
@@ -104,28 +106,45 @@ export const GroupSports = () => {
 
   return (
     <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
+      {showSearch && <Search setShowSearch={setShowSearch} />}
+
       <div className="w-full router-ctn max-md:pb-9">
         <main className="flex w-full">
           <div className="w-full">
             <div>
               <Notification />
 
-              <div className="flex items-center text-sm font-medium my-2 justify-center w-[50%] border border-[#243a48] rounded-md">
-                <div
-                  onClick={() => setIsInPlay(true)}
-                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm ${
-                    isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"
-                  }`}
-                >
-                  In-play
+              <div className=" flex items-center w-full bg-blue4 px-2 py-2">
+                <div className="flex flex-1 items-center text-sm font-semibold justify-center border border-white rounded-md">
+                  <div
+                    onClick={() => setIsInPlay(true)}
+                    className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
+             ${isInPlay ? "bg-white text-black" : "text-white"}`}
+                  >
+                    In-play
+                  </div>
+                  <div
+                    onClick={() => setIsInPlay(false)}
+                    className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
+             ${!isInPlay ? "bg-white text-black" : "text-white"}`}
+                  >
+                    upcoming{" "}
+                  </div>
                 </div>
-                <div
-                  onClick={() => setIsInPlay(false)}
-                  className={`cursor-pointer flex-1 py-[2px] font-[600] font-sans text-center text-[13px] rounded-sm ${
-                    !isInPlay ? "bg-gray-700 text-white" : "bg-white text-black"
-                  }`}
-                >
-                  UPCOMING
+                <div className="ml-4">
+                  <svg
+                    onClick={() => setShowSearch(true)}
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth={0}
+                    viewBox="0 0 512 512"
+                    className="w-5 h-5 text-white "
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M456.69 421.39 362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8 124.95 124.95 0 0 1-124.8-124.8z" />
+                  </svg>
                 </div>
               </div>
 

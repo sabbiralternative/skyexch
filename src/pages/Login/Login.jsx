@@ -152,7 +152,7 @@ const Login = () => {
             src={logo}
             style={{ height: Settings.logo_height, width: Settings.logo_width }}
             alt="logo"
-            className="h-[110px] object-contain"
+            // className="h-[110px] object-contain"
           />
         </header>
         <main className="flex-1 px-6 py-3 md:py-6 md:mt-4">
