@@ -174,18 +174,23 @@ const Login = () => {
               />
 
               <div className="w-full flex justify-end text-nowrap text-[10px] flex-col mt-1 text-black4">
-                <div
-                  onClick={() => dispatch(setShowRegisterModal(true))}
-                  className="cursor-pointer mr-1 text-black4"
-                >
-                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}
-                </div>
-                <div
-                  onClick={() => dispatch(setShowForgotPasswordModal(true))}
-                  className="cursor-pointer w-fit mr-1 text-black4"
-                >
-                  Forgot password?
-                </div>
+                {Settings.registration && (
+                  <div
+                    onClick={() => dispatch(setShowRegisterModal(true))}
+                    className="cursor-pointer mr-1 text-black4"
+                  >
+                    {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                  </div>
+                )}
+                {Settings.registration && (
+                  <div
+                    onClick={() => dispatch(setShowForgotPasswordModal(true))}
+                    className="cursor-pointer w-fit mr-1 text-black4"
+                  >
+                    Forgot password?
+                  </div>
+                )}
+
                 {/* <div className="text-[10px] cursor-pointer w-fit mr-1 text-black4">
                   Resend Verification email?
                 </div> */}
@@ -197,25 +202,29 @@ const Login = () => {
             >
               {languageValue(valueByLanguage, LanguageKey.LOGIN)}
             </button>
-            <button
-              onClick={loginWithDemo}
-              type="button"
-              className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4"
-            >
-              Demo login
-            </button>
-
-            <div className="w-full flex justify-center mt-1">
-              <span className="text-black4 text-xs">
-                Don&apos;t have an account?
-              </span>
-              <span
-                onClick={() => dispatch(setShowRegisterModal(true))}
-                className="cursor-pointer text-black4 font-bold text-xs underline"
+            {Settings.demo_login && (
+              <button
+                onClick={loginWithDemo}
+                type="button"
+                className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4"
               >
-                {languageValue(valueByLanguage, LanguageKey.REGISTER)}
-              </span>
-            </div>
+                Demo login
+              </button>
+            )}
+            {Settings.registration && (
+              <div className="w-full flex justify-center mt-1">
+                <span className="text-black4 text-xs">
+                  Don&apos;t have an account?
+                </span>
+                <span
+                  onClick={() => dispatch(setShowRegisterModal(true))}
+                  className="cursor-pointer text-black4 font-bold text-xs underline"
+                >
+                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                </span>
+              </div>
+            )}
+
             <div className="flex gap-2 w-full h-[42px] items-end">
               {Settings?.whatsapplink && Settings.registration_whatsapp && (
                 <a
