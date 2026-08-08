@@ -126,12 +126,14 @@ export const UnauthorizedView = () => {
             />
 
             <div className="flex flex-col items-start gap-x-2 text-nowrap text-[10px]">
-              <div
-                onClick={() => dispatch(setShowRegisterModal(true))}
-                className="cursor-pointer text-white"
-              >
-                {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
-              </div>
+              {Settings.registration && (
+                <div
+                  onClick={() => dispatch(setShowRegisterModal(true))}
+                  className="cursor-pointer text-white"
+                >
+                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
+                </div>
+              )}
               <div
                 onClick={() => dispatch(setShowForgotPasswordModal(true))}
                 className="cursor-pointer w-fit text-white"
