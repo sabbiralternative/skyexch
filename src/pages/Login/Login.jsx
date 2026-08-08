@@ -155,7 +155,7 @@ const Login = () => {
             // className="h-[110px] object-contain"
           />
         </header>
-        <main className="flex-1 px-6 py-3 md:py-6 md:mt-4">
+        <main className="flex-1 flex justify-center px-6 py-3 md:py-6 md:mt-4">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="items-center flex flex-col w-full sm:w-96 space-y-2 text-black3"
