@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { eventNameList } from "../../../static/event-name-list";
 import { useGroupQuery } from "../../../hooks/group";
+import Search from "../../modals/Search/Search";
 
 const EventNameList = ({ eventTypeId }) => {
+  const [showSearch, setShowSearch] = useState(false);
   const { data } = useGroupQuery({ sportsType: Number(0) });
   const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState(false);
@@ -70,12 +72,14 @@ const EventNameList = ({ eventTypeId }) => {
   }, [data]);
   return (
     <div className="flex flex-col flex-0 md:gap-[1px]">
+      {showSearch && <Search setShowSearch={setShowSearch} />}
       {showWarning && (
         <WarningCondition gameInfo={gameInfo} setShowWarning={setShowWarning} />
       )}
       <div className="flex flex-col md:gap-[1px] overflow-hidden">
         <div className="relative">
           <svg
+            onClick={() => setShowSearch(true)}
             stroke="currentColor"
             fill="currentColor"
             strokeWidth={0}
