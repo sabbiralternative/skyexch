@@ -25,6 +25,7 @@ import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
 import IFrame from "../pages/IFrame/IFrame";
 import Account from "../pages/Account/Account";
 import MultiMarkets from "../pages/MultiMarkets/MultiMarkets";
+import Sports from "../pages/Sports/Sports";
 
 export const router = createBrowserRouter(
   [
@@ -45,6 +46,10 @@ export const router = createBrowserRouter(
         {
           path: "/exchange_sports/:eventName/:eventTypeId",
           element: <ExchangeSports />,
+        },
+        {
+          path: "/sports",
+          element: <Sports />,
         },
 
         {

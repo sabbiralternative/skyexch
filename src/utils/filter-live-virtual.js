@@ -14,7 +14,10 @@ export const filterLiveVirtual = (liveVirtual, category, data, inPlay) => {
   const groupedData = Object.entries(data)
     .filter(([, value]) => {
       if (value.eventTypeId !== category) return false;
-      if (value.inPlay !== inPlay) return false;
+
+      if (inPlay || inPlay == 0) {
+        if (value.inPlay !== inPlay) return false;
+      }
       if (!value.visible) return false;
 
       const isSRL = value.eventName?.toLowerCase().includes("srl") ?? false;
