@@ -75,16 +75,15 @@ const Sports = () => {
     <div className="flex-1 flex white bg-gray1">
       <LeftSidebar />
 
-      {eventTypeId != 7 && eventTypeId != 4339 ? (
-        <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
-          <div className="w-full router-ctn max-md:pb-9">
-            <main className="flex w-full">
-              <div className="w-full">
-                <div className=" ">
-                  <div className="flex flex-col h-full md:gap-[1px]">
-                    <EventNameList eventTypeId={eventTypeId} />
+      <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
+        <div className="w-full router-ctn max-md:pb-9">
+          <main className="flex w-full">
+            <div className="w-full">
+              <div className=" ">
+                <div className="flex flex-col h-full md:gap-[1px]">
+                  <EventNameList eventTypeId={eventTypeId} />
 
-                    {/* {groupedData?.length === 0 && eventTypeId !== "0" && (
+                  {/* {groupedData?.length === 0 && eventTypeId !== "0" && (
                       <div className="flex flex-col h-full md:gap-[1px]">
                         <p className="text-center text-gray-500 py-10">
                           No events available for{" "}
@@ -92,7 +91,7 @@ const Sports = () => {
                         </p>
                       </div>
                     )} */}
-
+                  {eventTypeId != 7 && eventTypeId != 4339 ? (
                     <div className="flex flex-col h-full md:gap-[1px]">
                       <div className="flex flex-col flex-0 md:gap-[1px]">
                         <div className="flex flex-col md:gap-[1px] overflow-hidden" />
@@ -330,15 +329,15 @@ const Sports = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <HorseGreyhound eventTypeId={Number(eventTypeId)} />
+                  )}
                 </div>
               </div>
-            </main>
-          </div>
+            </div>
+          </main>
         </div>
-      ) : (
-        <HorseGreyhound />
-      )}
+      </div>
 
       <RightSidebar />
     </div>

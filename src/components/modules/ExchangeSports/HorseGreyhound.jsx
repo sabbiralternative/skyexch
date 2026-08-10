@@ -1,12 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGroupQuery } from "../../../redux/features/events/events";
 import { useEffect, useState } from "react";
 import moment from "moment-timezone";
 import images from "../../../assets/images";
 import Notification from "../../UI/Header/Notification";
 
-const HorseGreyhound = () => {
-  const { eventTypeId } = useParams();
+const HorseGreyhound = ({ eventTypeId }) => {
   const { data } = useGroupQuery(
     { sportsType: eventTypeId },
     {
@@ -34,6 +33,8 @@ const HorseGreyhound = () => {
   };
 
   const eventName = { 7: "Horse Racing", 4339: "Greyhound Racing" };
+
+  console.log(data);
   return (
     <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
       <div className="w-full router-ctn max-md:pb-9">
@@ -58,45 +59,8 @@ const HorseGreyhound = () => {
                         />{" "}
                         {eventName[eventTypeId]}
                       </div>
-                      <div className="flex flex-row items-end gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="flex gap-1 items-center justify-center md:border-black border rounded-full px-2 py-[3px] cursor-pointer border-white">
-                            <span>-</span>
-                            <span>Live</span>
-                          </p>
-                          <p className="flex gap-1 items-center justify-center md:border-black border rounded-full px-2 py-[2px] min-w-20 cursor-pointer border-white">
-                            <span>-</span>
-                            <span>Virtual</span>
-                          </p>
-                          <p className="flex gap-1 items-center justify-center md:border-black border rounded-full px-2 py-[2px] min-w-20 cursor-pointer border-white">
-                            <span>-</span>
-                            <span>Premium</span>
-                          </p>
-                        </div>
-                        <div className="relative max-md:hidden">
-                          <div className="relative">
-                            <button className=" active:opacity-70 flex justify-center hover:underline items-center gap-1 w-full px-1 py-1 rounded-[2px] text-xs capitalize md:border md:rounded-2xl md:border-black">
-                              <img
-                                src="data:image/svg+xml,%3csvg%20width='9'%20height='10'%20viewBox='0%200%209%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5.98799%205.28125V9.21875C6.00361%209.39062%205.95674%209.52734%205.84736%209.62891C5.73799%209.73047%205.61689%209.78125%205.48408%209.78125C5.35127%209.78125%205.23018%209.73438%205.1208%209.64062L4.13643%208.63281C4.01143%208.50781%203.95674%208.36719%203.97236%208.21094V5.28125L1.08955%201.60156C0.995801%201.49219%200.960645%201.36719%200.984082%201.22656C1.00752%201.08594%201.07002%200.976562%201.17158%200.898438C1.27314%200.820312%201.37861%200.78125%201.48799%200.78125H8.47236C8.58174%200.78125%208.68721%200.820312%208.78877%200.898438C8.89033%200.976562%208.95283%201.08594%208.97627%201.22656C8.99971%201.36719%208.96455%201.49219%208.8708%201.60156L5.98799%205.28125Z'%20fill='white'/%3e%3c/svg%3e"
-                                alt="chevron-down"
-                                className="h-4 w-4"
-                              />
-                              View by
-                            </button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                    <div className="flex flex-col justify-center items-center md:hidden">
-                      <div className="bg-gray-300 rounded-md flex w-[75%]">
-                        <div className="text-nowrap text-center w-full text-[13px] rounded-md py-2 font-medium bg-white text-blue-500 m-0.5">
-                          By Time
-                        </div>
-                        <div className="bg-gray-300 text-nowrap text-center w-full text-[13px] rounded-md py-2 font-medium bg-gray-300">
-                          By Competition
-                        </div>
-                      </div>
-                    </div>
+
                     <div className="flex bg-blue4">
                       {data?.map((item) =>
                         item?.childs?.map((child) => {
@@ -109,7 +73,7 @@ const HorseGreyhound = () => {
                               className={`active:opacity-70  rounded-t-[4px] py-2 px-3 ${
                                 child?.countryCode === selectedCategory
                                   ? "bg-white"
-                                  : ""
+                                  : "text-white"
                               }`}
                             >
                               {child?.countryCode}

@@ -97,7 +97,7 @@ const EventNameList = ({ eventTypeId }) => {
                 aria-current="page"
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 4 || !eventTypeId ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=4"
+                to="/sports?eventTypeId=4"
               >
                 Cricket
                 {groupedData?.cricket > 0 && (
@@ -133,7 +133,7 @@ const EventNameList = ({ eventTypeId }) => {
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 1 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=1"
+                to="/sports?eventTypeId=1"
               >
                 Football
                 {groupedData?.football > 0 && (
@@ -169,7 +169,7 @@ const EventNameList = ({ eventTypeId }) => {
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 2 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=2"
+                to="/sports?eventTypeId=2"
               >
                 Tennis
                 {groupedData?.tennis > 0 && (
@@ -232,7 +232,7 @@ const EventNameList = ({ eventTypeId }) => {
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 7 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=7"
+                to="/sports?eventTypeId=7"
               >
                 Horse Racing
               </Link>
@@ -241,7 +241,7 @@ const EventNameList = ({ eventTypeId }) => {
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 4339 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=4339"
+                to="/sports?eventTypeId=4339"
               >
                 Greyhound Racing
               </Link>
@@ -250,7 +250,7 @@ const EventNameList = ({ eventTypeId }) => {
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 5 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=5"
+                to="/sports?eventTypeId=5"
               >
                 Kabaddi
               </Link>
@@ -259,7 +259,7 @@ const EventNameList = ({ eventTypeId }) => {
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 6 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                to="/sports/?eventTypeId=6"
+                to="/sports?eventTypeId=6"
               >
                 Politics
               </Link>
@@ -270,7 +270,7 @@ const EventNameList = ({ eventTypeId }) => {
                   key={item.id}
                   className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == item.id ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
-                  to={`/sports/?eventTypeId=${item.id}`}
+                  to={`/sports?eventTypeId=${item.id}`}
                 >
                   <div className="flex items-center justify-center gap-1">
                     {item.name}

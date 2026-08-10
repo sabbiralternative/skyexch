@@ -229,7 +229,10 @@ const Account = () => {
                     {/*  */}
                   </div>
                   <div
-                    onClick={() => dispatch(logout())}
+                    onClick={() => {
+                      dispatch(logout());
+                      navigate("/");
+                    }}
                     className="bg-gradient-to-b text-[18px] mb-12 font-[600] font-sans from-red9 to-red10 mt-4 text-white p-4 flex items-center justify-center cursor-pointer hover:bg-red-600 transition-colors duration-200"
                   >
                     <span className="font-medium mr-2">LOGOUT</span>
