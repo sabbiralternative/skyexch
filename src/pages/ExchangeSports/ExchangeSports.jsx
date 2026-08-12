@@ -12,7 +12,7 @@ const ExchangeSports = () => {
       {eventTypeId != 7 && eventTypeId != 4339 ? (
         <GroupSports />
       ) : (
-        <HorseGreyhound />
+        <HorseGreyhound eventTypeId={Number(eventTypeId)} />
       )}
 
       <RightSidebar />

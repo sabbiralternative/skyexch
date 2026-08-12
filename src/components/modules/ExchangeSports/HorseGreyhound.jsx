@@ -34,7 +34,6 @@ const HorseGreyhound = ({ eventTypeId }) => {
 
   const eventName = { 7: "Horse Racing", 4339: "Greyhound Racing" };
 
-  console.log(data);
   return (
     <div className="h-full w-full overflow-auto hide-scrollbar mb-6 md:mb-0 md:px-2 md:pl-[15px] md:pr-3">
       <div className="w-full router-ctn max-md:pb-9">
