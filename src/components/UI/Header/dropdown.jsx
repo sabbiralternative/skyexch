@@ -51,51 +51,60 @@ export const Dropdown = ({ setShowDropdown }) => {
             </div>
           </li>
         )}
+        {Settings.deposit && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/deposit"
+              >
+                {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+              </Link>
+            </div>
+          </li>
+        )}
+        {Settings.withdraw && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/withdraw"
+              >
+                {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+              </Link>
+            </div>
+          </li>
+        )}
 
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/deposit"
-            >
-              {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
-            </Link>
-          </div>
-        </li>
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/withdraw"
-            >
-              {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
-            </Link>
-          </div>
-        </li>
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/deposit-report"
-            >
-              Deposit Report
-            </Link>
-          </div>
-        </li>
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/withdraw-report"
-            >
-              Withdraw Report
-            </Link>
-          </div>
-        </li>
+        {Settings.deposit && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/deposit-report"
+              >
+                Deposit Report
+              </Link>
+            </div>
+          </li>
+        )}
+        {Settings.withdraw && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/withdraw-report"
+              >
+                Withdraw Report
+              </Link>
+            </div>
+          </li>
+        )}
+
         <li className="hover:underline cursor-pointer border-b border-b-gray18">
           <div className="px-2 py-1">
             <Link
@@ -118,18 +127,19 @@ export const Dropdown = ({ setShowDropdown }) => {
             </Link>
           </div>
         </li>
-
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/my-bank-details"
-            >
-              {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
-            </Link>
-          </div>
-        </li>
+        {Settings.withdraw && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/my-bank-details"
+              >
+                {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
+              </Link>
+            </div>
+          </li>
+        )}
 
         {Settings?.referral && (
           <li className="hover:underline cursor-pointer border-b border-b-gray18">
@@ -144,52 +154,60 @@ export const Dropdown = ({ setShowDropdown }) => {
             </div>
           </li>
         )}
+        {Settings.b2c && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/promotions"
+              >
+                Promotions
+              </Link>
+            </div>
+          </li>
+        )}
+        {Settings.b2c && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/bonus-statement"
+              >
+                {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
+              </Link>
+            </div>
+          </li>
+        )}
+        {Settings.b2c && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/promotions"
+              >
+                Promos & Bonus
+              </Link>
+            </div>
+          </li>
+        )}
+        {Settings.b2c && (
+          <li className="hover:underline cursor-pointer border-b border-b-gray18">
+            <div className="px-2 py-1">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                className="cursor-pointer"
+                to="/lossback-bonus"
+              >
+                Lossback Bonus
+              </Link>
+            </div>
+          </li>
+        )}
 
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/promotions"
-            >
-              Promotions
-            </Link>
-          </div>
-        </li>
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/bonus-statement"
-            >
-              {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
-            </Link>
-          </div>
-        </li>
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/promotions"
-            >
-              Promos & Bonus
-            </Link>
-          </div>
-        </li>
-        <li className="hover:underline cursor-pointer border-b border-b-gray18">
-          <div className="px-2 py-1">
-            <Link
-              onClick={() => setShowDropdown(false)}
-              className="cursor-pointer"
-              to="/lossback-bonus"
-            >
-              Lossback Bonus
-            </Link>
-          </div>
-        </li>
-        {closePopupForForever && (
+        {closePopupForForever && Settings.b2c && (
           <li className="hover:underline cursor-pointer border-b border-b-gray18">
             <div className="px-2 py-1">
               <Link

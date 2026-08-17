@@ -74,42 +74,51 @@ const Account = () => {
                         <ArrowRightIcon />
                       </div>
                     )}
-                    <div
-                      onClick={() => navigate("/deposit")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Deposit
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    <div
-                      onClick={() => navigate("/withdraw")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Withdraw
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    <div
-                      onClick={() => navigate("/deposit-report")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Deposit Report
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    <div
-                      onClick={() => navigate("/withdraw-report")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Withdraw Report
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
+                    {Settings.deposit && (
+                      <div
+                        onClick={() => navigate("/deposit")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Deposit
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+                    {Settings.withdraw && (
+                      <div
+                        onClick={() => navigate("/withdraw")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Withdraw
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+                    {Settings.deposit && (
+                      <div
+                        onClick={() => navigate("/deposit-report")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Deposit Report
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+                    {Settings.withdraw && (
+                      <div
+                        onClick={() => navigate("/withdraw-report")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Withdraw Report
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+
                     <div
                       onClick={() => navigate("/open-bets")}
                       className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
@@ -128,15 +137,19 @@ const Account = () => {
                       </span>
                       <ArrowRightIcon />
                     </div>
-                    <div
-                      onClick={() => navigate("/my-bank-details")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        My Bank Details
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
+
+                    {Settings.withdraw && (
+                      <div
+                        onClick={() => navigate("/my-bank-details")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          My Bank Details
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+
                     {Settings?.referral && (
                       <div
                         onClick={() => navigate("/affiliate")}
@@ -148,43 +161,52 @@ const Account = () => {
                         <ArrowRightIcon />
                       </div>
                     )}
-                    <div
-                      onClick={() => navigate("/promotions")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Promotions
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    <div
-                      onClick={() => navigate("/bonus-statement")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Bonus Statement
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    <div
-                      onClick={() => navigate("/promotions")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Promos & Bonus
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    <div
-                      onClick={() => navigate("/lossback-bonus")}
-                      className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
-                    >
-                      <span className="ml-4 text-[17px] font-[900] font-sans">
-                        Lossback Bonus
-                      </span>
-                      <ArrowRightIcon />
-                    </div>
-                    {closePopupForForever && (
+                    {Settings.b2c && (
+                      <div
+                        onClick={() => navigate("/promotions")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Promotions
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+                    {Settings.b2c && (
+                      <div
+                        onClick={() => navigate("/bonus-statement")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Bonus Statement
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+                    {Settings.b2c && (
+                      <div
+                        onClick={() => navigate("/promotions")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Promos & Bonus
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+                    {Settings.b2c && (
+                      <div
+                        onClick={() => navigate("/lossback-bonus")}
+                        className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <span className="ml-4 text-[17px] font-[900] font-sans">
+                          Lossback Bonus
+                        </span>
+                        <ArrowRightIcon />
+                      </div>
+                    )}
+
+                    {closePopupForForever && Settings.b2c && (
                       <div
                         onClick={() => navigate("/app-only-bonus")}
                         className="flex items-center justify-between py-2 font-[900] text-[17.2px]  border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
