@@ -16,12 +16,11 @@ import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
-import { useLanguage } from "../../../context/LanguageProvider";
+import useLanguage from "../../../hooks/use-language";
 
 const ForgotPassword = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const ref = useRef();
   const { logo } = useLogo();
   const navigate = useNavigate();
@@ -155,10 +154,12 @@ const ForgotPassword = () => {
               <div className="w-full max-w-md overflow-y-auto">
                 <header className="flex flex-col justify-center items-center text-center">
                   <h1 className="text-2xl font-bold text-black3">
-                    Forgot Password
+                    {getLanguage(LanguageKey.FORGOT_PASSWORD)}
                   </h1>
                   <p className="text-xs text-black4 mt-1">
-                    Enter your phone number to reset your password.
+                    {getLanguage(
+                      LanguageKey.ENTER_PHONE_NUMBER_TO_RESET_PASSWORD,
+                    )}
                   </p>
                 </header>
                 <form
@@ -197,7 +198,8 @@ const ForgotPassword = () => {
                             type="button"
                             className="active:opacity-70 w-[130px]  text-[12px] rounded-lg  "
                           >
-                            Retry in {timer}
+                            {getLanguage(LanguageKey.RETRY_IN)}
+                            {timer}
                           </button>
                         ) : (
                           <button
@@ -206,7 +208,7 @@ const ForgotPassword = () => {
                             className="active:opacity-70 w-[130px] bg-header-gradient text-goldenYellow  text-[12px] rounded-lg font-bold hover:bg-black4"
                             disabled={Settings.otp && mobile?.length < 10}
                           >
-                            Get OTP
+                            {getLanguage(LanguageKey.GET_OTP)}
                           </button>
                         )}
                       </div>
@@ -271,10 +273,7 @@ const ForgotPassword = () => {
                     type="submit"
                     className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4 mt-3"
                   >
-                    {languageValue(
-                      valueByLanguage,
-                      LanguageKey.CHANGE_PASSWORD,
-                    )}
+                    {getLanguage(LanguageKey.CHANGE_PASSWORD)}
                   </button>
                 </form>
               </div>

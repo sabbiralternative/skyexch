@@ -11,8 +11,11 @@ import {
 import BetSlip from "./BetSlip";
 import toast from "react-hot-toast";
 import Ladder from "../../modals/Ladder/Ladder";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 export const Fancy = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const fancyData = data?.filter(
     (fancy) =>
       fancy.btype === "FANCY" &&
@@ -281,7 +284,8 @@ export const Fancy = ({ data }) => {
 
                             <div className="text-left text-[10px] md:hidden">
                               <span className="font-extrabold text-blue-700">
-                                Min Max{" "}
+                                {getLanguage(LanguageKey.MIN)}{" "}
+                                {getLanguage(LanguageKey.MAX)}{" "}
                               </span>
                               <span className="text-gray-700 font-bold">
                                 {game?.minLiabilityPerBet}-

@@ -4,19 +4,18 @@ import { RightSidebar } from "../../components/shared/Sidebar/RightSidebar";
 import HorseGreyhound from "../../components/modules/ExchangeSports/HorseGreyhound";
 import { useGroupQuery } from "../../hooks/group";
 import { useState } from "react";
-import { useLanguage } from "../../context/LanguageProvider";
 import { EVENT_NAMES, Status } from "../../const";
 import LiveVirtual from "../../components/modules/ExchangeSports/LiveVirtual";
-import { languageValue } from "../../utils/language";
 import { filterLiveVirtual } from "../../utils/filter-live-virtual";
 import EventNameList from "../../components/modules/Sports/EventNameList";
+import useLanguage from "../../hooks/use-language";
 
 const Sports = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const eventTypeId = params.get("eventTypeId");
   const [liveVirtual, setLiveVirtual] = useState([]);
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
 
   const { data } = useGroupQuery({ sportsType: Number(eventTypeId) || 4 });
@@ -103,10 +102,7 @@ const Sports = () => {
                               alt={EVENT_NAMES[eventTypeId || 4]}
                               className="w-5 h-5 object-contain max-md:invert"
                             />
-                            {languageValue(
-                              valueByLanguage,
-                              EVENT_NAMES[eventTypeId || 4],
-                            )}
+                            {getLanguage(EVENT_NAMES[eventTypeId || 4])}
                           </div>
                           <div className="flex flex-row items-end gap-2">
                             <LiveVirtual

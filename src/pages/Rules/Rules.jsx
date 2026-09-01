@@ -1,8 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { LeftSidebar } from "../../components/shared/Sidebar/LeftSidebar";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const Rules = () => {
+  const { getLanguage } = useLanguage();
   const [index, setIndex] = useState(null);
 
   const handleChangeIndex = (i) => {
@@ -22,7 +25,9 @@ const Rules = () => {
               <div className=" ">
                 <div className="flex flex-col w-full h-full font-robotoCondensed rounded border border-[#00000020] text-white overflow-auto">
                   <div className="flex flex-0 w-full bg-black py-1 px-4">
-                    <h3 className="text-lg font-medium">Rules</h3>
+                    <h3 className="text-lg font-medium">
+                      {getLanguage(LanguageKey.RULES)}
+                    </h3>
                   </div>
                   <div className="flex flex-col mt-1 flex-1 gap-1">
                     <div>

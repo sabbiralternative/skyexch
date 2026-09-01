@@ -42,6 +42,8 @@ const MainLayout = () => {
 
   return (
     <div className="h-full">
+      <meta name="description" content={Settings.metaDescription} />
+      <meta name="keywords" content={Settings.metaKeywords} />
       {showRegisterModal && <Register />}
       {showForgotPasswordModal && <ForgotPassword />}
       <div className="flex bg-[#dee2e6] flex-col h-full w-full overflow-auto gap-[1px] mb-64 router-ctn">

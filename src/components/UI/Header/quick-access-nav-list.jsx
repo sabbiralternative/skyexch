@@ -7,13 +7,13 @@ import { Settings } from "../../../api";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { useGroupQuery } from "../../../hooks/group";
 import { latestEvent } from "../../../static/latest-event";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
+
 import { LanguageKey } from "../../../const";
 import { eventNameList } from "../../../static/event-name-list";
+import useLanguage from "../../../hooks/use-language";
 
 export const QuickAccessNavList = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState(false);
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
@@ -89,14 +89,16 @@ export const QuickAccessNavList = () => {
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
               to="/"
             >
-              <div className="flex items-center justify-center gap-1">Home</div>
+              <div className="flex items-center justify-center gap-1">
+                {getLanguage(LanguageKey.HOME)}
+              </div>
             </Link>
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
               to="/exchange_sports/inplay/0"
             >
               <div className="flex items-center justify-center gap-1">
-                In-play
+                {getLanguage(LanguageKey.IN_PLAY)}
               </div>
             </Link>
             {latestEvent
@@ -120,7 +122,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/cricket/4"
             >
               <div className="flex items-center justify-center gap-1">
-                {languageValue(valueByLanguage, LanguageKey.CRICKET)}
+                {getLanguage(LanguageKey.CRICKET)}
                 {groupedData?.cricket > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
                     <div className="px-1">
@@ -155,7 +157,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/football/1"
             >
               <div className="flex items-center justify-center gap-1">
-                {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
+                {getLanguage(LanguageKey.FOOTBALL)}
                 {groupedData?.football > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
                     <div className="px-1">
@@ -190,7 +192,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/tennis/2"
             >
               <div className="flex items-center justify-center gap-1">
-                {languageValue(valueByLanguage, LanguageKey.TENNIS)}
+                {getLanguage(LanguageKey.TENNIS)}
                 {groupedData?.tennis > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-[-10px] m-auto">
                     <div className="px-1">
@@ -226,7 +228,7 @@ export const QuickAccessNavList = () => {
               to="/casino?product=All&category=All"
             >
               <div className="flex items-center justify-center gap-1">
-                Casino
+                {getLanguage(LanguageKey.CASINO)}
                 <img
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAi5JREFUOBGNlEtPE1EUx8+5tJ0EN5ZEZoJSMcYqUVkMLERWEjfE+BFY+g1cG1fuXPolTFQMQVa4MRpYAOURaqRqNDwXENRoGJj2+D/jvU1tZpST/Hrvefae03vL1CYi0gnTZdBvuWLXs1ifrs7MPaizPDTMkwOjN17BlggjURPuAZdYwp4Tb8pHFEXl6tvFNRI+Eo9vmkheIOxJDh/T4HxKTqrJ87xrLFQVkuv5uJCPKbrAxI8MouPUjGxjSMxL6haJTzHTIYoWtNBCdk6qJyShinoaRD5a3Nb9vwotwr+rQW0SsjFJIaZ6QCxb6tdC822BqtbAbVAGj8ExcBKcu9i7o4qeSCj7RN8Qc5eZ98F3cB/6AJgFiXSVgj7MZpMbHDDJn9YQuAfvVxujyzhs71t0zDbR9YSuVcyJK8IUwNeckea49qpwTLYWcXvYf2K/ZvUQegWXzce3NGekPvfLdeGCFmzwXwvsQzCMWCNOJBi4BNKwrVmHK+RDf46kW2AYXAKj4CXs74D7klIxKH7BoLtNLpfamta9A16DN8Al6vPJg6b0Xi2fxqCjHMWHatQnosPcxbduYdujupUOrCsg692FQrQsx5THEznSe+TEDdzpumYVUV/yy8XMAZ7ITmshNycNOoloN3rnfHS0nbRms/5XSB/3J1AFy5sfPj/DpZwQMhMk9WLz6JiRh4ApMAg+Ar2UmqTofr1Wq5lfG3tn8DfiN9j0d1B8ENfNGE704zeVEr3MtkifbgAAAABJRU5ErkJggg=="
                   alt="casino-icon"
@@ -239,7 +241,7 @@ export const QuickAccessNavList = () => {
               onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
             >
               <div className="flex items-center justify-center gap-1">
-                Sportsbook
+                {getLanguage(LanguageKey.SPORTSBOOK)}
               </div>
             </a>
             <Link
@@ -247,7 +249,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/horserace/7"
             >
               <div className="flex items-center justify-center gap-1">
-                {languageValue(valueByLanguage, LanguageKey.HORSE)}
+                {getLanguage(LanguageKey.HORSE)}
               </div>
             </Link>
             <Link
@@ -255,7 +257,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/greyhound/4339"
             >
               <div className="flex items-center justify-center gap-1">
-                {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+                {getLanguage(LanguageKey.GREYHOUND)}
               </div>
             </Link>
 
@@ -264,7 +266,7 @@ export const QuickAccessNavList = () => {
               to="/exchange_sports/kabaddi/5"
             >
               <div className="flex items-center justify-center gap-1">
-                {languageValue(valueByLanguage, LanguageKey.KABADDI)}
+                {getLanguage(LanguageKey.KABADDI)}
               </div>
             </Link>
 
@@ -276,7 +278,7 @@ export const QuickAccessNavList = () => {
                   to={`/exchange_sports/${item.name}/${item.id}`}
                 >
                   <div className="flex items-center justify-center gap-1">
-                    {item.name}
+                    {getLanguage(item.name)}
                   </div>
                 </Link>
               );
@@ -289,7 +291,7 @@ export const QuickAccessNavList = () => {
             className="absolute right-2 flex items-center gap-2 bg-sub-header-gradient h-full"
           >
             <div className="flex items-center gap-1 cursor-pointer">
-              Setting
+              {getLanguage(LanguageKey.SETTINGS)}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}

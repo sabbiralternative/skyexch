@@ -6,13 +6,12 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useNavigate } from "react-router-dom";
 import { Settings } from "../../../api";
 import { setShowLanguageModal } from "../../../redux/features/global/globalSlice";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 export const Authorized = () => {
   const dispatch = useDispatch();
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const ref = useRef(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -30,7 +29,7 @@ export const Authorized = () => {
           >
             <span className=" my-auto text-white">
               {" "}
-              {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}{" "}
+              {getLanguage(LanguageKey.DEPOSIT)}{" "}
             </span>
           </button>
         )}
@@ -41,7 +40,7 @@ export const Authorized = () => {
           >
             <span className=" my-auto text-white">
               {" "}
-              {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}{" "}
+              {getLanguage(LanguageKey.WITHDRAW)}{" "}
             </span>
           </button>
         )}
@@ -68,11 +67,15 @@ export const Authorized = () => {
       <div className="flex md:gap-1">
         <div className="flex flex-row items-center gap-1">
           <div className="hidden md:flex items-center gap-2 rounded-md  px-3 py-1 text-[12px] bg-[rgba(255,255,255,.1)] shadow-[inset_0_2px_0_0_rgba(255,255,255,.3)]">
-            <span className="text-[#ffb600]">Main Balance</span>
+            <span className="text-[#ffb600]">
+              {getLanguage(LanguageKey.BALANCE)}
+            </span>
             <span className="font-bold text-[#ffb600]">
               {data?.availBalance}
             </span>
-            <span className="text-[#ffb600]">Exposure</span>
+            <span className="text-[#ffb600]">
+              {getLanguage(LanguageKey.EXPOSURE)}
+            </span>
             <span
               className="font-bold text-[#ffb600] cursor-pointer"
               role="button"

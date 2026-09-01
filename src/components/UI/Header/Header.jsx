@@ -16,7 +16,7 @@ import {
 } from "../../../redux/features/global/globalSlice";
 import Error from "../../modals/Error/Error";
 import Language from "../../modals/Language/Language";
-import { useLanguage } from "../../../context/LanguageProvider";
+import useLanguage from "../../../hooks/use-language";
 
 const Header = () => {
   const { setLanguage } = useLanguage();

@@ -12,8 +12,11 @@ import { Settings } from "../../../api";
 import { isGameSuspended } from "../../../utils/isOddSuspended";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 export const MatchOdds = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -303,7 +306,7 @@ export const MatchOdds = ({ data }) => {
                         }`}
                       >
                         <span className="text-white whitespace-nowrap">
-                          CASHOUT
+                          {getLanguage(LanguageKey.CASHOUT)}
                           {/* {teamProfitForGame?.profit?.toString()?.length >
                             2 && <br className="lg:hidden" />} */}
                           {teamProfitForGame?.profit &&
@@ -330,7 +333,7 @@ export const MatchOdds = ({ data }) => {
                         style={{ background: "#82371b" }}
                       >
                         <span className="text-white whitespace-nowrap">
-                          Speed Cashout
+                          {getLanguage(LanguageKey.SPEED_CASHOUT)}
                         </span>
                       </button>
                     )}
@@ -341,7 +344,10 @@ export const MatchOdds = ({ data }) => {
                   <thead>
                     <tr className="border-b border-b-gray13 h-[25px]">
                       <th className="w-[60%] md:hidden bg-blue17" colSpan={1}>
-                        <span className="text-blue18 text-[8px]">Min/Max</span>{" "}
+                        <span className="text-blue18 text-[8px]">
+                          {getLanguage(LanguageKey.MIN)}/
+                          {getLanguage(LanguageKey.MAX)}
+                        </span>{" "}
                         <span className="text-[9px]">
                           {game?.minLiabilityPerBet}-{game?.maxLiabilityPerBet}
                         </span>
@@ -379,7 +385,10 @@ export const MatchOdds = ({ data }) => {
                         className="w-[20%] bg-blue17 hidden md:table-cell"
                         colSpan={2}
                       >
-                        <span className="text-blue18 text-[8px]">Min/Max</span>{" "}
+                        <span className="text-blue18 text-[8px]">
+                          {getLanguage(LanguageKey.MIN)}/
+                          {getLanguage(LanguageKey.MAX)}
+                        </span>{" "}
                         <span className="text-[9px]">100-10K</span>
                       </th>
                     </tr>

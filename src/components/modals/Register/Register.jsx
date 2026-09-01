@@ -17,12 +17,11 @@ import { useForm } from "react-hook-form";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
-import { useLanguage } from "../../../context/LanguageProvider";
 import { LanguageKey } from "../../../const";
-import { languageValue } from "../../../utils/language";
+import useLanguage from "../../../hooks/use-language";
 
 const Register = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const affnook_token = localStorage.getItem("affnook_token");
   const ref = useRef();
   const referralCode = localStorage.getItem("referralCode");
@@ -179,7 +178,9 @@ const Register = () => {
             <div className="flex justify-center">
               <div className="w-full max-w-md overflow-y-auto">
                 <header className="flex flex-col justify-center items-center text-center">
-                  <h1 className="text-2xl font-bold text-black3">Sign Up</h1>
+                  <h1 className="text-2xl font-bold text-black3">
+                    {getLanguage(LanguageKey.REGISTER)}
+                  </h1>
                   <p className="text-xs text-black4 mt-1">
                     Create your account by following these simple steps.
                   </p>
@@ -220,7 +221,7 @@ const Register = () => {
                             type="button"
                             className="active:opacity-70 w-[130px]  text-[12px] rounded-lg  "
                           >
-                            Retry in {timer}
+                            {getLanguage(LanguageKey.RETRY_IN)} {timer}
                           </button>
                         ) : (
                           <button
@@ -229,7 +230,7 @@ const Register = () => {
                             className="active:opacity-70 w-[130px] bg-header-gradient text-goldenYellow  text-[12px] rounded-lg font-bold hover:bg-black4"
                             disabled={Settings.otp && mobile?.length < 10}
                           >
-                            Get OTP
+                            {getLanguage(LanguageKey.GET_OTP)}
                           </button>
                         )}
                       </div>
@@ -304,7 +305,7 @@ const Register = () => {
                     type="submit"
                     className=" active:opacity-70 w-full bg-header-gradient text-goldenYellow p-[10px] text-[13px] rounded-lg font-bold hover:bg-black4 mt-3"
                   >
-                    {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                    {getLanguage(LanguageKey.REGISTER)}
                   </button>
                   <div className="self-center mt-2 text-sm text-center text-black4">
                     Already have account?{" "}
@@ -316,7 +317,7 @@ const Register = () => {
                       type="button"
                       className="underline font-medium text-black4 hover:opacity-80 bg-transparent border-0 p-0 cursor-pointer"
                     >
-                      {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                      {getLanguage(LanguageKey.LOGIN)}
                     </button>
                   </div>
                 </form>

@@ -1,18 +1,22 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Status, EVENT_NAMES, EVENT_SORT_ORDER } from "../../../const";
+import {
+  Status,
+  EVENT_NAMES,
+  EVENT_SORT_ORDER,
+  LanguageKey,
+} from "../../../const";
 import Notification from "../../UI/Header/Notification";
 import { useGroupQuery } from "../../../hooks/group";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import LiveVirtual from "./LiveVirtual";
 import { filterLiveVirtual } from "../../../utils/filter-live-virtual";
 import Search from "../../modals/Search/Search";
+import useLanguage from "../../../hooks/use-language";
 
 export const GroupSports = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [liveVirtual, setLiveVirtual] = useState([]);
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const [isInPlay, setIsInPlay] = useState(true);
   const [categories, setCategories] = useState([]);
@@ -121,14 +125,14 @@ export const GroupSports = () => {
                     className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
              ${isInPlay ? "bg-white text-black" : "text-white"}`}
                   >
-                    In-play
+                    {getLanguage(LanguageKey.IN_PLAY)}
                   </div>
                   <div
                     onClick={() => setIsInPlay(false)}
                     className={`cursor-pointer flex-1 py-[6px] font-[600] font-sans text-center text-[13px] rounded-md capitalize
              ${!isInPlay ? "bg-white text-black" : "text-white"}`}
                   >
-                    upcoming{" "}
+                    {getLanguage(LanguageKey.UP_COMING)}
                   </div>
                 </div>
                 <div className="ml-4">
@@ -166,8 +170,11 @@ export const GroupSports = () => {
                       className="flex flex-col h-full md:gap-[1px]"
                     >
                       <p className="text-center text-gray-500 py-10">
-                        No {isInPlay ? "In-Play" : "Upcoming"} events available
-                        for {EVENT_NAMES[category]}
+                        No{" "}
+                        {isInPlay
+                          ? getLanguage(LanguageKey.IN_PLAY)
+                          : getLanguage(LanguageKey.UP_COMING)}{" "}
+                        events available for {EVENT_NAMES[category]}
                       </p>
                     </div>
                   );
@@ -190,10 +197,7 @@ export const GroupSports = () => {
                             alt={EVENT_NAMES[category]}
                             className="w-5 h-5 object-contain max-md:invert"
                           />
-                          {languageValue(
-                            valueByLanguage,
-                            EVENT_NAMES[category],
-                          )}
+                          {getLanguage(EVENT_NAMES[category])}
                         </div>
                         <div className="flex flex-row items-end gap-2">
                           <LiveVirtual
@@ -269,7 +273,9 @@ export const GroupSports = () => {
                                           <div className="flex gap-1 items-center">
                                             {value?.inPlay === 1 && (
                                               <div className="text-[#508d0e] font-[700]">
-                                                In-Play
+                                                {getLanguage(
+                                                  LanguageKey.IN_PLAY,
+                                                )}
                                               </div>
                                             )}
 

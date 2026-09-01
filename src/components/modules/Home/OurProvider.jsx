@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const OurProvider = ({ our_provider }) => {
+  const { getLanguage } = useLanguage();
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const handleNavigateToIFrame = (casino) => {
@@ -11,7 +14,7 @@ const OurProvider = ({ our_provider }) => {
   return (
     <div>
       <div className="w-full py-[6px] px-[5px] text-[13px] md:text-[16px] uppercase my-[2px] font-bold text-black bg-goldenYellow">
-        Top Providers
+        {getLanguage(LanguageKey.OUR_PROVIDERS)}
       </div>
       <div>
         <div className="grid grid-cols-3 pb-[1rem] md:mt-1 md:grid-cols-4 md:gap-1 gap-[1px] w-full">

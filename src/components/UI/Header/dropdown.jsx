@@ -2,12 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
 import { Settings } from "../../../api";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 export const Dropdown = ({ setShowDropdown }) => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const closePopupForForever = localStorage.getItem("closePopupForForever");
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -46,7 +45,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 onClick={() => setShowDropdown(false)}
                 className="cursor-pointer"
               >
-                Customer Support
+                {getLanguage(LanguageKey.CUSTOMER_SUPPORT)}
               </a>
             </div>
           </li>
@@ -59,7 +58,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/deposit"
               >
-                {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+                {getLanguage(LanguageKey.DEPOSIT)}
               </Link>
             </div>
           </li>
@@ -72,7 +71,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/withdraw"
               >
-                {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+                {getLanguage(LanguageKey.WITHDRAW)}
               </Link>
             </div>
           </li>
@@ -86,7 +85,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/deposit-report"
               >
-                Deposit Report
+                {getLanguage(LanguageKey.DEPOSIT_STATEMENT)}
               </Link>
             </div>
           </li>
@@ -99,7 +98,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/withdraw-report"
               >
-                Withdraw Report
+                {getLanguage(LanguageKey.WITHDRAW_STATMENT)}
               </Link>
             </div>
           </li>
@@ -112,7 +111,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/open-bets"
             >
-              Open Bets
+              {getLanguage(LanguageKey.OPEN_BETS)}
             </Link>
           </div>
         </li>
@@ -123,7 +122,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/betting-profit-loss"
             >
-              Betting Profit & Loss
+              {getLanguage(LanguageKey.BETTING_PROFIT_AND_LOSS)}
             </Link>
           </div>
         </li>
@@ -135,7 +134,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/my-bank-details"
               >
-                {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
+                {getLanguage(LanguageKey.MY_BANK_DETAILS)}
               </Link>
             </div>
           </li>
@@ -149,7 +148,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/affiliate"
               >
-                Affiliate
+                {getLanguage(LanguageKey.AFFILIATE)}
               </Link>
             </div>
           </li>
@@ -162,7 +161,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/promotions"
               >
-                Promotions
+                {getLanguage(LanguageKey.PROMOTIONS)}
               </Link>
             </div>
           </li>
@@ -175,7 +174,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/bonus-statement"
               >
-                {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
+                {getLanguage(LanguageKey.BONUS_STATEMENT)}
               </Link>
             </div>
           </li>
@@ -188,7 +187,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/promotions"
               >
-                Promos & Bonus
+                {getLanguage(LanguageKey.PROMOTION_AND_BONUSES)}
               </Link>
             </div>
           </li>
@@ -201,7 +200,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/lossback-bonus"
               >
-                Lossback Bonus
+                {getLanguage(LanguageKey.LOSSBACK_BONUS)}
               </Link>
             </div>
           </li>
@@ -215,7 +214,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 className="cursor-pointer"
                 to="/app-only-bonus"
               >
-                App Only Bonus
+                {getLanguage(LanguageKey.APP_ONLY_BONUS)}
               </Link>
             </div>
           </li>
@@ -228,7 +227,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/change-password"
             >
-              {languageValue(valueByLanguage, LanguageKey.CHANGE_PASSWORD)}
+              {getLanguage(LanguageKey.CHANGE_PASSWORD)}
             </Link>
           </div>
         </li>
@@ -242,7 +241,7 @@ export const Dropdown = ({ setShowDropdown }) => {
                 onClick={() => setShowDropdown(false)}
                 className="cursor-pointer"
               >
-                Download APK
+                {getLanguage(LanguageKey.DOWNLOAD_APK)}
               </a>
             </div>
           </li>
@@ -255,7 +254,7 @@ export const Dropdown = ({ setShowDropdown }) => {
               className="cursor-pointer"
               to="/rules"
             >
-              Rules and Regulations
+              {getLanguage(LanguageKey.RULES_AND_REGULATION)}
             </Link>
           </div>
         </li>
@@ -264,7 +263,7 @@ export const Dropdown = ({ setShowDropdown }) => {
           className="hover:underline cursor-pointer "
         >
           <div className="text-center bg-blue4 text-white py-2 font-bold text-xs">
-            {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
+            {getLanguage(LanguageKey.LOGOUT)}
           </div>
         </li>
       </ul>

@@ -7,8 +7,11 @@ import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { eventNameList } from "../../../static/event-name-list";
 import { useGroupQuery } from "../../../hooks/group";
 import Search from "../../modals/Search/Search";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const EventNameList = ({ eventTypeId }) => {
+  const { getLanguage } = useLanguage();
   const [showSearch, setShowSearch] = useState(false);
   const { data } = useGroupQuery({ sportsType: Number(0) });
   const navigate = useNavigate();
@@ -99,7 +102,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 4 || !eventTypeId ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=4"
               >
-                Cricket
+                {getLanguage(LanguageKey.CRICKET)}
                 {groupedData?.cricket > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-0 m-auto">
                     <div className="px-1">
@@ -135,7 +138,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 1 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=1"
               >
-                Football
+                {getLanguage(LanguageKey.FOOTBALL)}
                 {groupedData?.football > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-0 m-auto">
                     <div className="px-1">
@@ -171,7 +174,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 2 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=2"
               >
-                Tennis
+                {getLanguage(LanguageKey.TENNIS)}
                 {groupedData?.tennis > 0 && (
                   <span className="inline-flex items-center rounded bg-white text-[10px] font-normal text-red-500 absolute top-0 m-auto">
                     <div className="px-1">
@@ -216,7 +219,7 @@ const EventNameList = ({ eventTypeId }) => {
                       animate-highlight rounded-t-lg font-sans text-[13px] font-[600]"
                 to="/casino?product=All&category=All"
               >
-                Casino
+                {getLanguage(LanguageKey.CASINO)}
               </Link>
             </div>
             <div className="relative">
@@ -225,7 +228,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600]"
                 onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
               >
-                Sportsbook
+                {getLanguage(LanguageKey.SPORTSBOOK)}
               </a>
             </div>
             <div className="relative">
@@ -234,7 +237,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 7 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=7"
               >
-                Horse Racing
+                {getLanguage(LanguageKey.HORSE)}
               </Link>
             </div>
             <div className="relative">
@@ -243,7 +246,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 4339 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=4339"
               >
-                Greyhound Racing
+                {getLanguage(LanguageKey.GREYHOUND)}
               </Link>
             </div>
             <div className="relative">
@@ -252,7 +255,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 5 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=5"
               >
-                Kabaddi
+                {getLanguage(LanguageKey.KABADDI)}
               </Link>
             </div>
             <div className="relative">
@@ -261,7 +264,7 @@ const EventNameList = ({ eventTypeId }) => {
                        font-sans text-[13px] font-[600] ${eventTypeId == 6 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}
                 to="/sports?eventTypeId=6"
               >
-                Politics
+                {getLanguage(LanguageKey.POLITICS)}
               </Link>
             </div>
             {eventNameList.map((item) => {
@@ -273,7 +276,7 @@ const EventNameList = ({ eventTypeId }) => {
                   to={`/sports?eventTypeId=${item.id}`}
                 >
                   <div className="flex items-center justify-center gap-1">
-                    {item.name}
+                    {getLanguage(item.name)}
                   </div>
                 </Link>
               );

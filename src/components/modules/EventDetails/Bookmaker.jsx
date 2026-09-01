@@ -12,8 +12,11 @@ import { isGameSuspended } from "../../../utils/isOddSuspended";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 export const Bookmaker = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -305,7 +308,7 @@ export const Bookmaker = ({ data }) => {
                           }`}
                         >
                           <span className="text-white whitespace-nowrap">
-                            CASHOUT
+                            {getLanguage(LanguageKey.CASHOUT)}
                             {/* {teamProfitForGame?.profit?.toString()?.length >
                               2 && <br className="lg:hidden" />} */}
                             {teamProfitForGame?.profit &&
@@ -332,7 +335,7 @@ export const Bookmaker = ({ data }) => {
                           style={{ background: "#82371b" }}
                         >
                           <span className="text-white whitespace-nowrap">
-                            Speed Cashout
+                            {getLanguage(LanguageKey.SPEED_CASHOUT)}
                           </span>
                         </button>
                       )}
@@ -342,13 +345,13 @@ export const Bookmaker = ({ data }) => {
                   <div className="flex items-center gap-2" />
                   <div className="flex items-center gap-1">
                     <span className="rounded-sm px-4 text-[10px] font-normal text-white bg-[#374151]">
-                      Min
+                      {getLanguage(LanguageKey.MIN)}
                     </span>
                     <span className="text-[11px] font-medium">
                       {game?.minLiabilityPerBet}
                     </span>
                     <span className="rounded-sm px-4 text-[10px] font-normal text-white bg-[#374151]">
-                      Max
+                      {getLanguage(LanguageKey.MAX)}
                     </span>
                     <span className="text-[11px] font-medium">
                       {game?.maxLiabilityPerBet}

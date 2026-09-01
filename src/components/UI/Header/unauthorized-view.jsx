@@ -12,12 +12,11 @@ import {
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useLanguage } from "../../../context/LanguageProvider";
 import { LanguageKey } from "../../../const";
-import { languageValue } from "../../../utils/language";
+import useLanguage from "../../../hooks/use-language";
 
 export const UnauthorizedView = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
@@ -131,7 +130,7 @@ export const UnauthorizedView = () => {
                   onClick={() => dispatch(setShowRegisterModal(true))}
                   className="cursor-pointer text-white"
                 >
-                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
+                  {getLanguage(LanguageKey.REGISTER)}{" "}
                 </div>
               )}
               {Settings.registration && (
@@ -139,7 +138,7 @@ export const UnauthorizedView = () => {
                   onClick={() => dispatch(setShowForgotPasswordModal(true))}
                   className="cursor-pointer w-fit text-white"
                 >
-                  Forgot password?
+                  {getLanguage(LanguageKey.FORGOT_PASSWORD)}
                 </div>
               )}
             </div>
@@ -151,7 +150,7 @@ export const UnauthorizedView = () => {
                 className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-custom-red-gradient px-2 undefined rounded-[5px]"
               >
                 <span className="text-sm md:text-xs text-white font-bold">
-                  {languageValue(valueByLanguage, LanguageKey.LOGIN)}{" "}
+                  {getLanguage(LanguageKey.LOGIN)}{" "}
                 </span>
                 <img
                   src="data:image/svg+xml,%3csvg%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.49707%204.4668V5.5332H6.99707L4.02637%208.5293L4.78809%209.29102L9.0791%205L4.78809%200.708984L4.02637%201.4707L6.99707%204.4668H0.49707Z'%20fill='white'/%3e%3c/svg%3e"
@@ -166,7 +165,7 @@ export const UnauthorizedView = () => {
                   className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-custom-red-gradient px-2 undefined rounded-[5px]"
                 >
                   <span className="text-sm md:text-xs text-white font-bold">
-                    Demo
+                    {getLanguage(LanguageKey.DEMO_LOGIN)}
                   </span>
                   <img
                     src="data:image/svg+xml,%3csvg%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.49707%204.4668V5.5332H6.99707L4.02637%208.5293L4.78809%209.29102L9.0791%205L4.78809%200.708984L4.02637%201.4707L6.99707%204.4668H0.49707Z'%20fill='white'/%3e%3c/svg%3e"
@@ -186,7 +185,7 @@ export const UnauthorizedView = () => {
               className="active:opacity-70 flex items-center p-[7px_12px] md:p-[7px_18px] text-[10px] font-[500] justify-center gap-1 text-white bg-blue4 active:bg-blue5 rounded text-sm bg-button-gradient undefined rounded-[5px]"
             >
               <span className="text-sm md:text-xs text-white font-bold">
-                {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
+                {getLanguage(LanguageKey.REGISTER)}{" "}
               </span>
             </button>
           )}
@@ -202,7 +201,7 @@ export const UnauthorizedView = () => {
               className="h-3.5 w-3.5"
             />
             <span className="text-sm md:text-xs text-white font-bold">
-              {languageValue(valueByLanguage, LanguageKey.LOGIN)}{" "}
+              {getLanguage(LanguageKey.LOGIN)}{" "}
             </span>
           </button>
         </div>

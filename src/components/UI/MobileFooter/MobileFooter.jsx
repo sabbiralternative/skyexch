@@ -4,13 +4,12 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 // import { Settings } from "../../../api";
 // import WarningCondition from "../../shared/WarningCondition/WarningCondition";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const MobileFooter = () => {
   const { pathname } = useLocation();
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   // const navigate = useNavigate();
   // const [showWarning, setShowWarning] = useState(false);
   // const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
@@ -62,7 +61,9 @@ const MobileFooter = () => {
               clipRule="evenodd"
             />
           </svg>
-          <div className="text-white text-xs text-center">Sports</div>
+          <div className="text-white text-xs text-center">
+            {getLanguage(LanguageKey.SPORTS)}
+          </div>
         </Link>
         <Link
           className={`flex flex-col items-center justify-center h-full ${
@@ -84,7 +85,9 @@ const MobileFooter = () => {
           >
             <path d="M470 124.837l-98.443-81.78-27.814 32.931 98.442 81.769L470 124.837zM167.192 74.919L139.366 42 42 124.837l27.814 32.919 97.378-82.837zm99.509 97.709H234.6v127.446l101.649 60.539L352.3 334.06l-85.6-49.917V172.628zM256 87.665c-107 0-192.601 86.021-192.601 191.166C63.399 383.98 149 470 256 470c105.936 0 192.601-86.02 192.601-191.169 0-105.144-86.665-191.166-192.601-191.166zm0 339.855c-82.393 0-149.8-66.906-149.8-148.688 0-81.777 67.407-148.684 149.8-148.684 82.394 0 149.8 66.906 149.8 148.684 0 82.839-67.406 148.688-149.8 148.688z" />
           </svg>
-          <div className="text-white text-xs text-center">In-Play</div>
+          <div className="text-white text-xs text-center">
+            {getLanguage(LanguageKey.IN_PLAY)}
+          </div>
         </Link>
         <Link
           className={`flex flex-col items-center justify-center h-full ${
@@ -107,7 +110,7 @@ const MobileFooter = () => {
           </svg>
           <div className="text-white text-xs text-center">
             {" "}
-            {languageValue(valueByLanguage, LanguageKey.HOME)}
+            {getLanguage(LanguageKey.HOME)}
           </div>
         </Link>
         <Link
@@ -123,7 +126,9 @@ const MobileFooter = () => {
             alt="Casino icon"
             className="w-7 h-7 filter invert brightness-200"
           />
-          <div className="text-white text-xs text-center">Casino</div>
+          <div className="text-white text-xs text-center">
+            {getLanguage(LanguageKey.CASINO)}
+          </div>
         </Link>
         <Link
           className={`flex flex-col items-center justify-center h-full ${
@@ -145,7 +150,9 @@ const MobileFooter = () => {
           >
             <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
           </svg>
-          <div className="text-white text-xs text-center">Account</div>
+          <div className="text-white text-xs text-center">
+            {getLanguage(LanguageKey.ACCOUNT)}
+          </div>
         </Link>
       </div>
     </div>
