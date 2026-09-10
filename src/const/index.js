@@ -466,6 +466,8 @@ export const LanguageKey = {
   ALL: "ALL",
   PLACE_BET_TO_SEE_IT_HERE: "PLACE_BET_TO_SEE_IT_HERE",
   RESET: "RESET",
+  BY_USERNAME: "BY_USERNAME",
+  BY_PHONE: "BY_PHONE",
 };
 export const EVENT_NAMES = {
   4: "CRICKET",
