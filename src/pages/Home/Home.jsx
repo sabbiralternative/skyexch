@@ -7,13 +7,22 @@ import HighlightCasino from "../../components/modules/Home/HighlightCasino";
 import OurProvider from "../../components/modules/Home/OurProvider";
 import Notification from "../../components/UI/Header/Notification";
 import MiniGames from "../../components/modules/Home/MiniGames";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
   const [showMiniGamesModal, setShowMiniGamesModal] = useState(false);
   const { data: casino } = useIndexQuery({
     type: "99_casino_dashboard",
   });
 
+  const handleNavigateToCasinoPage = () => {
+    if (!token) return navigate("/login");
+    navigate(`/casino?product=MAC88%20LIVE&category=All`);
+  };
   return (
     <Fragment>
       <div className="w-full md:max-w-[76%] flex flex-col flex-1 m-auto overflow-auto hide-scrollbar bg-white pb-32 pb-[65px] md:pb-1">
@@ -23,6 +32,27 @@ const Home = () => {
           <Banner />
           <div className="relative -top-1.5 flex flex-col space-y-0.5">
             <HighlightCasino highlight_casino={casino?.highlight_casino} />
+            <div
+              onClick={handleNavigateToCasinoPage}
+              className="w-full cursor-pointer relative col-span-4 md:col-span-6"
+            >
+              <img
+                src="https://mythemedata.com/uploads/mac88.gif"
+                alt="mac88"
+                className="w-full h-auto object-cover"
+              />
+              <div className="flex w-full h-[32px] sm:h-[24px] flex-shrink-0 absolute bottom-0 left-0 right-0 border-b-4 border-goldenYellow">
+                <div className="flex flex-1 items-center bg-gradient-to-r from-black to-transparent text-white pl-2 pr-1 py-1 text-[11px] font-bold cursor-pointer min-w-0">
+                  <span className="truncate">Mac88</span>
+                </div>
+                <button
+                  type="button"
+                  className="flex items-center justify-center flex-shrink-0 bg-goldenYellow text-black px-2 pl-4 py-1 text-[11px] font-bold cursor-pointer min-w-[70px] [clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)] hover:opacity-90"
+                >
+                  Play Now
+                </button>
+              </div>
+            </div>
             <div className="flex flex-col gap-0.5">
               <CasinoSlider data={casino?.new_launch} title="New Launch" />
               <CasinoSlider
