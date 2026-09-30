@@ -232,6 +232,15 @@ const EventNameList = ({ eventTypeId }) => {
               </a>
             </div>
             <div className="relative">
+              <a
+                className="flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap  text-black
+                       font-sans text-[13px] font-[600]"
+                onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}
+              >
+                {getLanguage(LanguageKey.FANTASY_11)}
+              </a>
+            </div>
+            <div className="relative">
               <Link
                 className={`flex justify-center items-end mt-2 gap-[2px] font-[400] px-7 py-2 text-[14px] whitespace-nowrap 
                        font-sans text-[13px] font-[600] ${eventTypeId == 7 ? "bg-black1 border-x border-t border-white rounded-t-[8px] text-[#ffb600]" : "text-black"}`}

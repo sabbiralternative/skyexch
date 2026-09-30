@@ -244,6 +244,14 @@ export const QuickAccessNavList = () => {
                 {getLanguage(LanguageKey.SPORTSBOOK)}
               </div>
             </a>
+            <a
+              className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize bg-color text-white"
+              onClick={() => handleNavigateToIFrame("sportsbook", "595001")}
+            >
+              <div className="flex items-center justify-center gap-1">
+                {getLanguage(LanguageKey.FANTASY_11)}
+              </div>
+            </a>
             <Link
               className="text-center text-xs text-nowrap px-3 py-[7px] border-r border-gray4 capitalize"
               to="/exchange_sports/horserace/7"
